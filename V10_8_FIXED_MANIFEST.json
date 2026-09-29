@@ -1,0 +1,21 @@
+{
+  "build": "V10.8 FIXED – LOCAL TEST",
+  "baseline": "V10.7.14",
+  "scope": "Giữ nguyên toàn bộ baseline; chỉ thêm Đề 3 H10902.",
+  "checks": {
+    "Bài học / course vẫn còn": true,
+    "Mini Test vẫn còn": true,
+    "Tiến độ vẫn còn": true,
+    "Lưu kết quả online vẫn còn": true,
+    "Đề 1 vẫn còn": true,
+    "Đề 2 vẫn còn": true,
+    "Đề 3 = 40 câu": true,
+    "40/40 asset": true,
+    "Audio H10902": true,
+    "Đáp án 40/40": true,
+    "Mốc đạt 120/200": true,
+    "Đề 2 assets H10901": true,
+    "Audio H10901": true,
+    "H10902 câu 11–15 crop đúng số câu": true
+  }
+}

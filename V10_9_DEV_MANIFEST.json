@@ -1,0 +1,167 @@
+{
+  "version": "V10.9 DEV R188",
+  "baseline": "R187 DASHBOARD ONLINE SYNC",
+  "status": "DEV - H11003 Mock 4 QA stage 1",
+  "locked": [
+    "Bài học",
+    "MiniTest content",
+    "Mock 1-3 assets",
+    "H10902 crops 1-40",
+    "audio assets"
+  ],
+  "new_features": [
+    "Result Dashboard in Thành tích",
+    "Local result history (last 50 attempts)",
+    "Rank Engine S+/S/A/B/C/D/E based on percentage",
+    "Per-result correct/wrong/unanswered metrics",
+    "Best/average/latest trend summary",
+    "Mock 4 H11003 official audio + verified crops questions 1-5"
+  ],
+  "rank_thresholds": {
+    "S+": 95,
+    "S": 90,
+    "A": 80,
+    "B": 70,
+    "C": 60,
+    "D": 50,
+    "E": 0
+  },
+  "note": "Rank is learning gamification and is not an official HSK classification.",
+  "feature": "Three daily-card counters now render from persisted lesson progress; read-only bridge checks existing localStorage lesson-progress records; exam data/logic untouched.",
+  "fix": "lessonActivities now explicitly loads fillBank from choiceQuestionsForLesson(n) and arrangeBank from arrangeSentencesForLesson(n). No content banks were changed.",
+  "scope": "Online synchronization for Student Progress Dashboard",
+  "mock_dataset_sha256": "f3f09f84e03eed9a7326935406c87226aa560bfaec0fd008e79df327eb41d0cf",
+  "mock_lock": "HSK1_MOCKS byte-identical to PASS",
+  "changes": [
+    "R186 Dashboard now refreshes immediately after cloud achievement history is merged.",
+    "Cloud student_results are cached for the current session so lesson cards can recognize online lesson activity.",
+    "Mini Test completions and cloud hsk1_progress are merged into completed lesson state without deleting local progress.",
+    "Mini Test/Quick Test counts, latest results and best scores restore from merged online result history on another device.",
+    "Dashboard shows explicit syncing / synced / offline-local status.",
+    "Existing local lesson detail progress remains intact and is never overwritten by less detailed cloud rows.",
+    "R186 Dashboard, R184 Smart Review and all prior PASS exercise logic remain unchanged.",
+    "Teacher management: show listening and reading scores and correct counts per mock attempt from online student_results; missing historical skill scores display as dash."
+  ],
+  "change": "After Mini Test submission, explanations keep only the answer explanation; removed the trailing distractor-method commentary.",
+  "architecture": "Single card replacement surface; no per-text overlays on background image",
+  "design": "Approved larger pastel card: header/date, pink lesson row, checklist, stacked Chinese books/cats illustration",
+  "reference_image": "image(10).png 1584x960",
+  "qa_reference": "user screenshot 1872x351",
+  "safe_snapshot": "V10.9_SAFE_R121_DAILY_CARD_PASS.zip",
+  "progress_logic": {
+    "vocab": "counts distinct vocabulary-practice items actually opened",
+    "pattern": "counts distinct 3 fill + 2 arrange pattern activities actually opened",
+    "exercise": "counts Mini Test questions only after the Mini Test is submitted",
+    "checkbox": "checked only when the corresponding real activity total is complete"
+  },
+  "mini_test": {
+    "coverage": "Bài 1–15",
+    "question_types": [
+      "Chọn pinyin đúng của từ",
+      "Chọn nghĩa đúng của từ"
+    ],
+    "options": "4 options/question: 1 correct + 3 distractors",
+    "difficulty": "Meaning distractors preferentially drawn from same/near semantic category; pinyin distractors prefer similar syllable length/initial",
+    "source": "Uses each lesson's existing vocab array; does not modify mock exams 1–5"
+  },
+  "lesson_flow": [
+    "Luyện từ vựng",
+    "Chọn đáp án",
+    "Sắp xếp câu",
+    "Đọc hiểu",
+    "Mini Test"
+  ],
+  "root_cause": "Smart Review could still contain Reading records created before the R181 schema fix, where the stored target answer was the explanation text rather than the correct option. R182 then compared the selected correct option against that stale target and reported it wrong.",
+  "audit": {
+    "checks": {
+      "JavaScript syntax": "PASS",
+      "15 lesson data": "CHECK (Extra data: line 1 column 8249 (char 8248))",
+      "Lesson renderer": "PASS",
+      "Vocabulary native selection": "PASS",
+      "Reading native selection": "PASS",
+      "Personalized Today card": "PASS",
+      "Smart Review store": "PASS",
+      "Smart Review renderer": "PASS",
+      "Original-format review": "PASS",
+      "Reading target repair": "PASS",
+      "Arrange click-order": "PASS",
+      "Mini/Quick bridge": "PASS",
+      "Mini Test": "PASS",
+      "Quick Test card": "CHECK",
+      "Achievement view": "CHECK",
+      "Result recording": "CHECK",
+      "Vocabulary highlight": "PASS",
+      "Reading highlight": "PASS",
+      "2x mastery": "PASS",
+      "Mini Test type": "PASS",
+      "Quick Test type": "PASS",
+      "4 Quick Test types": "PASS",
+      "No visible Smart Review system-test button": "PASS"
+    },
+    "policy": "R184 runtime index.html preserved unchanged. Audit found no syntax failure and all targeted production flows are present. No speculative refactor applied."
+  },
+  "critical_fix": "The previous practice banks followed an assumed lesson order that did not match the real course[] in this website. Actual Bài 11 is 现在几点; transport/是…的 is Bài 15.",
+  "qa": "Exactly 5 unique Choice and 5 unique Arrangement items per lesson; actual lesson vocabulary/grammar mapping; answer and Vietnamese explanation stored with each Choice item; JS syntax OK.",
+  "quick_test_banks": {
+    "vocab": 20,
+    "grammar": 20,
+    "reading": 20,
+    "mixed": 20
+  },
+  "rules": [
+    "Each run randomly selects 10/20",
+    "Answer options are reshuffled while correct-answer index is recalculated",
+    "Every item includes a specific Vietnamese explanation",
+    "R145 Quick Test navigation is unchanged",
+    "R144/R145 passed areas and HSK1 mock exams 1–5 are locked"
+  ],
+  "security": "Anon SELECT is RLS-limited to rows whose student_id matches x-student-id request header. Teacher authenticated read policy remains unchanged.",
+  "locks": {
+    "mocks": "f3f09f84e03eed9a7326935406c87226aa560bfaec0fd008e79df327eb41d0cf",
+    "choice": "7b884c6b812681c9895751b8a75c5826301c0ac46d339c5c496bf5825575c337",
+    "arrange": "878d8c9eea34b2bc3d0f6b3b2ac1e32f01a56daea5cef8b08e72459974afcfa2",
+    "quick": "07926231cbad253e118f4ee57161c53f3ac3c49571b6724c3d3f412ac3bbfc75"
+  },
+  "recommendation_priority": [
+    "1. Mini Test lesson below 80% -> recommend that exact lesson, weakest first.",
+    "2. If no weak lesson and Reading average is >5 points below Listening -> open Reading Quick Test.",
+    "3. If no weak lesson and Listening average is >5 points below Reading -> recommend Listening via mock-test center.",
+    "4. If history exists but skills are balanced -> recommend first unfinished lesson.",
+    "5. If insufficient personal data -> preserve original date-based daily lesson."
+  ],
+  "qa_summary": {
+    "reviewed": "60 Choice + 60 Arrangement items",
+    "choice_changed_lessons": [
+      8,
+      9,
+      10,
+      11,
+      13,
+      14
+    ],
+    "arrangement_changed_lessons": [
+      4,
+      5,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14
+    ]
+  },
+  "locked_passed_areas": [
+    "15 lesson practice flow",
+    "Vocabulary meaning/pinyin native selection",
+    "Choice / Arrangement / Reading lesson practice",
+    "Mini Test and four Quick Test types",
+    "Achievement/history integration",
+    "Personalized Today recommendation card",
+    "Smart Review capture, original-format replay, dedupe, 2x mastery",
+    "Reading answer mapping/repair",
+    "Smart Review arrangement click-order"
+  ],
+  "limitation": "The existing student_results cloud schema stores assessment/result-level data, not per-word/per-pattern lesson checkboxes or full Smart Review question payloads. R187 restores Dashboard metrics supported by that schema; local-only fine-grained lesson and Smart Review details are not fabricated."
+}
