@@ -1,5 +1,5 @@
 {
-  "version": "V10.9 DEV R200",
+  "version": "V10.9 DEV R201",
   "baseline": "R192 PASS",
   "status": "DEV - H11003 Mock 4 QA stage 1",
   "locked": [
@@ -169,11 +169,12 @@
   "responsive_alignment_fix": "Anchor daily lesson card and achievement metrics to home image width, covering baked-in regions in portrait, landscape, and desktop zoom.",
   "quote_fix": "Use image-width coordinates to cover the old quote after changing quotes.",
   "student_ui_cleanup": "Remove test-flow copy, development version labels, and course QA panel from student-facing screens.",
-  "learning_roadmap": "R200: account-based level progression with complete lesson and assessment requirements",
-  "home_refresh": "R200: home button reloads homepage; home action next to back on content pages",
-  "navigation_back": "R200: previous-page back button with view and scroll restoration",
-  "public_search": "R200: content search with Vietnamese/pinyin/Chinese autocomplete and routed results",
-  "header_account": "R200: header login/name button, password and logout menu, removed corner pill",
-  "student_password_change": "R200: current password confirmation, new password and confirmation, authenticated password update",
-  "account_sync": "R200: authenticated student code/password; lesson progress and result sync"
+  "main_menu": "R201: removed Fun Corner; five visible native menu actions with aligned spacing",
+  "learning_roadmap": "R201: account-based level progression with complete lesson and assessment requirements",
+  "home_refresh": "R201: home button reloads homepage; home action next to back on content pages",
+  "navigation_back": "R201: previous-page back button with view and scroll restoration",
+  "public_search": "R201: content search with Vietnamese/pinyin/Chinese autocomplete and routed results",
+  "header_account": "R201: header login/name button, password and logout menu, removed corner pill",
+  "student_password_change": "R201: current password confirmation, new password and confirmation, authenticated password update",
+  "account_sync": "R201: authenticated student code/password; lesson progress and result sync"
 }
