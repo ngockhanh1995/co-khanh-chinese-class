@@ -1,5 +1,5 @@
 {
-  "version": "V10.9 DEV R204",
+  "version": "V10.9 DEV R206",
   "baseline": "R192 PASS",
   "status": "DEV - H11003 Mock 4 QA stage 1",
   "locked": [
@@ -169,6 +169,8 @@
   "responsive_alignment_fix": "Anchor daily lesson card and achievement metrics to home image width, covering baked-in regions in portrait, landscape, and desktop zoom.",
   "quote_fix": "Use image-width coordinates to cover the old quote after changing quotes.",
   "student_ui_cleanup": "Remove test-flow copy, development version labels, and course QA panel from student-facing screens.",
+  "hsk_catalog": "R206: HSK1-HSK6 cards, shared HSK1/HSK2 course card layout, quick-check labels, pending HSK3-HSK6",
+  "hsk2_lesson_tabs": "R206: five inline lesson tabs, preserved answers, horizontal mobile scrolling",
   "hsk2": {
     "lessons": 15,
     "vocab_entries": 170,
@@ -182,14 +184,14 @@
     "source": "user supplied Standard Course HSK2 2.0 textbook and workbook",
     "account_progress": "separate HSK2 units and hsk_level=2 results"
   },
-  "mini_lesson_1_context": "R204: final question uses teacher/student greeting dialogue",
-  "result_action_label": "R204: Xem Thành tích của bạn on completion results",
-  "main_menu": "R204: removed Fun Corner; five visible native menu actions with aligned spacing",
-  "learning_roadmap": "R204: account-based level progression with complete lesson and assessment requirements",
-  "home_refresh": "R204: home button reloads homepage; home action next to back on content pages",
-  "navigation_back": "R204: previous-page back button with view and scroll restoration",
-  "public_search": "R204: content search with Vietnamese/pinyin/Chinese autocomplete and routed results",
-  "header_account": "R204: header login/name button, password and logout menu, removed corner pill",
-  "student_password_change": "R204: current password confirmation, new password and confirmation, authenticated password update",
-  "account_sync": "R204: authenticated student code/password; lesson progress and result sync"
+  "mini_lesson_1_context": "R206: final question uses teacher/student greeting dialogue",
+  "result_action_label": "R206: Xem Thành tích của bạn on completion results",
+  "main_menu": "R206: removed Fun Corner; five visible native menu actions with aligned spacing",
+  "learning_roadmap": "R206: account-based level progression with complete lesson and assessment requirements",
+  "home_refresh": "R206: home button reloads homepage; home action next to back on content pages",
+  "navigation_back": "R206: previous-page back button with view and scroll restoration",
+  "public_search": "R206: content search with Vietnamese/pinyin/Chinese autocomplete and routed results",
+  "header_account": "R206: header login/name button, password and logout menu, removed corner pill",
+  "student_password_change": "R206: current password confirmation, new password and confirmation, authenticated password update",
+  "account_sync": "R206: authenticated student code/password; lesson progress and result sync"
 }
