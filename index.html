@@ -219,6 +219,10 @@
 .searchResultCard p{margin:0;color:#887e89;line-height:1.5;overflow-wrap:anywhere}
 .searchReveal{outline:3px solid #ec89a8!important;outline-offset:4px;background:#fff0f5!important}
 @media(max-width:700px){.searchResultGrid{grid-template-columns:1fr}.searchResultCard{padding:14px}.searchPageForm{gap:6px}}
+.pageNavigationActions{display:flex;align-items:center;justify-content:flex-end;gap:8px;flex-wrap:wrap;flex-shrink:0}
+.pageNavigationActions .back{white-space:nowrap}
+.pageNavigationActions .pageHomeButton{background:#ec89a8;color:#fff}
+@media(max-width:700px){.page .head{gap:12px;flex-wrap:wrap}.pageNavigationActions{justify-content:flex-start}.pageNavigationActions .back{min-height:44px}}
 </style>
 <style id="r82-achievement-real-stats">
 /* R88 — screenshot-calibrated micro alignment */
@@ -417,7 +421,7 @@
  <div id="headerSearchDropdown" class="headerSearchDropdown" hidden><div id="headerSearchHint" class="searchHint" role="status" aria-live="polite"></div><div id="headerSearchList" role="listbox" aria-label="Gợi ý tìm kiếm"></div><button id="headerSearchAll" type="button" class="searchAll" onclick="submitHeaderSearch()">Xem tất cả kết quả →</button></div>
 </div>
 <!-- top nav -->
-<button class="hot navHot" style="left:26.0%;top:5.6%;width:8.0%;height:5.1%" onclick="home()" title="Trang chủ"></button>
+<button class="hot navHot" style="left:26.0%;top:5.6%;width:8.0%;height:5.1%" onclick="refreshHomePage()" title="Trang chủ" aria-label="Trang chủ — làm mới trang"></button>
 <button class="hot navHot" style="left:34.5%;top:5.6%;width:13.0%;height:5.1%" onclick="openPage('knowledge')" title="Hệ thống kiến thức"></button>
 <button class="hot navHot" style="left:48.0%;top:5.6%;width:7.5%;height:5.1%" onclick="openPage('lessons')" title="Bài học"></button>
 <button class="hot navHot" style="left:56.0%;top:5.6%;width:9.0%;height:5.1%" onclick="openPage('tests')" title="Bài kiểm tra"></button>
@@ -2615,6 +2619,30 @@ teacherLogout=async function(){CK_BACK_STACK=[];return CK_BACK_TEACHER_LOGOUT()}
 document.addEventListener('DOMContentLoaded',refreshBackButtons);
 
 function resumeNavigationAudio(id){let audio=document.getElementById(id);if(audio)audio.play().catch(()=>{})}
+
+// R199: the Home action reloads the site into its homepage.
+let CK_HOME_RELOADING=false;
+function refreshHomePage(){
+ if(CK_HOME_RELOADING)return;CK_HOME_RELOADING=true;
+ try{if(currentSitePage()==='tests')saveResumeProgress()}catch(e){console.warn('Could not save the current test before returning home.')}
+ document.querySelectorAll('audio').forEach(audio=>audio.pause());
+ if(mockTimer){clearInterval(mockTimer);mockTimer=null}
+ window.location.reload();
+}
+function installPageHomeButtons(){
+ document.querySelectorAll('.page .head').forEach(head=>{
+  let back=head.querySelector('.back');if(!back)return;
+  let actions=head.querySelector('.pageNavigationActions');
+  if(!actions){actions=document.createElement('div');actions.className='pageNavigationActions';back.parentNode.insertBefore(actions,back);actions.appendChild(back)}
+  if(!actions.querySelector('.pageHomeButton')){let button=document.createElement('button');button.type='button';button.className='back pageHomeButton';button.textContent='⌂ Trang chủ';button.title='Về trang chủ và làm mới trang';button.setAttribute('onclick','refreshHomePage()');actions.appendChild(button)}
+ });
+}
+// A restored page may contain both actions; keep their separate behavior.
+refreshBackButtons=function(){
+ document.querySelectorAll('.page .head .back:not(.pageHomeButton)').forEach(button=>{button.textContent='← Quay lại';button.setAttribute('onclick','goBack()');button.title='Về trang vừa xem'});
+ installPageHomeButtons();
+};
+document.addEventListener('DOMContentLoaded',refreshBackButtons);
 
 </script>
 

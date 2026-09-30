@@ -1,5 +1,5 @@
 {
-  "version": "V10.9 DEV R198",
+  "version": "V10.9 DEV R199",
   "baseline": "R192 PASS",
   "status": "DEV - H11003 Mock 4 QA stage 1",
   "locked": [
@@ -169,9 +169,10 @@
   "responsive_alignment_fix": "Anchor daily lesson card and achievement metrics to home image width, covering baked-in regions in portrait, landscape, and desktop zoom.",
   "quote_fix": "Use image-width coordinates to cover the old quote after changing quotes.",
   "student_ui_cleanup": "Remove test-flow copy, development version labels, and course QA panel from student-facing screens.",
-  "navigation_back": "R198: previous-page back button with view and scroll restoration",
-  "public_search": "R198: content search with Vietnamese/pinyin/Chinese autocomplete and routed results",
-  "header_account": "R198: header login/name button, password and logout menu, removed corner pill",
-  "student_password_change": "R198: current password confirmation, new password and confirmation, authenticated password update",
-  "account_sync": "R198: authenticated student code/password; lesson progress and result sync"
+  "home_refresh": "R199: home button reloads homepage; home action next to back on content pages",
+  "navigation_back": "R199: previous-page back button with view and scroll restoration",
+  "public_search": "R199: content search with Vietnamese/pinyin/Chinese autocomplete and routed results",
+  "header_account": "R199: header login/name button, password and logout menu, removed corner pill",
+  "student_password_change": "R199: current password confirmation, new password and confirmation, authenticated password update",
+  "account_sync": "R199: authenticated student code/password; lesson progress and result sync"
 }
