@@ -194,6 +194,31 @@
 .headerAccountMenu button{display:block;text-align:left;width:100%;min-height:44px;padding:10px;border:0;border-radius:9px;background:white;color:#28304d;font:inherit;cursor:pointer}
 .headerAccountMenu button:hover,.headerAccountMenu button:focus-visible{background:#fff0f5;outline:none}
 #studentPill{display:none!important}
+#home .headerSearch{position:absolute;left:71.75%;top:.65cqw;width:11.65%;height:2.74cqw;z-index:121}
+.headerSearch form{position:relative;width:100%;height:100%}
+.headerSearch input{display:block;width:100%;height:100%;min-width:0;padding:0 .6cqw 0 2.7cqw;border:1px solid #efe4e8;border-radius:999px;background:#fff;color:#28304d;font:inherit;font-size:.95cqw;outline:none}
+.headerSearch input:focus{border-color:#ec89a8;box-shadow:0 0 0 2px #ec89a830}
+.headerSearch input::placeholder{color:#9699a4}
+.headerSearch input::-webkit-search-cancel-button{display:none}
+.headerSearchIcon{position:absolute;left:.65cqw;top:0;height:100%;width:1.5cqw;padding:0;border:0;background:transparent;color:#566078;cursor:pointer;z-index:1}
+.headerSearchIcon svg{width:100%;height:100%;fill:none;stroke:currentColor;stroke-width:2}
+.headerSearchDropdown{position:absolute;right:-12cqw;top:calc(100% + 8px);width:min(510px,90vw);max-height:min(70vh,520px);overflow:auto;padding:8px;border:1px solid #efdae3;border-radius:14px;background:#fff;box-shadow:0 10px 30px #75415e30;font-size:14px;color:#28304d}
+.headerSearchDropdown[hidden]{display:none!important}
+.searchHint{padding:8px 10px;color:#887e89;font-size:13px}
+.searchOption,.searchAll{display:block;width:100%;min-height:44px;padding:10px;border:0;border-radius:9px;background:#fff;color:#28304d;font:inherit;text-align:left;cursor:pointer}
+.searchOption b,.searchOption small{display:block;overflow-wrap:anywhere}
+.searchOption small{margin-top:4px;color:#887e89;line-height:1.4}
+.searchOption:hover,.searchOption[aria-selected="true"],.searchOption:focus-visible{background:#fff0f5}
+.searchAll{color:#ba477b;font-weight:700;border-top:1px solid #f1e3e9;border-radius:0;margin-top:4px}
+.searchPageForm{display:flex;gap:10px;max-width:720px;margin:14px 0}
+.searchPageForm input{width:100%;min-width:0;border:1px solid #dfd2da;border-radius:11px;padding:12px;font:inherit}
+.searchResultGrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.searchResultCard{display:block;width:100%;border:1px solid #eee4ea;border-radius:16px;padding:18px;background:#fff;text-align:left;font:inherit;color:#28304d;cursor:pointer}
+.searchResultCard:hover,.searchResultCard:focus-visible{border-color:#ec89a8;background:#fff7fa}
+.searchResultCard b{display:block;margin:9px 0;font-size:18px;overflow-wrap:anywhere}
+.searchResultCard p{margin:0;color:#887e89;line-height:1.5;overflow-wrap:anywhere}
+.searchReveal{outline:3px solid #ec89a8!important;outline-offset:4px;background:#fff0f5!important}
+@media(max-width:700px){.searchResultGrid{grid-template-columns:1fr}.searchResultCard{padding:14px}.searchPageForm{gap:6px}}
 </style>
 <style id="r82-achievement-real-stats">
 /* R88 — screenshot-calibrated micro alignment */
@@ -384,6 +409,13 @@
   <button id="headerLogoutItem" type="button" role="menuitem" onclick="headerLogout()">↪ Đăng xuất</button>
  </div>
 </div>
+<div id="headerSearch" class="headerSearch">
+ <form onsubmit="event.preventDefault();submitHeaderSearch()" role="search">
+  <button type="submit" class="headerSearchIcon" aria-label="Tìm kiếm nội dung"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10" cy="10" r="7"></circle><path d="m15 15 7 7"></path></svg></button>
+  <input id="headerSearchInput" type="search" maxlength="120" placeholder="Tìm kiếm..." aria-label="Tìm bài học và tài liệu" role="combobox" aria-autocomplete="list" aria-controls="headerSearchList" aria-expanded="false" autocomplete="off" oninput="suggestHeaderSearch()" onfocus="suggestHeaderSearch()" onkeydown="headerSearchKey(event)">
+ </form>
+ <div id="headerSearchDropdown" class="headerSearchDropdown" hidden><div id="headerSearchHint" class="searchHint" role="status" aria-live="polite"></div><div id="headerSearchList" role="listbox" aria-label="Gợi ý tìm kiếm"></div><button id="headerSearchAll" type="button" class="searchAll" onclick="submitHeaderSearch()">Xem tất cả kết quả →</button></div>
+</div>
 <!-- top nav -->
 <button class="hot navHot" style="left:26.0%;top:5.6%;width:8.0%;height:5.1%" onclick="home()" title="Trang chủ"></button>
 <button class="hot navHot" style="left:34.5%;top:5.6%;width:13.0%;height:5.1%" onclick="openPage('knowledge')" title="Hệ thống kiến thức"></button>
@@ -524,6 +556,11 @@
 <div class="smartReviewHead"><div><h3 style="margin-bottom:4px">🔄 Ôn tập thông minh</h3><div class="muted">Ưu tiên câu sai lặp lại; trả lời đúng khi ôn sẽ giảm dần mức ưu tiên.</div></div><div id="smartReviewStats" class="smartReviewStats"></div></div><div id="wrong"></div>
 <div style="margin-top:22px;border-top:1px solid #eee4ea;padding-top:14px"><button class="btn soft" onclick="openPage('teacherAdmin');checkTeacherSession()">👩‍🏫 Quản lý học sinh cho cô Khanh</button></div></div></section>
 
+<section id="searchResults" class="page">
+ <div class="head"><div><span class="tag">TÌM KIẾM</span><h1>Bài học và tài liệu</h1></div><button class="back" onclick="home()">← Trang chủ</button></div>
+ <form class="searchPageForm" role="search" onsubmit="event.preventDefault();submitHeaderSearch(document.getElementById('searchPageInput').value)"><input id="searchPageInput" type="search" maxlength="120" placeholder="Tên bài, từ vựng, pinyin hoặc chữ Hán…" aria-label="Từ khóa tìm kiếm"><button type="submit" class="btn">Tìm kiếm</button></form>
+ <p id="searchResultSummary" class="muted" role="status" aria-live="polite"></p><div id="searchResultList" class="searchResultGrid"></div>
+</section>
 <section id="teacherAdmin" class="page"><div class="head"><div><span class="tag">DÀNH CHO CÔ KHANH</span><h1>👩‍🏫 Quản lý học sinh</h1><p class="muted">Kết quả được lưu online theo từng lần làm bài.</p></div><button class="back" onclick="home()">← Trang chủ</button></div><div class="card">
 <div id="teacherLoggedOut" class="teacherLogin"><h2>Đăng nhập giáo viên</h2><p class="muted">Học sinh không thể đọc bảng kết quả này.</p><input id="teacherEmail" type="email" placeholder="Email giáo viên"><input id="teacherPassword" type="password" placeholder="Mật khẩu"><button class="btn" onclick="teacherLogin()">Đăng nhập</button><div id="teacherLoginMsg" class="saveState"></div></div>
 <div id="teacherLoggedIn" style="display:none"><details class="card" style="margin:12px 0"><summary><b>Cấp tài khoản học sinh</b></summary><p>Mã gồm 3–32 chữ cái không dấu, số, dấu gạch ngang hoặc gạch dưới. Mật khẩu từ 8 ký tự.</p><div class="teacherLogin"><input id="newStudentCode" placeholder="Mã học sinh, ví dụ HS001" autocomplete="off"><input id="newStudentName" maxlength="80" placeholder="Họ tên học sinh"><input id="newStudentPassword" type="password" autocomplete="new-password" placeholder="Mật khẩu ban đầu"><label>Liên kết kết quả cũ (chọn đúng học sinh):</label><select id="newStudentLegacy" style="width:100%;padding:12px"><option value="">Tạo hồ sơ mới</option></select><button id="createStudentAccountBtn" class="btn" onclick="createStudentAccount()">Tạo tài khoản</button><div id="createStudentAccountMsg" class="saveState"></div></div></details><div class="adminTools"><input id="adminSearch" placeholder="Lọc theo tên hoặc bài…" oninput="renderAdminRows()"><button class="btn soft" onclick="loadAdminResults()">↻ Làm mới</button><button class="btn soft" onclick="teacherLogout()">Đăng xuất</button></div><div id="adminSummary" class="muted"></div><div class="adminWrap"><table class="adminTable"><thead><tr><th>Tên</th><th>Bài</th><th>Điểm</th><th>Nghe</th><th>Đọc</th><th>Đánh giá</th><th>Số câu sai</th><th>Ngày làm</th><th>Thời gian hoàn thành</th><th>Tiến độ HSK1 / Thi thử</th></tr></thead><tbody id="adminRows"></tbody></table></div></div></div></section>
@@ -2444,6 +2481,76 @@ document.addEventListener('keydown',e=>{
  }
 });
 document.addEventListener('DOMContentLoaded',()=>showStudentPill());
+
+let CK_SEARCH_INDEX=null,CK_SEARCH_MATCHES=[],CK_SEARCH_ACTIVE=-1;
+function normalizeSearch(text){return String(text||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[đĐ]/g,'d').toLowerCase().replace(/\s+/g,' ').trim()}
+function buildSearchIndex(){
+ if(CK_SEARCH_INDEX)return CK_SEARCH_INDEX;
+ let items=[],add=(id,title,type,description,keywords,route)=>items.push({id,title,type,description,route,search:normalizeSearch([title,type,description,keywords].join(' ')),titleSearch:normalizeSearch(title)});
+ add('lessons','Thư viện bài học HSK1','Bài học','15 bài học tiếng Trung, từ vựng, ngữ pháp và luyện tập.','hsk 1 giáo trình tài liệu', {page:'lessons'});
+ add('knowledge','Hệ thống kiến thức','Kiến thức','Pinyin, thanh điệu, ngữ pháp và các chủ điểm HSK.','phát âm tài liệu',{page:'knowledge'});
+ add('tests','Trung tâm kiểm tra HSK1','Bài kiểm tra','Mini Test, kiểm tra chặng, đề cuối khóa và 5 đề thi thử.','đề thi mock audio nghe đọc',{page:'tests'});
+ add('quick','Kiểm tra nhanh','Bài kiểm tra','Test từ vựng, ngữ pháp, đọc hiểu và tổng hợp.','quiz trắc nghiệm',{quick:true});
+ course.forEach((lesson,i)=>{
+  let n=i+1,title='Bài '+n+': '+lesson.title+' — '+lesson.vi,keywords=['HSK1 HSK 1 bài học giáo trình lesson '+n,lesson.focus,...lesson.grammar,...lesson.examples,...lesson.vocab.flat()].join(' ');
+  add('lesson-'+n,title,'Bài học',lesson.focus,keywords,{lesson:n});
+  add('grammar-'+n,'Ngữ pháp · Bài '+n+': '+lesson.vi,'Ngữ pháp',lesson.grammar.join(' · '),keywords,{lesson:n,section:'grammar'});
+  add('vocab-'+n,'Từ vựng · Bài '+n+': '+lesson.vi,'Từ vựng',lesson.vocab.length+' từ và cách phát âm.',keywords,{lesson:n,section:'vocab'});
+  lesson.vocab.forEach((v,j)=>add('word-'+n+'-'+j,v[0]+' · '+v[1]+' · '+v[2],'Từ vựng','Bài '+n+': '+lesson.vi,['HSK1 HSK 1 từ vựng',...v].join(' '),{lesson:n,word:v[0]}));
+  add('mini-'+n,'Mini Test · Bài '+n+': '+lesson.vi,'Bài kiểm tra','Luyện tập và kiểm tra kiến thức bài '+n+'.','HSK1 mini test '+lesson.title,{mini:n});
+ });
+ topics.forEach((t,i)=>add('topic-'+i,t[1]+' · '+t[0],'Kiến thức',t[2],t.join(' '),{topic:i}));
+ document.querySelectorAll('#tests .examCard').forEach((card,i)=>{
+  let title=card.querySelector('h3')?.textContent;if(!title)return;
+  add('exam-'+i,title,'Bài kiểm tra',card.querySelector('p')?.textContent||'','HSK1 đề thi mock nghe đọc audio',{exam:i});
+ });
+ CK_SEARCH_INDEX=items;return items;
+}
+function findSearchResults(query){
+ let q=normalizeSearch(query),items=buildSearchIndex();if(!q)return items.slice(0,4);
+ let tokens=q.split(' ');
+ return items.filter(x=>tokens.every(t=>x.search.includes(t))).map((x,i)=>({x,i,rank:x.titleSearch===q?0:x.titleSearch.startsWith(q)?1:x.titleSearch.includes(q)?2:3})).sort((a,b)=>a.rank-b.rank||a.i-b.i).map(r=>r.x);
+}
+function closeHeaderSearch(){document.getElementById('headerSearchDropdown').hidden=true;let input=document.getElementById('headerSearchInput');input.setAttribute('aria-expanded','false');input.removeAttribute('aria-activedescendant');CK_SEARCH_ACTIVE=-1}
+function renderSearchSuggestions(){
+ let query=document.getElementById('headerSearchInput').value,visible=CK_SEARCH_MATCHES.slice(0,7),hint=document.getElementById('headerSearchHint');
+ hint.textContent=query.trim()?(CK_SEARCH_MATCHES.length?CK_SEARCH_MATCHES.length+' kết quả phù hợp':'Chưa tìm thấy. Thử tên bài, pinyin hoặc chữ Hán khác nhé.'):'Gợi ý nội dung trên web';
+ document.getElementById('headerSearchList').innerHTML=visible.map((x,i)=>'<button id="searchSuggestion'+i+'" type="button" class="searchOption" role="option" aria-selected="'+(i===CK_SEARCH_ACTIVE)+'" onclick="openSearchEntry(\''+x.id+'\')"><b>'+esc(x.title)+'</b><small>'+esc(x.type+' · '+x.description.slice(0,140))+'</small></button>').join('');
+ let input=document.getElementById('headerSearchInput');if(CK_SEARCH_ACTIVE>=0)input.setAttribute('aria-activedescendant','searchSuggestion'+CK_SEARCH_ACTIVE);else input.removeAttribute('aria-activedescendant');
+ document.getElementById('headerSearchAll').hidden=!query.trim()||!CK_SEARCH_MATCHES.length;
+}
+function suggestHeaderSearch(){closeHeaderAccountMenu();CK_SEARCH_ACTIVE=-1;CK_SEARCH_MATCHES=findSearchResults(document.getElementById('headerSearchInput').value);renderSearchSuggestions();document.getElementById('headerSearchDropdown').hidden=false;document.getElementById('headerSearchInput').setAttribute('aria-expanded','true')}
+function headerSearchKey(e){
+ if(e.isComposing)return;
+ if(e.key==='Escape'){e.preventDefault();closeHeaderSearch();return}
+ if(e.key==='Enter'){e.preventDefault();if(CK_SEARCH_ACTIVE>=0&&CK_SEARCH_MATCHES[CK_SEARCH_ACTIVE])openSearchEntry(CK_SEARCH_MATCHES[CK_SEARCH_ACTIVE].id);else submitHeaderSearch();return}
+ if(!['ArrowDown','ArrowUp'].includes(e.key))return;
+ e.preventDefault();if(document.getElementById('headerSearchDropdown').hidden)suggestHeaderSearch();let count=Math.min(7,CK_SEARCH_MATCHES.length);if(!count)return;
+ CK_SEARCH_ACTIVE=e.key==='ArrowDown'?(CK_SEARCH_ACTIVE+1)%count:(CK_SEARCH_ACTIVE<=0?count-1:CK_SEARCH_ACTIVE-1);renderSearchSuggestions();
+}
+function submitHeaderSearch(value){
+ let input=document.getElementById('headerSearchInput'),query=String(value??input.value).slice(0,120).trim();input.value=query;closeHeaderSearch();
+ const results=findSearchResults(query);document.getElementById('searchPageInput').value=query;
+ document.getElementById('searchResultSummary').textContent=query?results.length+' kết quả cho “'+query+'”':'Gợi ý nội dung trên web';
+ document.getElementById('searchResultList').innerHTML=results.length?results.map(x=>'<button type="button" class="searchResultCard" onclick="openSearchEntry(\''+x.id+'\')"><span class="tag">'+esc(x.type)+'</span><b>'+esc(x.title)+'</b><p>'+esc(x.description.slice(0,220))+'</p></button>').join(''):'<div class="card"><p>Không có nội dung phù hợp. Em thử từ khóa ngắn hơn, tên bài hoặc chữ Hán nhé.</p></div>';
+ openPage('searchResults');
+}
+function revealSearchTarget(el){if(!el)return;el.scrollIntoView({behavior:'smooth',block:'center'});el.classList.add('searchReveal');setTimeout(()=>el.classList.remove('searchReveal'),2500)}
+function openSearchEntry(id){
+ let entry=buildSearchIndex().find(x=>x.id===id);if(!entry)return;closeHeaderSearch();let r=entry.route;
+ if(r.lesson){
+  if(!CK_AUTH||!CK_STUDENT_NAME){openStudentLogin();CK_AFTER_LOGIN=()=>openSearchEntry(id);accountMessage('Đăng nhập để mở bài học và lưu tiến độ của em.');return}
+  openLesson(r.lesson);
+  if(r.word){let row=[...document.querySelectorAll('#lessonDetail tr')].find(el=>el.cells?.[0]?.textContent.trim()===r.word);revealSearchTarget(row)}
+  else if(r.section){let heading=[...document.querySelectorAll('#lessonDetail h2,#lessonDetail h3')].find(el=>normalizeSearch(el.textContent).includes(r.section==='grammar'?'ngu phap':'tu vung'));revealSearchTarget(heading)}
+ }else if(r.mini){openPage('tests');revealSearchTarget(document.querySelectorAll('#miniTestGrid .lesson')[r.mini-1])}
+ else if(r.exam!==undefined){openPage('tests');revealSearchTarget(document.querySelectorAll('#tests .examCard')[r.exam])}
+ else if(r.topic!==undefined){openPage('knowledge');revealSearchTarget(document.querySelectorAll('#knowledgeGrid .lesson')[r.topic])}
+ else if(r.quick)openQuickTestHub();else if(r.page)openPage(r.page);
+}
+document.addEventListener('click',e=>{if(!document.getElementById('headerSearch').contains(e.target))closeHeaderSearch()});
+document.addEventListener('focusin',e=>{if(!document.getElementById('headerSearch').contains(e.target))closeHeaderSearch()});
+document.addEventListener('DOMContentLoaded',()=>buildSearchIndex());
 
 </script>
 
