@@ -2320,10 +2320,87 @@ document.addEventListener('DOMContentLoaded',()=>{
  setInterval(()=>{if(CK_AUTH&&document.visibilityState==='visible')syncAchievementFromCloud()},60000);
 });
 
+// R195: students confirm their current password before changing it.
+let CK_PASSWORD_BUSY=false, CK_PASSWORD_RETURN_FOCUS=null;
+function showStudentPill(){
+ let p=document.getElementById('studentPill');p.style.display='block';p.style.maxWidth='calc(100vw - 28px)';p.style.boxSizing='border-box';
+ p.innerHTML='👤 '+esc(CK_STUDENT_NAME)+' · <a id="studentPasswordLink" href="#" onclick="openStudentPassword();return false">Đổi mật khẩu</a> · <a href="#" onclick="changeStudent();return false">Đăng xuất</a>';
+}
+function passwordInputs(){return ['studentCurrentPassword','studentNewPassword','studentConfirmPassword'].map(id=>document.getElementById(id))}
+function toggleStudentPasswords(show){passwordInputs().forEach(el=>el.type=show?'text':'password')}
+function openStudentPassword(){
+ if(!CK_AUTH)return;CK_PASSWORD_RETURN_FOCUS=document.activeElement;
+ passwordInputs().forEach(el=>el.value='');toggleStudentPasswords(false);document.getElementById('studentShowPasswords').checked=false;
+ document.getElementById('studentPasswordMsg').textContent='';
+ let dialog=document.getElementById('studentPasswordDialog');dialog.classList.remove('hidden');dialog.style.display='flex';document.getElementById('studentCurrentPassword').focus();
+}
+function closeStudentPassword(){
+ if(CK_PASSWORD_BUSY)return;let dialog=document.getElementById('studentPasswordDialog');dialog.classList.add('hidden');dialog.style.display='none';
+ passwordInputs().forEach(el=>el.value='');toggleStudentPasswords(false);document.getElementById('studentShowPasswords').checked=false;
+ CK_PASSWORD_RETURN_FOCUS?.focus?.();
+}
+function studentPasswordMessage(text,error=false){let el=document.getElementById('studentPasswordMsg');el.textContent=text;el.className='saveState '+(error?'errState':'okState')}
+async function changeStudentPassword(){
+ if(CK_PASSWORD_BUSY)return;
+ if(!CK_AUTH){studentPasswordMessage('Em cần đăng nhập lại.',true);return}
+ let [currentEl,newEl,confirmEl]=passwordInputs(),current=currentEl.value,next=newEl.value,confirm=confirmEl.value,owner=CK_STUDENT_ID;
+ if(!current){studentPasswordMessage('Nhập mật khẩu hiện tại.',true);currentEl.focus();return}
+ if(next.length<8||next.length>128){studentPasswordMessage('Mật khẩu mới cần từ 8 đến 128 ký tự.',true);newEl.focus();return}
+ if(next!==confirm){studentPasswordMessage('Hai ô mật khẩu mới chưa giống nhau.',true);confirmEl.focus();return}
+ if(next===current){studentPasswordMessage('Em hãy chọn mật khẩu khác mật khẩu hiện tại.',true);newEl.focus();return}
+ CK_PASSWORD_BUSY=true;let save=document.getElementById('studentPasswordSave'),close=document.getElementById('studentPasswordClose');save.disabled=true;close.disabled=true;passwordInputs().forEach(el=>el.disabled=true);
+ studentPasswordMessage('Đang xác nhận và đổi mật khẩu…');
+ try{
+  if(CK_SYNC_PROMISE)await CK_SYNC_PROMISE;if(CK_REFRESH_PROMISE)await CK_REFRESH_PROMISE;
+  if(owner!==CK_STUDENT_ID||!CK_AUTH)throw new Error('Tài khoản đã thay đổi. Em hãy đăng nhập lại.');
+  let code=localStorage.getItem('ck_student_code');
+  if(!code)throw new Error('Em hãy đăng nhập lại trước khi đổi mật khẩu.');
+  const headers={apikey:SB_KEY,'Content-Type':'application/json'};
+  let r=await fetch(SB_URL+'/auth/v1/token?grant_type=password',{method:'POST',headers,body:JSON.stringify({email:code.toLowerCase()+'@students.cokhanh.example',password:current})}),session=await r.json();
+  if(!r.ok)throw new Error(r.status===429?'Em thử lại sau ít phút nhé.':'Mật khẩu hiện tại chưa đúng.');
+  if(session.user?.id!==owner||owner!==CK_STUDENT_ID||!CK_AUTH)throw new Error('Không xác nhận được tài khoản đang đăng nhập.');
+  CK_AUTH={...session,expires_at:Date.now()/1000+session.expires_in};localStorage.setItem('ck_auth_session',JSON.stringify(CK_AUTH));
+  r=await fetch(SB_URL+'/auth/v1/user',{method:'PUT',headers:{...headers,Authorization:'Bearer '+session.access_token},body:JSON.stringify({password:next,current_password:current})});
+  if(!r.ok){let d=await r.json().catch(()=>({}));throw new Error(d.code==='weak_password'?'Mật khẩu mới chưa đủ mạnh. Em chọn mật khẩu khác nhé.':d.code==='same_password'?'Em hãy chọn mật khẩu khác mật khẩu hiện tại.':'Chưa đổi được mật khẩu. Em thử lại khi có mạng hoặc liên hệ cô.')}
+  if(owner!==CK_STUDENT_ID)throw new Error('Tài khoản đã thay đổi.');
+  passwordInputs().forEach(el=>el.value='');toggleStudentPasswords(false);document.getElementById('studentShowPasswords').checked=false;
+  studentPasswordMessage('✓ Đã đổi mật khẩu. Lần đăng nhập tiếp theo, em dùng mật khẩu mới trên mọi thiết bị.');
+ }catch(e){studentPasswordMessage(e.name==='TypeError'?'Chưa kết nối được. Kiểm tra mạng rồi thử lại.':e.message,true)}
+ finally{CK_PASSWORD_BUSY=false;save.disabled=false;close.disabled=false;passwordInputs().forEach(el=>el.disabled=false)}
+}
+document.addEventListener('keydown',e=>{
+ let dialog=document.getElementById('studentPasswordDialog');if(!dialog||dialog.style.display!=='flex')return;
+ if(e.key==='Escape'){e.preventDefault();closeStudentPassword()}
+ if(e.key==='Tab'){
+  let controls=[...dialog.querySelectorAll('input,button')].filter(el=>!el.disabled),first=controls[0],last=controls[controls.length-1];
+  if(e.shiftKey&&document.activeElement===first){e.preventDefault();last.focus()}else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus()}
+ }
+});
+
 </script>
 
 <div id="resumeBanner" class="resumeBanner">
  <div class="resumeText"><b>↩️ Có bài đang làm dở</b><div id="resumeBannerText" class="muted">Tiếp tục từ vị trí đã lưu.</div></div>
  <div class="resumeActions"><button class="btn" onclick="resumeSavedProgress()">Tiếp tục</button><button class="btn soft" onclick="discardSavedProgress()">Bỏ bản lưu</button></div>
+</div>
+<div id="studentPasswordDialog" class="studentGate hidden" role="dialog" aria-modal="true" aria-labelledby="studentPasswordTitle" style="display:none;overflow:auto">
+ <div class="gateCard" style="max-height:90dvh;overflow:auto">
+  <h2 id="studentPasswordTitle">🔐 Đổi mật khẩu</h2>
+  <p class="muted">Mật khẩu mới dùng để đăng nhập trên mọi thiết bị. Tiến độ học và thành tích vẫn thuộc tài khoản của em.</p>
+  <form id="studentPasswordForm" onsubmit="event.preventDefault();changeStudentPassword()">
+   <label for="studentCurrentPassword">Mật khẩu hiện tại</label>
+   <input id="studentCurrentPassword" type="password" autocomplete="current-password" required maxlength="128">
+   <label for="studentNewPassword">Mật khẩu mới (từ 8 ký tự)</label>
+   <input id="studentNewPassword" type="password" autocomplete="new-password" required minlength="8" maxlength="128">
+   <label for="studentConfirmPassword">Nhập lại mật khẩu mới</label>
+   <input id="studentConfirmPassword" type="password" autocomplete="new-password" required minlength="8" maxlength="128">
+   <label style="display:flex;align-items:center;gap:8px;margin:8px 0"><input id="studentShowPasswords" type="checkbox" style="width:auto;margin:0" onchange="toggleStudentPasswords(this.checked)">Hiện mật khẩu</label>
+   <div id="studentPasswordMsg" class="saveState" role="status" aria-live="polite"></div>
+   <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:16px">
+    <button id="studentPasswordSave" type="submit" class="btn">Lưu mật khẩu mới</button>
+    <button id="studentPasswordClose" type="button" class="btn soft" onclick="closeStudentPassword()">Đóng</button>
+   </div>
+  </form>
+ </div>
 </div>
 </body></html>
