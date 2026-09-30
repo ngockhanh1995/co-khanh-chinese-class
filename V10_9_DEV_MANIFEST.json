@@ -1,6 +1,6 @@
 {
-  "version": "V10.9 DEV R191",
-  "baseline": "R190 mobile card attempt",
+  "version": "V10.9 DEV R192",
+  "baseline": "R191: achievement and daily lesson cards PASS",
   "status": "DEV - H11003 Mock 4 QA stage 1",
   "locked": [
     "Bài học",
@@ -166,5 +166,6 @@
   "limitation": "The existing student_results cloud schema stores assessment/result-level data, not per-word/per-pattern lesson checkboxes or full Smart Review question payloads. R187 restores Dashboard metrics supported by that schema; local-only fine-grained lesson and Smart Review details are not fabricated.",
   "achievement_zoom_fix": "Cover baked-in numeric values with scalable metric boxes at all desktop zoom levels.",
   "daily_card_mobile_fix": "Scale card typography, controls, and spacing with the background image across portrait and landscape widths.",
-  "responsive_alignment_fix": "Anchor daily lesson card and achievement metrics to home image width, covering baked-in regions in portrait, landscape, and desktop zoom."
+  "responsive_alignment_fix": "Anchor daily lesson card and achievement metrics to home image width, covering baked-in regions in portrait, landscape, and desktop zoom.",
+  "quote_fix": "Use image-width coordinates to cover the old quote after changing quotes."
 }
