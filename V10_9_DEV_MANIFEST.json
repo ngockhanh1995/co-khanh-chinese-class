@@ -1,6 +1,6 @@
 {
-  "version": "V10.9 DEV R192",
-  "baseline": "R191: achievement and daily lesson cards PASS",
+  "version": "V10.9 DEV R193",
+  "baseline": "R192 PASS",
   "status": "DEV - H11003 Mock 4 QA stage 1",
   "locked": [
     "Bài học",
@@ -167,5 +167,6 @@
   "achievement_zoom_fix": "Cover baked-in numeric values with scalable metric boxes at all desktop zoom levels.",
   "daily_card_mobile_fix": "Scale card typography, controls, and spacing with the background image across portrait and landscape widths.",
   "responsive_alignment_fix": "Anchor daily lesson card and achievement metrics to home image width, covering baked-in regions in portrait, landscape, and desktop zoom.",
-  "quote_fix": "Use image-width coordinates to cover the old quote after changing quotes."
+  "quote_fix": "Use image-width coordinates to cover the old quote after changing quotes.",
+  "student_ui_cleanup": "Remove test-flow copy, development version labels, and course QA panel from student-facing screens."
 }

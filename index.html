@@ -2,7 +2,7 @@
 <html lang="vi">
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Cô Khanh Chinese Class · V10.9 DEV · RANK CENTER</title>
+<title>Cô Khanh Chinese Class</title>
 <style>
 *{box-sizing:border-box} body{margin:0;background:#fffaf8;font-family:Inter,system-ui,-apple-system,"Segoe UI",sans-serif;color:#28304d}
 .app{max-width:1536px;margin:auto;background:white;min-height:100vh} .home{position:relative;width:100%} .mock{width:100%;height:auto;display:block}
@@ -440,11 +440,11 @@
 <div class="examCard"><span class="tag">MOCK 4</span><h3>Đề thi thử HSK1 số 4</h3><p>40 câu · Nghe 20 + Đọc 20 · 40 phút · có audio đọc tiếng Trung.</p><button class="btn" onclick="startMock(4)">Thi thử →</button></div>
 <div class="examCard"><span class="tag">MOCK 5</span><h3>Đề thi thử HSK1 số 5</h3><p>40 câu · Nghe 20 + Đọc 20 · 40 phút · có audio đọc tiếng Trung.</p><button class="btn" onclick="startMock(5)">Thi thử →</button></div>
 </div></div><div class="card" id="testArea" style="margin-top:15px"></div></section>
-<section id="progress" class="page"><div class="head"><div><span class="tag">TIẾN ĐỘ · V10.9 DEV</span><h1>🏆 Result Dashboard</h1><p class="muted">Theo dõi kết quả, lịch sử và xếp hạng học tập theo tỷ lệ điểm.</p><div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:12px"><button class="btn" onclick="scrollToRankCenter('rankOverview')">🏆 Bảng xếp hạng</button><button class="btn soft" onclick="scrollToRankCenter('rankBadges')">🎖️ Thành tích của tôi</button></div></div><button class="back" onclick="home()">← Trang chủ</button></div><div class="card"><div class="stats"><div class="stat"><b id="done">0</b>Bài đã học</div><div class="stat"><b id="testsDone">0</b>Bài kiểm tra</div><div class="stat"><b id="rate">0%</b>Tỷ lệ đúng</div></div><div class="rankHero"><div class="rankCard"><div class="muted">XẾP HẠNG HIỆN TẠI</div><div id="dashRankBadge" class="rankBadge">🌱 E</div><div id="dashRankName" class="rankName">Cần luyện thêm</div><div id="dashRankBasis" class="muted">Chưa có kết quả</div><div class="rankScale"><span>S+<br>95+</span><span>S<br>90+</span><span>A<br>80+</span><span>B<br>70+</span><span>C<br>60+</span><span>D<br>50+</span><span>E<br>&lt;50</span></div><div class="rankNote">Rank là công cụ theo dõi học tập, không phải cấp độ/chứng chỉ HSK chính thức.</div></div><div class="historyCard"><h3 style="margin-top:0">📈 Tổng quan kết quả</h3><div class="resultGrid"><div class="resultMetric"><b id="dashAttempts">0</b>Lượt thi</div><div class="resultMetric"><b id="dashBest">—</b>Cao nhất</div><div class="resultMetric"><b id="dashAvg">—</b>Trung bình</div><div class="resultMetric"><b id="dashTrend">—</b>So lần trước</div></div><div class="progress"><div class="bar" id="rankBar" style="width:0%"></div></div><p id="rankProgressText" class="muted">Chưa có dữ liệu xếp hạng.</p></div></div><h3>Tiến độ HSK1</h3><div class="progress"><div class="bar" id="bar" style="width:0%"></div></div><p id="progText" class="muted">0%</p><h3>🗂 Lịch sử kết quả gần đây</h3><div class="historyCard"><table class="historyTable"><thead><tr><th>Thời gian</th><th>Bài</th><th>Kết quả</th><th>Rank</th><th>Đúng/Sai/Bỏ</th></tr></thead><tbody id="resultHistoryRows"><tr><td colspan="5" class="muted">Chưa có kết quả.</td></tr></tbody></table></div>
+<section id="progress" class="page"><div class="head"><div><span class="tag">THÀNH TÍCH HỌC TẬP</span><h1>🏆 Thành tích của bạn</h1><p class="muted">Theo dõi kết quả, lịch sử và xếp hạng học tập theo tỷ lệ điểm.</p><div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:12px"><button class="btn" onclick="scrollToRankCenter('rankOverview')">🏆 Bảng xếp hạng</button><button class="btn soft" onclick="scrollToRankCenter('rankBadges')">🎖️ Thành tích của tôi</button></div></div><button class="back" onclick="home()">← Trang chủ</button></div><div class="card"><div class="stats"><div class="stat"><b id="done">0</b>Bài đã học</div><div class="stat"><b id="testsDone">0</b>Bài kiểm tra</div><div class="stat"><b id="rate">0%</b>Tỷ lệ đúng</div></div><div class="rankHero"><div class="rankCard"><div class="muted">XẾP HẠNG HIỆN TẠI</div><div id="dashRankBadge" class="rankBadge">🌱 E</div><div id="dashRankName" class="rankName">Cần luyện thêm</div><div id="dashRankBasis" class="muted">Chưa có kết quả</div><div class="rankScale"><span>S+<br>95+</span><span>S<br>90+</span><span>A<br>80+</span><span>B<br>70+</span><span>C<br>60+</span><span>D<br>50+</span><span>E<br>&lt;50</span></div><div class="rankNote">Rank là công cụ theo dõi học tập, không phải cấp độ/chứng chỉ HSK chính thức.</div></div><div class="historyCard"><h3 style="margin-top:0">📈 Tổng quan kết quả</h3><div class="resultGrid"><div class="resultMetric"><b id="dashAttempts">0</b>Lượt thi</div><div class="resultMetric"><b id="dashBest">—</b>Cao nhất</div><div class="resultMetric"><b id="dashAvg">—</b>Trung bình</div><div class="resultMetric"><b id="dashTrend">—</b>So lần trước</div></div><div class="progress"><div class="bar" id="rankBar" style="width:0%"></div></div><p id="rankProgressText" class="muted">Chưa có dữ liệu xếp hạng.</p></div></div><h3>Tiến độ HSK1</h3><div class="progress"><div class="bar" id="bar" style="width:0%"></div></div><p id="progText" class="muted">0%</p><h3>🗂 Lịch sử kết quả gần đây</h3><div class="historyCard"><table class="historyTable"><thead><tr><th>Thời gian</th><th>Bài</th><th>Kết quả</th><th>Rank</th><th>Đúng/Sai/Bỏ</th></tr></thead><tbody id="resultHistoryRows"><tr><td colspan="5" class="muted">Chưa có kết quả.</td></tr></tbody></table></div>
 
 
 <div class="r186Dashboard">
- <div class="r186Head"><div><span class="tag">R186 · HỒ SƠ CÁ NHÂN</span><h2>📊 Hồ sơ tiến bộ học sinh</h2><p class="muted">Tổng hợp từ tiến độ 15 bài, Mini Test, Kiểm tra nhanh và Smart Review của học sinh.</p><div id="r187DashboardSync" class="r187SyncState">☁ Dữ liệu thiết bị</div></div></div>
+ <div class="r186Head"><div><span class="tag">HỒ SƠ CÁ NHÂN</span><h2>📊 Hồ sơ tiến bộ học sinh</h2><p class="muted">Tổng hợp từ tiến độ 15 bài, Mini Test, Kiểm tra nhanh và Smart Review của học sinh.</p><div id="r187DashboardSync" class="r187SyncState">☁ Dữ liệu thiết bị</div></div></div>
  <div class="r186Metrics">
   <div class="r186Metric"><span>📚 Bài học</span><b id="r186LessonCount">0/15</b><small id="r186LessonSub">Chưa bắt đầu</small></div>
   <div class="r186Metric"><span>📝 Mini Test</span><b id="r186MiniCount">0</b><small id="r186MiniSub">Chưa có kết quả</small></div>
@@ -1020,7 +1020,7 @@ function nextDailyQuote(){
   }
 }
 
-function openFunCorner(){alert('Góc thú vị đang được phát triển trong V10.9.');}
+function openFunCorner(){alert('Nội dung Góc thú vị sẽ được cập nhật trong thời gian tới.');}
 function openAchievements(){openPage('progress');setTimeout(()=>{renderResultDashboard();renderRankCenter();window.scrollTo({top:0,behavior:'smooth'})},80)} function scrollToRankCenter(paneId){
  let buttons=[...document.querySelectorAll('.rankCenterTabs button')],map={rankOverview:0,rankByExam:1,rankProgress:2,rankBadges:3};
  let b=buttons[map[paneId]??0];showRankPane(paneId||'rankOverview',b);
@@ -2154,9 +2154,9 @@ function renderMiniGrid(){document.getElementById('miniTestGrid').innerHTML=cour
 renderMiniGrid();
 render();
 setTimeout(()=>updateResumeBanner(true),250);
-const kg=document.getElementById('knowledge');if(kg){kg.querySelector('.head').insertAdjacentHTML('afterend',auditHTML());}
 
-(function(){const kg=document.getElementById('knowledge');if(!kg)return;const g=OFFICIAL_HSK1_150.map((w,i)=>`<span style="display:inline-block;margin:4px;padding:7px 10px;border:1px solid #eee4ea;border-radius:10px;background:#fff">${i+1}. <b>${w}</b></span>`).join('');kg.insertAdjacentHTML('beforeend',`<div class="card" style="margin-top:16px"><h2>📚 Master list 150 từ HSK1 (2.0)</h2><p class="muted">Danh sách kiểm định toàn khóa. Từ lặp trong bài học chỉ tính một lần.</p><div>${g}</div></div>`);})();
+
+(function(){const kg=document.getElementById('knowledge');if(!kg)return;const g=OFFICIAL_HSK1_150.map((w,i)=>`<span style="display:inline-block;margin:4px;padding:7px 10px;border:1px solid #eee4ea;border-radius:10px;background:#fff">${i+1}. <b>${w}</b></span>`).join('');kg.insertAdjacentHTML('beforeend',`<div class="card" style="margin-top:16px"><h2>📚 150 từ vựng HSK1</h2><p class="muted">Danh sách từ vựng giúp em ôn lại kiến thức trong toàn khóa.</p><div>${g}</div></div>`);})();
 
 
 (function(){
@@ -2164,7 +2164,7 @@ const kg=document.getElementById('knowledge');if(kg){kg.querySelector('.head').i
  if(!homeEl)return;
  const box=document.createElement('div');
  box.style.cssText='position:relative;margin:18px auto 26px;max-width:1100px;padding:16px 20px;background:#fff;border:1px solid #eee4ea;border-radius:18px;box-shadow:0 8px 24px rgba(85,60,76,.06)';
- box.innerHTML='<b>🌸 Bản đã kiểm thử luồng học sinh</b><p style="margin:7px 0 0;color:#887e89">Đã kiểm tra: vào bài học → luyện tập → Mini Test → cảnh báo câu chưa làm → chấm & chữa → lưu câu sai → lưu tiến độ → kiểm tra chặng → đề cuối khóa.</p>';
+ box.innerHTML='<b>🌸 Học tiếng Trung cùng cô Khanh</b><p style="margin:7px 0 0;color:#887e89">Khám phá bài học, luyện tập từ vựng và mẫu câu, làm bài kiểm tra và theo dõi tiến bộ mỗi ngày.</p>';
  homeEl.appendChild(box);
 })();
 
