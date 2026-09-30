@@ -2552,6 +2552,70 @@ document.addEventListener('click',e=>{if(!document.getElementById('headerSearch'
 document.addEventListener('focusin',e=>{if(!document.getElementById('headerSearch').contains(e.target))closeHeaderSearch()});
 document.addEventListener('DOMContentLoaded',()=>buildSearchIndex());
 
+// R198: in-site back navigation. History stays in memory and is cleared on logout.
+let CK_BACK_STACK=[],CK_NAV_DEPTH=0,CK_NAV_CHANGED=false,CK_NAV_RESTORING=false;
+const CK_BACK_HIDE=hideAll;
+hideAll=function(){if(!CK_NAV_RESTORING)CK_NAV_CHANGED=true;return CK_BACK_HIDE()};
+function currentSitePage(){return document.querySelector('.page.on')?.id||'home'}
+function captureSiteView(){
+ let id=currentSitePage(),page=document.getElementById(id),state=null;
+ if(id==='tests')state={answers:structuredClone(ans),questions:structuredClone(current),activity:CK_ACTIVITY,type:CK_ACTIVITY_TYPE,lesson:CK_LESSON_NUMBER,startedAt:CK_TEST_STARTED_AT,resume:structuredClone(CK_RESUME_META),mockMode,mockSeconds,audioPlayed:structuredClone(mockAudioPlayed),audioFlags:[de1AudioStarted,de2AudioStarted,de3AudioStarted,de4AudioStarted,de5AudioStarted],lastAudioTime:de1LastTime};
+ return {id,html:id==='home'||id==='teacherAdmin'?null:page.innerHTML,scroll:window.scrollY||0,
+  owner:['lessonDetail','progress','teacherAdmin'].includes(id)||(id==='tests'&&CK_RESUME_META)?CK_STUDENT_ID:null,
+  forms:id==='home'?[]:[...page.querySelectorAll('input,textarea,select')].filter(el=>el.type!=='password').map(el=>({id:el.id,name:el.name,value:el.value,checked:el.checked,disabled:el.disabled})),state,
+  audio:[...page.querySelectorAll('audio')].map(el=>({id:el.id,time:el.currentTime,playing:!el.paused,element:el})),timer:id==='tests'?mockTimer:null};
+}
+function pauseDepartedView(snapshot){
+ for(let audio of snapshot.audio)audio.element.pause();
+ if(snapshot.timer){clearInterval(snapshot.timer);if(mockTimer===snapshot.timer)mockTimer=null}
+}
+function refreshBackButtons(){
+ document.querySelectorAll('.page .head .back').forEach(button=>{button.textContent='← Quay lại';button.setAttribute('onclick','goBack()');button.title='Về trang vừa xem'});
+}
+function restoreSiteView(snapshot){
+ CK_NAV_RESTORING=true;
+ try{
+  closeHeaderSearch();closeHeaderAccountMenu();
+  document.querySelectorAll('audio').forEach(el=>el.pause());if(mockTimer){clearInterval(mockTimer);mockTimer=null}
+  CK_BACK_HIDE();
+  if(snapshot.id==='home'){document.getElementById('home').style.display='block';renderHomeAchievementStats();renderDailyLessonCard()}
+  else{
+   let page=document.getElementById(snapshot.id);if(snapshot.html!==null)page.innerHTML=snapshot.html;page.classList.add('on');
+   for(let form of snapshot.forms){let el=form.id?page.querySelector('#'+CSS.escape(form.id)):null;if(!el)continue;el.value=form.value;el.checked=form.checked;el.disabled=form.disabled}
+   if(snapshot.id==='teacherAdmin')checkTeacherSession();
+   if(snapshot.state){let s=snapshot.state;ans=structuredClone(s.answers);current=structuredClone(s.questions);CK_ACTIVITY=s.activity;CK_ACTIVITY_TYPE=s.type;CK_LESSON_NUMBER=s.lesson;CK_TEST_STARTED_AT=s.startedAt;CK_RESUME_META=structuredClone(s.resume);mockMode=s.mockMode;mockSeconds=s.mockSeconds;mockAudioPlayed=structuredClone(s.audioPlayed);[de1AudioStarted,de2AudioStarted,de3AudioStarted,de4AudioStarted,de5AudioStarted]=s.audioFlags;de1LastTime=s.lastAudioTime;de1Audio=document.getElementById('de1FinalAudio');
+    if(snapshot.timer&&mockMode&&page.querySelector('#mockTimer'))mockTimer=setInterval(tickMock,1000);
+   }
+   for(let saved of snapshot.audio){let el=saved.id?page.querySelector('#'+CSS.escape(saved.id)):null;if(!el)continue;let seek=()=>{el.currentTime=saved.time;if(saved.playing)el.play().catch(()=>{let button=page.querySelector('button[onclick*=\"Audio\"]');if(button){button.disabled=false;button.textContent='▶ Tiếp tục audio';button.setAttribute('onclick',"resumeNavigationAudio('"+saved.id+"')")}})};if(el.readyState>=1)seek();else el.addEventListener('loadedmetadata',seek,{once:true})}
+  }
+  refreshBackButtons();requestAnimationFrame(()=>window.scrollTo(0,snapshot.scroll));
+ }finally{CK_NAV_RESTORING=false}
+}
+function goBack(){
+ while(CK_BACK_STACK.length){let previous=CK_BACK_STACK.pop();if(previous.owner&&previous.owner!==CK_STUDENT_ID)continue;if(previous.id==='teacherAdmin'&&!TEACHER_TOKEN)continue;restoreSiteView(previous);return}
+ CK_NAV_RESTORING=true;try{home()}finally{CK_NAV_RESTORING=false}
+}
+for(const key of ['home','openPage','openLesson','startMini','startMock','startExam','openQuickTestType','openQuickTestHub','submitHeaderSearch','openSearchEntry','openAchievements','resumeSavedProgress']){
+ const original=window[key];if(typeof original!=='function')continue;
+ window[key]=function(...args){
+  if(CK_NAV_RESTORING)return original.apply(this,args);
+  const outer=CK_NAV_DEPTH===0,previous=outer?captureSiteView():null;if(outer)CK_NAV_CHANGED=false;CK_NAV_DEPTH++;
+  try{let result=original.apply(this,args);if(key==='home'&&previous?.id!=='home')CK_NAV_CHANGED=true;return result}
+  finally{CK_NAV_DEPTH--;if(outer){
+   if(CK_NAV_CHANGED){let id=currentSitePage(),page=document.getElementById(id),same=previous.id===id&&previous.html===page.innerHTML&&(!previous.state||previous.state.startedAt===CK_TEST_STARTED_AT);
+    if(!same){CK_BACK_STACK.push(previous);if(CK_BACK_STACK.length>30)CK_BACK_STACK.shift();pauseDepartedView(previous)}
+   }refreshBackButtons();
+  }}
+ };
+}
+const CK_BACK_LOGOUT=changeStudent;
+changeStudent=function(){document.querySelectorAll('audio').forEach(el=>el.pause());if(mockTimer){clearInterval(mockTimer);mockTimer=null}CK_BACK_STACK=[];CK_NAV_RESTORING=true;try{return CK_BACK_LOGOUT()}finally{CK_NAV_RESTORING=false;CK_BACK_STACK=[]}};
+const CK_BACK_TEACHER_LOGOUT=teacherLogout;
+teacherLogout=async function(){CK_BACK_STACK=[];return CK_BACK_TEACHER_LOGOUT()};
+document.addEventListener('DOMContentLoaded',refreshBackButtons);
+
+function resumeNavigationAudio(id){let audio=document.getElementById(id);if(audio)audio.play().catch(()=>{})}
+
 </script>
 
 <div id="resumeBanner" class="resumeBanner">
