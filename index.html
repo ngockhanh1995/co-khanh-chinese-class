@@ -223,6 +223,20 @@
 .pageNavigationActions .back{white-space:nowrap}
 .pageNavigationActions .pageHomeButton{background:#ec89a8;color:#fff}
 @media(max-width:700px){.page .head{gap:12px;flex-wrap:wrap}.pageNavigationActions{justify-content:flex-start}.pageNavigationActions .back{min-height:44px}}
+#home #learningRoadmapCard{position:absolute;left:1.56%;top:44.73cqw;width:24.74%;height:16.98cqw;z-index:78;background:linear-gradient(145deg,#fff,#fff3f8);border:1px solid #eee4ea;border-radius:1cqw;padding:1cqw;display:flex;flex-direction:column;overflow:hidden;color:#28304d}
+#learningRoadmapCard h2{font-size:1.22cqw;line-height:1.3;margin:0 0 1cqw;font-weight:800}
+.roadmapSteps{display:flex;justify-content:space-between;gap:.3cqw;margin-bottom:.9cqw}
+.roadmapStep{display:flex;flex-direction:column;align-items:center;gap:.4cqw;font-size:.8cqw;color:#9a9ba8;flex:1}
+.roadmapStep i{display:flex;align-items:center;justify-content:center;width:1.65cqw;height:1.65cqw;border:2px solid #d4d4df;border-radius:50%;font-size:.9cqw;font-style:normal;background:white}
+.roadmapStep.active{color:#df5a88;font-weight:800}.roadmapStep.active i{background:#ff7da7;border-color:#ff7da7;color:white}
+.roadmapStep.complete{color:#3d8c67}.roadmapStep.complete i{background:#e2f5e9;border-color:#79b995;color:#3d8c67}
+.roadmapCurrent{font-weight:800;font-size:1.15cqw;margin-bottom:.65cqw}
+.roadmapBar{height:.5cqw;border-radius:999px;background:#f0e5ec;overflow:hidden}.roadmapBar span{display:block;height:100%;width:0;background:#ed8ead;border-radius:inherit}
+#learningRoadmapCard p{font-size:.87cqw;line-height:1.4;margin:.5cqw 0 0}
+#learningRoadmapNote{color:#887e89}
+#learningRoadmapCard button{margin-top:auto;min-height:2.1cqw;width:100%;border:0;border-radius:.6cqw;background:#ffe5ef;color:#ae3f71;font:inherit;font-size:.9cqw;font-weight:700;cursor:pointer}
+.roadmapChecklist{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:14px 0}.roadmapChecklist div{border:1px solid #eee4ea;background:#fff;padding:12px;border-radius:12px}.roadmapChecklist .done{background:#eff9f3;color:#3d7759}
+@media(max-width:700px){.roadmapChecklist{grid-template-columns:1fr}}
 </style>
 <style id="r82-achievement-real-stats">
 /* R88 — screenshot-calibrated micro alignment */
@@ -427,6 +441,7 @@
 <button class="hot navHot" style="left:56.0%;top:5.6%;width:9.0%;height:5.1%" onclick="openPage('tests')" title="Bài kiểm tra"></button>
 <button class="hot navHot" style="left:64.0%;top:5.6%;width:8.6%;height:5.1%" onclick="openAchievements()" title="Bảng xếp hạng"></button>
 <button class="hot navHot" style="left:73.8%;top:5.6%;width:7.4%;height:5.1%" onclick="openFunCorner()" title="Góc thú vị"></button>
+<section id="learningRoadmapCard" aria-label="Lộ trình học tập"><h2>🌸 Lộ trình học tập</h2><div id="learningRoadmapSteps" class="roadmapSteps"></div><div id="learningRoadmapCurrent" class="roadmapCurrent">HSK1</div><div class="roadmapBar"><span id="learningRoadmapBar"></span></div><p id="learningRoadmapCounts"></p><p id="learningRoadmapNote"></p><button type="button" onclick="openLearningRoadmap()">Xem điều kiện hoàn thành →</button></section>
 <!-- HSK cards -->
 <button class="hot hskHot" style="left:1.55%;top:42.7%;width:11.95%;height:13.1%" onclick="openLevel(1)" title="HSK1"></button>
 <button class="hot hskHot" style="left:14.25%;top:42.7%;width:11.85%;height:13.1%" onclick="openLevel(2)" title="HSK2"></button>
@@ -565,6 +580,7 @@
  <form class="searchPageForm" role="search" onsubmit="event.preventDefault();submitHeaderSearch(document.getElementById('searchPageInput').value)"><input id="searchPageInput" type="search" maxlength="120" placeholder="Tên bài, từ vựng, pinyin hoặc chữ Hán…" aria-label="Từ khóa tìm kiếm"><button type="submit" class="btn">Tìm kiếm</button></form>
  <p id="searchResultSummary" class="muted" role="status" aria-live="polite"></p><div id="searchResultList" class="searchResultGrid"></div>
 </section>
+<section id="learningRoadmap" class="page"><div class="head"><div><span class="tag">LỘ TRÌNH HỌC TẬP</span><h1>Hành trình HSK1 → HSK6</h1></div><button class="back" onclick="goBack()">← Quay lại</button></div><p>Hoàn thành các phần luyện tập của từng bài và nộp đủ các bài kiểm tra, không bỏ trống câu hỏi, để chuyển sang cấp tiếp theo.</p><div id="roadmapLevelTabs" class="tabs"></div><div id="roadmapLevelDetails"></div></section>
 <section id="teacherAdmin" class="page"><div class="head"><div><span class="tag">DÀNH CHO CÔ KHANH</span><h1>👩‍🏫 Quản lý học sinh</h1><p class="muted">Kết quả được lưu online theo từng lần làm bài.</p></div><button class="back" onclick="home()">← Trang chủ</button></div><div class="card">
 <div id="teacherLoggedOut" class="teacherLogin"><h2>Đăng nhập giáo viên</h2><p class="muted">Học sinh không thể đọc bảng kết quả này.</p><input id="teacherEmail" type="email" placeholder="Email giáo viên"><input id="teacherPassword" type="password" placeholder="Mật khẩu"><button class="btn" onclick="teacherLogin()">Đăng nhập</button><div id="teacherLoginMsg" class="saveState"></div></div>
 <div id="teacherLoggedIn" style="display:none"><details class="card" style="margin:12px 0"><summary><b>Cấp tài khoản học sinh</b></summary><p>Mã gồm 3–32 chữ cái không dấu, số, dấu gạch ngang hoặc gạch dưới. Mật khẩu từ 8 ký tự.</p><div class="teacherLogin"><input id="newStudentCode" placeholder="Mã học sinh, ví dụ HS001" autocomplete="off"><input id="newStudentName" maxlength="80" placeholder="Họ tên học sinh"><input id="newStudentPassword" type="password" autocomplete="new-password" placeholder="Mật khẩu ban đầu"><label>Liên kết kết quả cũ (chọn đúng học sinh):</label><select id="newStudentLegacy" style="width:100%;padding:12px"><option value="">Tạo hồ sơ mới</option></select><button id="createStudentAccountBtn" class="btn" onclick="createStudentAccount()">Tạo tài khoản</button><div id="createStudentAccountMsg" class="saveState"></div></div></details><div class="adminTools"><input id="adminSearch" placeholder="Lọc theo tên hoặc bài…" oninput="renderAdminRows()"><button class="btn soft" onclick="loadAdminResults()">↻ Làm mới</button><button class="btn soft" onclick="teacherLogout()">Đăng xuất</button></div><div id="adminSummary" class="muted"></div><div class="adminWrap"><table class="adminTable"><thead><tr><th>Tên</th><th>Bài</th><th>Điểm</th><th>Nghe</th><th>Đọc</th><th>Đánh giá</th><th>Số câu sai</th><th>Ngày làm</th><th>Thời gian hoàn thành</th><th>Tiến độ HSK1 / Thi thử</th></tr></thead><tbody id="adminRows"></tbody></table></div></div></div></section>
@@ -2565,7 +2581,7 @@ function captureSiteView(){
  let id=currentSitePage(),page=document.getElementById(id),state=null;
  if(id==='tests')state={answers:structuredClone(ans),questions:structuredClone(current),activity:CK_ACTIVITY,type:CK_ACTIVITY_TYPE,lesson:CK_LESSON_NUMBER,startedAt:CK_TEST_STARTED_AT,resume:structuredClone(CK_RESUME_META),mockMode,mockSeconds,audioPlayed:structuredClone(mockAudioPlayed),audioFlags:[de1AudioStarted,de2AudioStarted,de3AudioStarted,de4AudioStarted,de5AudioStarted],lastAudioTime:de1LastTime};
  return {id,html:id==='home'||id==='teacherAdmin'?null:page.innerHTML,scroll:window.scrollY||0,
-  owner:['lessonDetail','progress','teacherAdmin'].includes(id)||(id==='tests'&&CK_RESUME_META)?CK_STUDENT_ID:null,
+  owner:['lessonDetail','progress','teacherAdmin','learningRoadmap'].includes(id)||(id==='tests'&&CK_RESUME_META)?CK_STUDENT_ID:null,
   forms:id==='home'?[]:[...page.querySelectorAll('input,textarea,select')].filter(el=>el.type!=='password').map(el=>({id:el.id,name:el.name,value:el.value,checked:el.checked,disabled:el.disabled})),state,
   audio:[...page.querySelectorAll('audio')].map(el=>({id:el.id,time:el.currentTime,playing:!el.paused,element:el})),timer:id==='tests'?mockTimer:null};
 }
@@ -2643,6 +2659,62 @@ refreshBackButtons=function(){
  installPageHomeButtons();
 };
 document.addEventListener('DOMContentLoaded',refreshBackButtons);
+
+let CK_ROADMAP_DATA=null,CK_ROADMAP_REQUEST=null,CK_ROADMAP_TAB=1;
+function roadmapRequirements(){
+ const tests=[];for(let n=1;n<=15;n++)tests.push({key:'mini:'+n,title:'Mini Test Bài '+n,type:'mini_test',lesson:n,done:false});
+ for(let r of ['1-5','6-10','11-15'])tests.push({key:'combined:'+r,title:'Kiểm tra tổng hợp Bài '+r,type:'combined_test',activity:'Kiểm tra tổng hợp Bài '+r,done:false});
+ tests.push({key:'final',title:'Đề cuối khóa HSK1',type:'final_test',activity:'Đề cuối khóa HSK1',done:false});
+ for(let n=1;n<=5;n++)tests.push({key:'mock:'+n,title:'Đề thi thử HSK1 số '+n,type:'mock_test',activity:'Đề thi thử HSK1 số '+n,done:false});
+ for(let name of ['Test từ vựng','Test ngữ pháp','Test đọc hiểu','Test tổng hợp'])tests.push({key:'quick:'+name,title:name,type:'quick_test',activity:name,done:false});
+ return tests;
+}
+function emptyRoadmap(){return {current_level:1,all_complete:false,levels:Array.from({length:6},(_,i)=>({level:i+1,available:i===0,lesson_total:i===0?15:0,lesson_done:0,assessments:i===0?roadmapRequirements():[],complete:false}))}}
+function localRoadmapPreview(){
+ let data=structuredClone(CK_ROADMAP_DATA||emptyRoadmap());if(!CK_AUTH||!CK_STUDENT_NAME)return emptyRoadmap();let first=data.levels.find(l=>l.level===1),count=0;
+ for(let n=1;n<=15;n++){let p=readDailyLessonProgress(n),v=new Set(p.vocabSeen.filter(i=>i>=0&&i<5)),patterns=new Set(p.patternSeen.filter(i=>i>=0&&i<10));if(v.size===5&&patterns.size===10&&p.exerciseDone>=5&&completedLessonsLocal().includes(n))count++}
+ first.lesson_done=Math.max(first.lesson_done,count);
+ const rows=[...resultHistory(),...pendingResults()];
+ for(let test of first.assessments)if(!test.done)test.done=rows.some(r=>(r.type||r.activity_type)===test.type&&Number(r.unanswered??r.unanswered_count)===0&&Number(r.maxScore??r.max_score)>0&&(test.lesson?Number(r.lessonNumber??r.lesson_number)===test.lesson:r.activity===test.activity));
+ // Level promotion is confirmed against the complete cloud history, never a truncated device history.
+ return data;
+}
+function renderLearningRoadmap(){
+ let data=localRoadmapPreview(),current=data.levels.find(l=>l.level===data.current_level),done=current.assessments.filter(t=>t.done).length,total=current.assessments.length;
+ document.getElementById('learningRoadmapSteps').innerHTML=data.levels.map(l=>'<div class="roadmapStep '+(l.complete?'complete':l.level===data.current_level?'active':'')+'"><i>'+(l.complete?'✓':l.level)+'</i><span>HSK'+l.level+'</span></div>').join('');
+ document.getElementById('learningRoadmapCurrent').textContent=data.all_complete?'🌸 Đã hoàn thành HSK6':'Đang học HSK'+data.current_level;
+ document.getElementById('learningRoadmapBar').style.width=(data.all_complete?100:current.available?Math.round((current.lesson_done+done)/(current.lesson_total+total)*100):0)+'%';
+ document.getElementById('learningRoadmapCounts').textContent=current.available?current.lesson_done+'/'+current.lesson_total+' bài học · '+done+'/'+total+' bài kiểm tra':'Đã hoàn thành HSK'+(data.current_level-1);
+ document.getElementById('learningRoadmapNote').textContent=!CK_AUTH?'Đăng nhập để theo dõi lộ trình của em.':data.all_complete?'Chúc mừng em đã hoàn thành hành trình!':!current.available?'Nội dung HSK'+current.level+' đang được chuẩn bị.':'Hoàn thành đủ các mục để chuyển lên HSK'+Math.min(6,current.level+1)+'.';
+ if(document.getElementById('learningRoadmap').classList.contains('on'))renderRoadmapDetails();
+}
+async function syncLearningRoadmap(){
+ if(!CK_AUTH)return;if(CK_ROADMAP_REQUEST)return CK_ROADMAP_REQUEST;let owner=CK_STUDENT_ID;
+ CK_ROADMAP_REQUEST=(async()=>{try{let data=await accountFetch('/rest/v1/rpc/get_learning_roadmap',{method:'POST',body:'{}'});if(owner!==CK_STUDENT_ID)return;CK_ROADMAP_DATA=data;localStorage.setItem('ck_learning_roadmap',JSON.stringify(data));renderLearningRoadmap()}catch(e){renderLearningRoadmap()}})().finally(()=>CK_ROADMAP_REQUEST=null);return CK_ROADMAP_REQUEST;
+}
+function openLearningRoadmap(){CK_ROADMAP_TAB=localRoadmapPreview().current_level;openPage('learningRoadmap');renderRoadmapDetails();syncLearningRoadmap()}
+function renderRoadmapDetails(){
+ let data=localRoadmapPreview(),l=data.levels.find(x=>x.level===CK_ROADMAP_TAB)||data.levels[0];
+ document.getElementById('roadmapLevelTabs').innerHTML=data.levels.map(x=>'<button onclick="CK_ROADMAP_TAB='+x.level+';renderRoadmapDetails()">'+(x.complete?'✓ ':'')+'HSK'+x.level+'</button>').join('');
+ let html='<div class="card"><h2>HSK'+l.level+(l.complete?' · Đã hoàn thành':'')+'</h2>';
+ if(!l.available)html+='<p>Nội dung HSK'+l.level+' đang được chuẩn bị. Lộ trình sẽ tiếp tục khi bộ bài học và kiểm tra của cấp này được mở.</p>';
+ else{
+  html+='<p><b>'+l.lesson_done+'/'+l.lesson_total+' bài học hoàn thành đầy đủ.</b> Mỗi bài gồm 5 câu từ vựng, 5 câu chọn/điền, 5 câu sắp xếp và Mini Test. Cần làm đúng các phần luyện tập và nộp Mini Test không bỏ trống.</p>';
+  html+='<h3>Các bài kiểm tra cần hoàn thành</h3><div class="roadmapChecklist">'+l.assessments.map(t=>'<div class="'+(t.done?'done':'')+'">'+(t.done?'✓ ':'○ ')+esc(t.title)+'</div>').join('')+'</div>';
+  html+='<p>Nộp đủ câu hỏi để ghi nhận hoàn thành. Điểm từng lần vẫn hiển thị trong Thành tích.</p><button class="btn" onclick="openPage(\'lessons\')">Vào bài học</button>';
+ }document.getElementById('roadmapLevelDetails').innerHTML=html+'</div>';
+}
+const CK_ROADMAP_RENDER=renderHomeAchievementStats;
+renderHomeAchievementStats=function(){let r=CK_ROADMAP_RENDER();renderLearningRoadmap();return r};
+const CK_ROADMAP_SYNC=syncAchievementFromCloud;
+syncAchievementFromCloud=async function(){let ok=await CK_ROADMAP_SYNC();if(ok)await syncLearningRoadmap();return ok};
+const CK_ROADMAP_SAVE=saveOnlineResult;
+saveOnlineResult=async function(...args){await CK_ROADMAP_SAVE(...args);await syncLearningRoadmap()};
+const CK_ROADMAP_LOGIN=activateStudent;
+activateStudent=function(profile){CK_ROADMAP_DATA=null;CK_ROADMAP_REQUEST=null;CK_ROADMAP_LOGIN(profile);try{CK_ROADMAP_DATA=JSON.parse(localStorage.getItem('ck_learning_roadmap')||'null')}catch{}renderLearningRoadmap()};
+const CK_ROADMAP_LOGOUT=changeStudent;
+changeStudent=function(){CK_ROADMAP_DATA=null;CK_ROADMAP_LOGOUT();renderLearningRoadmap()};
+document.addEventListener('DOMContentLoaded',renderLearningRoadmap);
 
 </script>
 
