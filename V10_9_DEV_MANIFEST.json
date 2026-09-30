@@ -1,5 +1,5 @@
 {
-  "version": "V10.9 DEV R203",
+  "version": "V10.9 DEV R204",
   "baseline": "R192 PASS",
   "status": "DEV - H11003 Mock 4 QA stage 1",
   "locked": [
@@ -169,14 +169,27 @@
   "responsive_alignment_fix": "Anchor daily lesson card and achievement metrics to home image width, covering baked-in regions in portrait, landscape, and desktop zoom.",
   "quote_fix": "Use image-width coordinates to cover the old quote after changing quotes.",
   "student_ui_cleanup": "Remove test-flow copy, development version labels, and course QA panel from student-facing screens.",
-  "mini_lesson_1_context": "R203: final question uses teacher/student greeting dialogue",
-  "result_action_label": "R203: Xem Thành tích của bạn on completion results",
-  "main_menu": "R203: removed Fun Corner; five visible native menu actions with aligned spacing",
-  "learning_roadmap": "R203: account-based level progression with complete lesson and assessment requirements",
-  "home_refresh": "R203: home button reloads homepage; home action next to back on content pages",
-  "navigation_back": "R203: previous-page back button with view and scroll restoration",
-  "public_search": "R203: content search with Vietnamese/pinyin/Chinese autocomplete and routed results",
-  "header_account": "R203: header login/name button, password and logout menu, removed corner pill",
-  "student_password_change": "R203: current password confirmation, new password and confirmation, authenticated password update",
-  "account_sync": "R203: authenticated student code/password; lesson progress and result sync"
+  "hsk2": {
+    "lessons": 15,
+    "vocab_entries": 170,
+    "grammar_points": 44,
+    "mini_tests": 15,
+    "quick_tests": 5,
+    "stage_tests": 3,
+    "final_listening": 35,
+    "final_reading": 25,
+    "audio": "device Chinese synthesis",
+    "source": "user supplied Standard Course HSK2 2.0 textbook and workbook",
+    "account_progress": "separate HSK2 units and hsk_level=2 results"
+  },
+  "mini_lesson_1_context": "R204: final question uses teacher/student greeting dialogue",
+  "result_action_label": "R204: Xem Thành tích của bạn on completion results",
+  "main_menu": "R204: removed Fun Corner; five visible native menu actions with aligned spacing",
+  "learning_roadmap": "R204: account-based level progression with complete lesson and assessment requirements",
+  "home_refresh": "R204: home button reloads homepage; home action next to back on content pages",
+  "navigation_back": "R204: previous-page back button with view and scroll restoration",
+  "public_search": "R204: content search with Vietnamese/pinyin/Chinese autocomplete and routed results",
+  "header_account": "R204: header login/name button, password and logout menu, removed corner pill",
+  "student_password_change": "R204: current password confirmation, new password and confirmation, authenticated password update",
+  "account_sync": "R204: authenticated student code/password; lesson progress and result sync"
 }
