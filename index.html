@@ -2043,6 +2043,11 @@ function makeMini(n){
      q.push({q:`Trong ngữ cảnh học của bài này, “${v[0]}” gần nghĩa chính xác nhất với phương án nào?`,a:opts,ok:opts.indexOf(v[2]),e:`${v[0]} (${v[1]}) nghĩa là “${v[2]}”.`});
    }
  });
+ if(n===1){
+   let opts=['您好','对不起','没关系'].sort(()=>Math.random()-.5);
+   q.push({q:'Chọn lời chào lịch sự của học sinh khi đáp lại giáo viên:<br>老师：你好。<br>学生：老师，______。',a:opts,ok:opts.indexOf('您好'),e:'Đáp án: 您好. Giáo viên chào học sinh bằng 你好; học sinh dùng 您好 để chào lại giáo viên một cách lịch sự. Hội thoại: 老师：你好。学生：老师，您好。'});
+   return q.slice(0,10);
+ }
  let g=(x.grammar||[]).map(cleanPatternOption).filter(Boolean);
  if(g.length&&q.length<10){
    let target=g[0],opts=[target,...patternDistractors(target,x.grammar)].filter((v,k,a)=>v&&a.indexOf(v)===k).slice(0,3);
