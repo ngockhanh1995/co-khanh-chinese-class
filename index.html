@@ -504,10 +504,19 @@
 
 <section id="teacherAdmin" class="page"><div class="head"><div><span class="tag">DÀNH CHO CÔ KHANH</span><h1>👩‍🏫 Quản lý học sinh</h1><p class="muted">Kết quả được lưu online theo từng lần làm bài.</p></div><button class="back" onclick="home()">← Trang chủ</button></div><div class="card">
 <div id="teacherLoggedOut" class="teacherLogin"><h2>Đăng nhập giáo viên</h2><p class="muted">Học sinh không thể đọc bảng kết quả này.</p><input id="teacherEmail" type="email" placeholder="Email giáo viên"><input id="teacherPassword" type="password" placeholder="Mật khẩu"><button class="btn" onclick="teacherLogin()">Đăng nhập</button><div id="teacherLoginMsg" class="saveState"></div></div>
-<div id="teacherLoggedIn" style="display:none"><div class="adminTools"><input id="adminSearch" placeholder="Lọc theo tên hoặc bài…" oninput="renderAdminRows()"><button class="btn soft" onclick="loadAdminResults()">↻ Làm mới</button><button class="btn soft" onclick="teacherLogout()">Đăng xuất</button></div><div id="adminSummary" class="muted"></div><div class="adminWrap"><table class="adminTable"><thead><tr><th>Tên</th><th>Bài</th><th>Điểm</th><th>Nghe</th><th>Đọc</th><th>Đánh giá</th><th>Số câu sai</th><th>Ngày làm</th><th>Thời gian hoàn thành</th><th>Tiến độ HSK1 / Thi thử</th></tr></thead><tbody id="adminRows"></tbody></table></div></div></div></section>
-<div id="studentGate" class="studentGate"><div class="gateCard"><span class="tag">CÔ KHANH CHINESE CLASS</span><h2>🌸 Tên của em là…</h2><p class="muted">Nhập họ tên tiếng Việt và tên tiếng Trung của em. Kết quả mỗi lần làm bài sẽ được lưu để cô Khanh theo dõi tiến độ.<br><b>Ví dụ: Nguyễn Minh Anh – 阮明英</b></p><input id="studentNameInput" maxlength="80" autocomplete="name" placeholder="Ví dụ: Nguyễn Minh Anh – 阮明英"><button id="enterStudentBtn" type="button" class="btn" style="width:100%;margin-top:8px">Vào học →</button><div id="studentGateMsg" class="saveState"></div><button class="btn soft" style="width:100%;margin-top:10px" onclick="openTeacherFromGate()">👩‍🏫 Cô Khanh đăng nhập</button></div></div>
+<div id="teacherLoggedIn" style="display:none"><details class="card" style="margin:12px 0"><summary><b>Cấp tài khoản học sinh</b></summary><p>Mã gồm 3–32 chữ cái không dấu, số, dấu gạch ngang hoặc gạch dưới. Mật khẩu từ 8 ký tự.</p><div class="teacherLogin"><input id="newStudentCode" placeholder="Mã học sinh, ví dụ HS001" autocomplete="off"><input id="newStudentName" maxlength="80" placeholder="Họ tên học sinh"><input id="newStudentPassword" type="password" autocomplete="new-password" placeholder="Mật khẩu ban đầu"><label>Liên kết kết quả cũ (chọn đúng học sinh):</label><select id="newStudentLegacy" style="width:100%;padding:12px"><option value="">Tạo hồ sơ mới</option></select><button id="createStudentAccountBtn" class="btn" onclick="createStudentAccount()">Tạo tài khoản</button><div id="createStudentAccountMsg" class="saveState"></div></div></details><div class="adminTools"><input id="adminSearch" placeholder="Lọc theo tên hoặc bài…" oninput="renderAdminRows()"><button class="btn soft" onclick="loadAdminResults()">↻ Làm mới</button><button class="btn soft" onclick="teacherLogout()">Đăng xuất</button></div><div id="adminSummary" class="muted"></div><div class="adminWrap"><table class="adminTable"><thead><tr><th>Tên</th><th>Bài</th><th>Điểm</th><th>Nghe</th><th>Đọc</th><th>Đánh giá</th><th>Số câu sai</th><th>Ngày làm</th><th>Thời gian hoàn thành</th><th>Tiến độ HSK1 / Thi thử</th></tr></thead><tbody id="adminRows"></tbody></table></div></div></div></section>
+<div id="studentGate" class="studentGate"><div class="gateCard"><span class="tag">CÔ KHANH CHINESE CLASS</span><h2>🌸 Đăng nhập học sinh</h2><p class="muted">Dùng mã học sinh và mật khẩu cô cấp. Đăng nhập cùng tài khoản trên điện thoại hoặc máy tính để tiếp tục học và xem thành tích.</p><input id="studentNameInput" maxlength="32" autocomplete="username" placeholder="Mã học sinh"><input id="studentPasswordInput" type="password" autocomplete="current-password" placeholder="Mật khẩu"><button id="enterStudentBtn" type="button" class="btn" style="width:100%;margin-top:8px">Vào học →</button><div id="studentGateMsg" class="saveState"></div><button class="btn soft" style="width:100%;margin-top:10px" onclick="openTeacherFromGate()">👩‍🏫 Cô Khanh đăng nhập</button></div></div>
 <div id="studentPill" class="studentPill" style="display:none"></div>
-</div><script>
+</div><script>(function(){
+ const get=Storage.prototype.getItem,set=Storage.prototype.setItem,remove=Storage.prototype.removeItem;
+ window.CK_CACHE_SCOPE=get.call(localStorage,'ck_account_active')||'signed-out';
+ const globalKeys=new Set(['ck_auth_session','ck_account_active','ck_student_name','ck_student_id','ck_student_code','ck_session_id','ck_teacher_token']);
+ function scoped(store,key){key=String(key);return store===localStorage&&!globalKeys.has(key)&&/^(ck_|hsk1_)/.test(key)?'student:'+window.CK_CACHE_SCOPE+':'+key:key}
+ Storage.prototype.getItem=function(key){return get.call(this,scoped(this,key))};
+ Storage.prototype.setItem=function(key,value){return set.call(this,scoped(this,key),value)};
+ Storage.prototype.removeItem=function(key){return remove.call(this,scoped(this,key))};
+})();
+</script><script>
 
 const SB_URL="https://wsflsmogykmjgrxijisc.supabase.co",SB_KEY="sb_publishable_5ao_bP1qVfWajqYFaJfNzg_6P5Aca9B";
 let CK_STUDENT_NAME=localStorage.getItem('ck_student_name')||'',CK_STUDENT_ID=localStorage.getItem('ck_student_id')||'',CK_SESSION_ID=localStorage.getItem('ck_session_id')||'',CK_ACTIVITY='',CK_ACTIVITY_TYPE='other',CK_LESSON_NUMBER=null,CK_TEST_STARTED_AT=0,ADMIN_RESULTS=[],TEACHER_TOKEN='';
@@ -587,7 +596,7 @@ async function syncAchievementFromCloud(){
 async function teacherLogin(){let email=document.getElementById('teacherEmail').value.trim(),password=document.getElementById('teacherPassword').value,msg=document.getElementById('teacherLoginMsg');msg.textContent='Đang đăng nhập…';try{let r=await fetch(SB_URL+'/auth/v1/token?grant_type=password',{method:'POST',headers:{apikey:SB_KEY,'Content-Type':'application/json'},body:JSON.stringify({email,password})}),d=await r.json();if(!r.ok)throw new Error(d.error_description||d.msg||'Đăng nhập thất bại');TEACHER_TOKEN=d.access_token;sessionStorage.setItem('ck_teacher_token',TEACHER_TOKEN);await loadAdminResults()}catch(e){msg.textContent='Không đăng nhập được: '+e.message;msg.className='saveState errState'}}
 async function checkTeacherSession(){TEACHER_TOKEN=sessionStorage.getItem('ck_teacher_token')||'';if(TEACHER_TOKEN)await loadAdminResults()}
 async function teacherLogout(){TEACHER_TOKEN='';sessionStorage.removeItem('ck_teacher_token');document.getElementById('teacherLoggedIn').style.display='none';document.getElementById('teacherLoggedOut').style.display='block'}
-async function loadAdminResults(){if(!TEACHER_TOKEN)return;try{let r=await fetch(SB_URL+'/rest/v1/student_results?select=student_id,student_name,activity,score,max_score,wrong_count,hsk1_progress,lesson_number,activity_type,duration_seconds,completed_at,listening_score,reading_score,listening_correct,reading_correct&order=completed_at.desc',{headers:{apikey:SB_KEY,Authorization:'Bearer '+TEACHER_TOKEN}});if(!r.ok)throw new Error(await r.text());ADMIN_RESULTS=await r.json();document.getElementById('teacherLoggedOut').style.display='none';document.getElementById('teacherLoggedIn').style.display='block';renderAdminRows()}catch(e){TEACHER_TOKEN='';sessionStorage.removeItem('ck_teacher_token');let m=document.getElementById('teacherLoginMsg');m.textContent='Tài khoản này chưa có quyền giáo viên hoặc phiên đăng nhập đã hết.';m.className='saveState errState'}}
+async function loadAdminResults(){if(!TEACHER_TOKEN)return;try{let r=await fetch(SB_URL+'/rest/v1/student_results?select=auth_owner,student_id,student_name,activity,score,max_score,wrong_count,hsk1_progress,lesson_number,activity_type,duration_seconds,completed_at,listening_score,reading_score,listening_correct,reading_correct&order=completed_at.desc',{headers:{apikey:SB_KEY,Authorization:'Bearer '+TEACHER_TOKEN}});if(!r.ok)throw new Error(await r.text());ADMIN_RESULTS=await r.json();document.getElementById('teacherLoggedOut').style.display='none';document.getElementById('teacherLoggedIn').style.display='block';renderAdminRows();renderLegacyStudentOptions()}catch(e){TEACHER_TOKEN='';sessionStorage.removeItem('ck_teacher_token');let m=document.getElementById('teacherLoginMsg');m.textContent='Tài khoản này chưa có quyền giáo viên hoặc phiên đăng nhập đã hết.';m.className='saveState errState'}}
 function sameStudent(x,row){return row.student_id?x.student_id===row.student_id:x.student_name===row.student_name}
 function passEvaluation(activity,score,maxScore){
  if(maxScore===200 && (activity_type_label(activity)==='mock_or_final' || /Đề thi thử HSK1|Đề cuối khóa HSK1/.test(activity))){
@@ -600,7 +609,7 @@ function adminProgressFor(row){let lessons=new Set(ADMIN_RESULTS.filter(x=>sameS
 function adminMocksFor(row){let ids=new Set(ADMIN_RESULTS.filter(x=>sameStudent(x,row)&&x.activity_type==='mock_test').map(x=>x.activity));return `${ids.size}/5 đề`}
 function adminSkillScore(row,skill){let value=row[skill+'_score'],correct=row[skill+'_correct'];if(value===null||value===undefined||value==='')return '<span class="muted">—</span>';let count=correct===null||correct===undefined||correct===''?'':` <small class="muted">(${Number(correct)}/20 câu)</small>`;return `<b>${Number(value)}/100</b>${count}`}
 function renderAdminRows(){let q=(document.getElementById('adminSearch')?.value||'').toLowerCase(),rows=ADMIN_RESULTS.filter(x=>(x.student_name+' '+x.activity).toLowerCase().includes(q));document.getElementById('adminSummary').textContent=rows.length+' lượt làm bài';document.getElementById('adminRows').innerHTML=rows.length?rows.map(x=>`<tr><td><b>${esc(x.student_name)}</b></td><td>${esc(x.activity)}</td><td><b>${x.score}/${x.max_score}</b></td><td>${adminSkillScore(x,'listening')}</td><td>${adminSkillScore(x,'reading')}</td><td>${passEvaluation(x.activity,x.score,x.max_score)}</td><td>${x.wrong_count}</td><td>${new Date(x.completed_at).toLocaleString('vi-VN')}</td><td><b>${fmtDuration(x.duration_seconds)}</b></td><td><b>${adminProgressFor(x)}</b><br><span class="muted">Thi thử: ${adminMocksFor(x)}</span></td></tr>`).join(''):'<tr><td colspan="10" class="muted">Chưa có kết quả phù hợp.</td></tr>'}
-document.addEventListener('DOMContentLoaded',()=>{ensureSession();if(CK_STUDENT_NAME){document.getElementById('studentGate').classList.add('hidden');showStudentPill();syncAchievementFromCloud()}else document.getElementById('studentNameInput').focus()});
+
 
 const topics=[
 ['HSK1','Pinyin & thanh điệu','Phát âm, 4 thanh điệu và thanh nhẹ.'],['HSK1','Chào hỏi','你好、谢谢、再见、对不起。'],['HSK1','Đại từ','我、你、他、她、我们、你们。'],['HSK1','是 / 有','Câu khẳng định và phủ định cơ bản.'],['HSK1','Câu hỏi','吗、呢、谁、什么、哪、几、多少。'],['HSK1','Số & thời gian','Số đếm, tuổi, ngày tháng, giờ.'],['HSK2','Ngữ pháp cơ bản','了、比、正在、过 và bổ ngữ kết quả.'],['HSK3','Câu phức','虽然…但是…、只要…就…、只有…才…'],['HSK4','Trung cấp','即使…也…、既然…就…、与其…不如…'],['HSK5','Nâng cao','何必、何苦、未必、不见得、无非…'],['HSK6','Nâng cao+','Sắc thái từ, câu phức, sửa câu và đọc hiểu.']
@@ -2184,6 +2193,133 @@ window.addEventListener('storage',function(e){
     try{renderDailyLessonCard()}catch(_){}
   }
 });
+
+// R194: authenticated accounts and account-scoped local caches.
+let CK_AUTH=null, CK_REFRESH_PROMISE=null, CK_SYNC_PROMISE=null, CK_PROGRESS_TIMER=null;
+try{CK_AUTH=JSON.parse(localStorage.getItem('ck_auth_session')||'null')}catch{}
+function accountMessage(text,error=false){let el=document.getElementById('studentGateMsg');el.textContent=text;el.className='saveState '+(error?'errState':'okState')}
+async function authToken(){
+ if(!CK_AUTH)throw new Error('Em cần đăng nhập.');
+ if(CK_AUTH.expires_at>Date.now()/1000+60)return CK_AUTH.access_token;
+ if(!CK_REFRESH_PROMISE)CK_REFRESH_PROMISE=(async()=>{
+  let r=await fetch(SB_URL+'/auth/v1/token?grant_type=refresh_token',{method:'POST',headers:{apikey:SB_KEY,'Content-Type':'application/json'},body:JSON.stringify({refresh_token:CK_AUTH.refresh_token})}),d=await r.json();
+  if(!r.ok)throw new Error('Phiên đăng nhập đã hết. Em hãy đăng nhập lại.');
+  CK_AUTH={...d,expires_at:Date.now()/1000+d.expires_in};localStorage.setItem('ck_auth_session',JSON.stringify(CK_AUTH));return CK_AUTH.access_token;
+ })().finally(()=>CK_REFRESH_PROMISE=null);
+ return CK_REFRESH_PROMISE;
+}
+async function accountFetch(path,options={}){
+ let owner=CK_STUDENT_ID,token=await authToken();
+ let r=await fetch(SB_URL+path,{...options,headers:{apikey:SB_KEY,Authorization:'Bearer '+token,'Content-Type':'application/json',...options.headers}});
+ if(owner!==CK_STUDENT_ID)throw new Error('Tài khoản đã thay đổi.');
+ if(!r.ok)throw new Error('Chưa đồng bộ được ('+r.status+').');
+ let body=await r.text();return body?JSON.parse(body):null;
+}
+function switchStudentCache(id){window.CK_CACHE_SCOPE=id;localStorage.setItem('ck_account_active',id);R187_CLOUD_ROWS=[];}
+async function enterStudent(){
+ let code=document.getElementById('studentNameInput').value.trim().toUpperCase(),password=document.getElementById('studentPasswordInput').value,btn=document.getElementById('enterStudentBtn');
+ if(!/^[A-Z0-9_-]{3,32}$/.test(code)||!password){accountMessage('Nhập mã học sinh và mật khẩu cô cấp.',true);return}
+ btn.disabled=true;accountMessage('Đang đăng nhập…');
+ try{
+  let r=await fetch(SB_URL+'/auth/v1/token?grant_type=password',{method:'POST',headers:{apikey:SB_KEY,'Content-Type':'application/json'},body:JSON.stringify({email:code.toLowerCase()+'@students.cokhanh.example',password})}),d=await r.json();
+  if(!r.ok)throw new Error('Mã học sinh hoặc mật khẩu chưa đúng.');
+  let pr=await fetch(SB_URL+'/rest/v1/student_accounts?select=user_id,display_name,student_code&user_id=eq.'+d.user.id,{headers:{apikey:SB_KEY,Authorization:'Bearer '+d.access_token}}),profiles=await pr.json();
+  if(!pr.ok||!Array.isArray(profiles)||profiles.length!==1)throw new Error('Tài khoản chưa được cô cấp hồ sơ học sinh.');
+  CK_AUTH={...d,expires_at:Date.now()/1000+d.expires_in};localStorage.setItem('ck_auth_session',JSON.stringify(CK_AUTH));
+  activateStudent(profiles[0]);document.getElementById('studentPasswordInput').value='';await syncAchievementFromCloud();
+ }catch(e){accountMessage(e.message,true)}finally{btn.disabled=false}
+}
+function activateStudent(profile){
+ switchStudentCache(profile.user_id);CK_STUDENT_ID=profile.user_id;CK_STUDENT_NAME=profile.display_name;CK_SESSION_ID=uuid4();
+ localStorage.setItem('ck_student_id',CK_STUDENT_ID);localStorage.setItem('ck_student_name',CK_STUDENT_NAME);localStorage.setItem('ck_student_code',profile.student_code);
+ let gate=document.getElementById('studentGate');gate.classList.add('hidden');gate.style.display='none';showStudentPill();
+ renderHomeAchievementStats();renderDailyLessonCard();
+}
+function showStudentPill(){let p=document.getElementById('studentPill');p.style.display='block';p.innerHTML='👤 '+esc(CK_STUDENT_NAME)+' · <a href="#" onclick="changeStudent();return false">Đăng xuất</a>'}
+function changeStudent(){
+ let old=CK_AUTH;CK_AUTH=null;localStorage.removeItem('ck_auth_session');CK_STUDENT_NAME='';CK_STUDENT_ID='';switchStudentCache('signed-out');
+ let gate=document.getElementById('studentGate');gate.classList.remove('hidden');gate.style.display='flex';document.getElementById('studentPill').style.display='none';
+ document.getElementById('studentPasswordInput').value='';accountMessage('');openPage('home');renderHomeAchievementStats();renderDailyLessonCard();
+ if(old)fetch(SB_URL+'/auth/v1/logout?scope=local',{method:'POST',headers:{apikey:SB_KEY,Authorization:'Bearer '+old.access_token}}).catch(()=>{});
+}
+function openTeacherFromGate(){document.getElementById('studentGate').classList.add('hidden');document.getElementById('studentGate').style.display='none';openPage('teacherAdmin');checkTeacherSession()}
+async function restoreStudentAccount(){
+ if(!CK_AUTH){CK_STUDENT_NAME='';CK_STUDENT_ID='';document.getElementById('studentGate').style.display='flex';return}
+ try{let p=await accountFetch('/rest/v1/student_accounts?select=user_id,display_name,student_code&user_id=eq.'+CK_AUTH.user.id);if(p.length!==1)throw new Error('Hồ sơ chưa có.');activateStudent(p[0]);await syncAchievementFromCloud()}
+ catch(e){document.getElementById('studentGate').style.display='flex';document.getElementById('studentGate').classList.remove('hidden');accountMessage('Chưa khôi phục được phiên. Em đăng nhập lại khi có mạng.',true)}
+}
+function pendingResults(){try{return JSON.parse(localStorage.getItem('ck_pending_results')||'[]')}catch{return []}}
+async function flushPendingResults(){
+ if(!CK_AUTH)return;let owner=CK_STUDENT_ID;
+ for(let row of pendingResults()){
+  try{await accountFetch('/rest/v1/student_results',{method:'POST',headers:{Prefer:'return=minimal'},body:JSON.stringify(row)})}
+  catch(e){if(!String(e.message).includes('(409)'))throw e}
+  if(owner!==CK_STUDENT_ID)return;
+  localStorage.setItem('ck_pending_results',JSON.stringify(pendingResults().filter(p=>p.client_result_id!==row.client_result_id)));
+ }
+}
+async function saveOnlineResult(activity,score,maxScore,wrongCount,detail={}){
+ if(!CK_AUTH)return;if(CK_ACTIVITY_TYPE==='mini_test'&&CK_LESSON_NUMBER)markLessonComplete(CK_LESSON_NUMBER);
+ let latest=resultHistory().find(x=>x.activity===activity&&Number(x.score)===Number(score)&&Number(x.maxScore)===Number(maxScore));
+ let row={auth_owner:CK_STUDENT_ID,student_id:CK_STUDENT_ID,student_name:CK_STUDENT_NAME,activity,score,max_score:maxScore,wrong_count:wrongCount,hsk1_progress:hskProgress(),lesson_number:CK_LESSON_NUMBER,activity_type:CK_ACTIVITY_TYPE,duration_seconds:detail.durationSec??elapsedSeconds(),client_session_id:CK_SESSION_ID,client_result_id:uuid4(),source:'github-pages-r194',completed_at:new Date(latest?.ts||Date.now()).toISOString(),correct_count:detail.correct??null,unanswered_count:detail.unanswered??null,listening_score:detail.listeningScore??null,reading_score:detail.readingScore??null,listening_correct:detail.listeningCorrect??null,reading_correct:detail.readingCorrect??null};
+ localStorage.setItem('ck_pending_results',JSON.stringify([...pendingResults(),row]));
+ let st=document.getElementById('onlineSaveState');
+ try{await flushPendingResults();await syncLessonProgress();if(st){st.textContent='✓ Đã lưu vào tài khoản. Thiết bị khác sẽ thấy kết quả này.';st.className='saveState okState'}}
+ catch(e){if(st){st.textContent='Đã giữ kết quả trên thiết bị. Sẽ đồng bộ lại khi có mạng.';st.className='saveState errState'}}
+ renderR186StudentProgress();
+}
+function mergeLessonProgress(n,row){
+ let p=readDailyLessonProgress(n);p.vocabSeen=[...new Set([...p.vocabSeen,...row.vocab_seen])];p.patternSeen=[...new Set([...p.patternSeen,...row.pattern_seen])];p.exerciseDone=Math.max(p.exerciseDone,row.exercise_done);
+ localStorage.setItem(dailyLessonProgressKey(n),JSON.stringify(p));if(row.completed){let a=completedLessonsLocal();if(!a.includes(n)){a.push(n);localStorage.setItem('ck_completed_lessons',JSON.stringify(a.sort((x,y)=>x-y)))}}
+}
+async function syncLessonProgress(){
+ if(!CK_AUTH)return;let owner=CK_STUDENT_ID,rows=await accountFetch('/rest/v1/student_lesson_progress?select=*&student_id=eq.'+owner);
+ rows.forEach(r=>mergeLessonProgress(Number(r.lesson_number),r));
+ for(let n=1;n<=15;n++){
+  if(owner!==CK_STUDENT_ID)return;
+  let p=readDailyLessonProgress(n),completed=completedLessonsLocal().includes(n);
+  if(!p.vocabSeen.length&&!p.patternSeen.length&&!p.exerciseDone&&!completed)continue;
+  let row=await accountFetch('/rest/v1/rpc/sync_lesson_progress',{method:'POST',body:JSON.stringify({p_lesson:n,p_vocab:p.vocabSeen,p_patterns:p.patternSeen,p_exercise:p.exerciseDone,p_completed:completed})});
+  mergeLessonProgress(n,Array.isArray(row)?row[0]:row);
+ }
+ renderDailyLessonCard();renderHomeAchievementStats();
+}
+function scheduleProgressSync(){clearTimeout(CK_PROGRESS_TIMER);if(CK_AUTH)CK_PROGRESS_TIMER=setTimeout(()=>syncAchievementFromCloud(),800)}
+function writeDailyLessonProgress(n,p){localStorage.setItem(dailyLessonProgressKey(n),JSON.stringify(p));if(document.getElementById('home')?.style.display!=='none')renderDailyLessonProgress(n);scheduleProgressSync()}
+function markLessonComplete(n){let a=completedLessonsLocal();if(!a.includes(n)){a.push(n);localStorage.setItem('ck_completed_lessons',JSON.stringify(a.sort((x,y)=>x-y)))}scheduleProgressSync()}
+async function syncAchievementFromCloud(){
+ if(!CK_AUTH)return false;
+ if(CK_SYNC_PROMISE)return CK_SYNC_PROMISE;
+ let owner=CK_STUDENT_ID,st=document.getElementById('r187DashboardSync');
+ if(st)st.textContent='☁ Đang đồng bộ…';
+ CK_SYNC_PROMISE=(async()=>{try{
+  await flushPendingResults();await syncLessonProgress();
+  let rows=await accountFetch('/rest/v1/student_results?select=*&auth_owner=eq.'+owner+'&order=completed_at.desc&limit=100');
+  if(owner!==CK_STUDENT_ID)return false;
+  mergeOnlineHistory(rows);if(st){st.textContent='✓ Đã đồng bộ tài khoản';st.className='r187SyncState synced'}return true;
+ }catch(e){if(st){st.textContent='Chưa có kết nối · tiến độ vẫn giữ trên thiết bị';st.className='r187SyncState offline'}return false}
+ })().finally(()=>{CK_SYNC_PROMISE=null});return CK_SYNC_PROMISE;
+}
+async function createStudentAccount(){
+ let btn=document.getElementById('createStudentAccountBtn'),msg=document.getElementById('createStudentAccountMsg');btn.disabled=true;msg.textContent='Đang tạo…';
+ try{
+  let r=await fetch(SB_URL+'/functions/v1/student-account',{method:'POST',headers:{apikey:SB_KEY,Authorization:'Bearer '+TEACHER_TOKEN,'Content-Type':'application/json'},body:JSON.stringify({code:document.getElementById('newStudentCode').value,name:document.getElementById('newStudentName').value,password:document.getElementById('newStudentPassword').value,legacy_student_id:document.getElementById('newStudentLegacy').value})}),d=await r.json();
+  if(!r.ok)throw new Error(d.error||'Chưa tạo được tài khoản.');
+  document.getElementById('newStudentPassword').value='';msg.textContent='✓ Đã tạo '+d.code+' — '+d.name+'. Gửi mã và mật khẩu em vừa đặt cho học sinh.'+(d.warning?' '+d.warning:'');await loadAdminResults();
+ }catch(e){msg.textContent=e.message}finally{btn.disabled=false}
+}
+function renderLegacyStudentOptions(){
+ let el=document.getElementById('newStudentLegacy');if(!el)return;
+ let groups=new Map();for(let r of ADMIN_RESULTS)if(r.student_id&&!r.auth_owner){let g=groups.get(r.student_id)||{name:r.student_name,count:0};g.count++;groups.set(r.student_id,g)}
+ el.innerHTML='<option value="">Tạo hồ sơ mới</option>'+[...groups].map(([id,g])=>'<option value="'+esc(id)+'">'+esc(g.name)+' · '+g.count+' kết quả · '+esc(id.slice(0,8))+'</option>').join('');
+}
+window.addEventListener('online',()=>syncAchievementFromCloud());
+document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible')syncAchievementFromCloud()});
+document.addEventListener('DOMContentLoaded',()=>{
+ restoreStudentAccount();document.getElementById('studentPasswordInput').addEventListener('keydown',e=>{if(e.key==='Enter')enterStudent()});
+ setInterval(()=>{if(CK_AUTH&&document.visibilityState==='visible')syncAchievementFromCloud()},60000);
+});
+
 </script>
 
 <div id="resumeBanner" class="resumeBanner">
