@@ -2280,7 +2280,7 @@ render();
 setTimeout(()=>updateResumeBanner(true),250);
 
 
-(function(){const kg=document.getElementById('knowledge');if(!kg)return;const g=OFFICIAL_HSK1_150.map((w,i)=>`<span style="display:inline-block;margin:4px;padding:7px 10px;border:1px solid #eee4ea;border-radius:10px;background:#fff">${i+1}. <b>${w}</b></span>`).join('');kg.insertAdjacentHTML('beforeend',`<div class="card" style="margin-top:16px"><h2>📚 150 từ vựng HSK1</h2><p class="muted">Danh sách từ vựng giúp em ôn lại kiến thức trong toàn khóa.</p><div>${g}</div></div>`);})();
+
 
 
 (function(){
@@ -2983,7 +2983,7 @@ buildSearchIndex=function(){let items=H2_SEARCH_PREVIOUS();if(items.some(x=>x.id
 const H2_SEARCH_OPEN_PREVIOUS=openSearchEntry;
 openSearchEntry=function(id){let entry=buildSearchIndex().find(x=>x.id===id);if(entry?.route.hsk2){closeHeaderSearch();let r=entry.route;return r.hsk2==='lesson'?h2OpenLesson(r.n):h2Course(r.hsk2==='tests'?'tests':'lessons')}return H2_SEARCH_OPEN_PREVIOUS(id)};
 document.addEventListener('DOMContentLoaded',()=>{
- document.querySelectorAll('#lessons .head,#tests .head,#knowledge .head').forEach(head=>{let b=document.createElement('button');b.className='btn soft';b.textContent='🌿 HSK2';b.setAttribute('onclick',head.closest('.page').id==='tests'?"h2Course('tests')":"h2Course()");head.appendChild(b)});
+ document.querySelectorAll('#lessons .head,#knowledge .head').forEach(head=>{let b=document.createElement('button');b.className='btn soft';b.textContent='🌿 HSK2';b.setAttribute('onclick',head.closest('.page').id==='tests'?"h2Course('tests')":"h2Course()");head.appendChild(b)});
  let progress=document.getElementById('progress'),panel=document.createElement('div');panel.id='h2Achievements';panel.className='card';progress.insertBefore(panel,progress.querySelector('.head').nextSibling);h2RenderAchievements();
  if('speechSynthesis' in window)speechSynthesis.getVoices();
  CK_SEARCH_INDEX=null;buildSearchIndex();
@@ -3235,6 +3235,16 @@ function separateFinalExams(container){let heading=[...container.querySelectorAl
 const TEST_CATALOG_H2=h2Course;
 h2Course=function(mode){TEST_CATALOG_H2(mode);if(mode==='tests')separateFinalExams(document.getElementById('h2CourseBody'))};
 document.addEventListener('DOMContentLoaded',()=>separateFinalExams(document.getElementById('tests')));
+// R214: assessment launches bypass the level selector.
+function runHSK1Assessment(action,args){let previous=TEST_CATALOG_DIRECT;TEST_CATALOG_DIRECT=true;try{let result=action(...args);let page=document.getElementById('tests');if(page.classList.contains('on')){document.getElementById('quickTestHub').style.display='none';page.querySelectorAll(':scope > .card').forEach(el=>el.hidden=true);document.getElementById('testArea').hidden=false}return result}finally{TEST_CATALOG_DIRECT=previous}}
+const H1_TEST_RUN=runExam,H1_TEST_MINI=startMini,H1_TEST_EXAM=startExam,H1_TEST_MOCK=startMock,H1_TEST_QUICK=openQuickTestType;
+runExam=function(...args){return runHSK1Assessment(H1_TEST_RUN,args)};
+startMini=function(...args){return runHSK1Assessment(H1_TEST_MINI,args)};
+startExam=function(...args){return runHSK1Assessment(H1_TEST_EXAM,args)};
+startMock=function(...args){return runHSK1Assessment(H1_TEST_MOCK,args)};
+openQuickTestType=function(...args){let result=runHSK1Assessment(H1_TEST_QUICK,args),back=document.querySelector('#testArea .qtBack');if(back){back.textContent='← Kiểm tra nhanh HSK1';back.setAttribute('onclick','openHSKTests(1,true)')}return result};
+const H1_TEST_CENTER=openHSKTests;
+openHSKTests=function(n,quick=false){let r=H1_TEST_CENTER(n,quick);if(n===1){document.getElementById('testArea').hidden=true;document.getElementById('tests').querySelector('h1').textContent=quick?'⚡ Kiểm tra nhanh HSK1':'📝 Trung tâm kiểm tra HSK1'}return r};
 </script>
 
 <div id="resumeBanner" class="resumeBanner">
