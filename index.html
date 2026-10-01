@@ -3356,6 +3356,21 @@ renderResultDashboard=function(...args){let r=SHARED_ACH_DASH(...args);renderSha
 renderRankCenter=function(...args){let before=CK_ACH_HISTORY_SCOPE;CK_ACH_HISTORY_SCOPE=false;CK_GLOBAL_RANK_SCOPE=true;try{return ACH_RANK(...args)}finally{CK_GLOBAL_RANK_SCOPE=false;CK_ACH_HISTORY_SCOPE=before}};
 scrollToRankCenter=function(...args){return ACH_COMPACT_RANK(...args)};
 document.addEventListener('DOMContentLoaded',()=>renderSharedAchievementOverview());
+
+// R219: matching level achievement summaries and single catalogue level labels.
+function renderHSK1LevelSummary(){let root=document.getElementById('h1AchievementDetails');if(!root)return;let panel=document.getElementById('h1LevelSummary');if(!panel){panel=document.createElement('div');panel.id='h1LevelSummary';root.prepend(panel)}let rows=ACH_HISTORY().filter(r=>achievementResultLevel(r)===1&&r.type!=='practice'),done=completedLessonsLocal().length,pct=Math.round(done/15*100),avg=rows.length?Math.round(rows.reduce((s,r)=>s+Number(r.pct||0),0)/rows.length):null,listen=overviewSkill(rows,'listeningScore'),read=overviewSkill(rows,'readingScore');panel.innerHTML='<h2>🌿 Thành tích HSK1</h2><div class="stats"><div class="stat"><b>'+done+'/15</b>Bài hoàn thành</div><div class="stat"><b>'+rows.length+'</b>Lượt kiểm tra</div><div class="stat"><b>'+(avg===null?'—':avg+'%')+'</b>Điểm trung bình</div></div><h3>Tiến độ HSK1</h3><div class="progress"><div class="bar" id="h1LevelProgressBar" style="width:'+pct+'%"></div></div><p>'+pct+'% · '+done+'/15 bài hoàn thành</p><div class="stats"><div class="stat"><b>'+(listen===null?'—':listen+'/100')+'</b>Nghe trung bình</div><div class="stat"><b>'+(read===null?'—':read+'/100')+'</b>Đọc trung bình</div><div class="stat"><b>'+rows.filter(r=>r.type==='mini_test').length+'</b>Lượt Mini test</div><div class="stat"><b>'+rows.filter(r=>r.type==='quick_test').length+'</b>Lượt kiểm tra nhanh</div></div>';
+ // Older summary widgets stay available to their existing renderers but are not duplicated.
+ let oldBar=document.getElementById('bar'),oldText=document.getElementById('progText');if(oldBar){let track=oldBar.parentElement;track.hidden=true;if(track.previousElementSibling?.textContent==='Tiến độ HSK1')track.previousElementSibling.hidden=true}if(oldText)oldText.hidden=true;root.querySelector(':scope > .rankHero')?.setAttribute('hidden','')}
+function simplifyLevelCardLabels(){document.querySelectorAll('#knowledgeGrid .hskLevelCard,#lessonCatalogGrid .hskLevelCard,#testCatalogGrid .hskLevelCard').forEach(card=>{if(card.querySelector('h3'))card.querySelector('.tag')?.remove()})}
+const H1_SUMMARY_LEVELS=renderAchievementLevels;
+renderAchievementLevels=function(){H1_SUMMARY_LEVELS();renderHSK1LevelSummary();simplifyLevelCardLabels()};
+const LEVEL_LABEL_KNOWLEDGE=renderHSKCatalog;
+renderHSKCatalog=function(){LEVEL_LABEL_KNOWLEDGE();simplifyLevelCardLabels()};
+const LEVEL_LABEL_TESTS=renderTestCatalog;
+renderTestCatalog=function(...args){let r=LEVEL_LABEL_TESTS(...args);simplifyLevelCardLabels();return r};
+const LEVEL_LABEL_OPEN=openPage;
+openPage=function(...args){let r=LEVEL_LABEL_OPEN(...args);simplifyLevelCardLabels();return r};
+document.addEventListener('DOMContentLoaded',()=>{renderHSK1LevelSummary();simplifyLevelCardLabels()});
 </script>
 
 <div id="resumeBanner" class="resumeBanner">
