@@ -3412,6 +3412,53 @@ const H2_AUDIT_REVIEW_NORM=normalizeSmartReviewAnswer;
 normalizeSmartReviewAnswer=function(text){let n=H2_AUDIT_REVIEW_NORM(text);for(let [answer,aliases] of Object.entries(H2_ARRANGEMENT_ALIASES))if(aliases.some(a=>H2_AUDIT_REVIEW_NORM(a)===n))return H2_AUDIT_REVIEW_NORM(answer);return n};
 const H2_AUDIT_EXPLANATIONS=h2RefreshExplanations;
 h2RefreshExplanations=function(run){if(run?.auditRevision!==222)return;for(let [i,q] of run.questions.entries()){if(run.kind==='readingPractice')q.e=H2_READING_EVIDENCE[run.lesson-1][i]+' Nghĩa đoạn văn: '+h2Lesson(run.lesson).practiceReading.translation}};
+
+// Mini Test owns its clock; practice/navigation never contributes to it.
+function miniH2Pause(){let r=H2_RUN;if(r?.kind!=='mini'||!r.miniActiveAt)return;r.miniElapsedMs=(r.miniElapsedMs||0)+Math.max(0,Date.now()-r.miniActiveAt);r.miniActiveAt=null;h2SaveRun()}
+function miniH2Activate(){let r=H2_RUN;if(r?.kind!=='mini'||r.submitted)return;if(!r.miniClockRevision){r.miniClockRevision=223;r.miniElapsedMs=0;r.miniActiveAt=null}if(!r.miniActiveAt)r.miniActiveAt=Date.now()}
+const MINI223_BUILD=h2Build;
+h2Build=function(...args){let r=MINI223_BUILD(...args);if(r?.kind==='mini'){r.miniClockRevision=223;r.miniElapsedMs=0;r.miniActiveAt=null}return r};
+const MINI223_SCORE=h2Score;
+h2Score=function(r){let s=MINI223_SCORE(r);if(r.kind==='mini'&&r.miniClockRevision===223)s.durationSec=Math.floor(((r.miniElapsedMs||0)+(r.miniActiveAt?Math.max(0,Date.now()-r.miniActiveAt):0))/1000);return s};
+const MINI223_TAB=h2SelectTab;
+h2SelectTab=function(...args){miniH2Pause();let result=MINI223_TAB(...args);miniH2Activate();return result};
+const MINI223_RENDER=h2RenderQuiz;
+h2RenderQuiz=function(...args){let result=MINI223_RENDER(...args);miniH2Activate();return result};
+const MINI223_SUBMIT=h2Submit;
+h2Submit=async function(...args){miniH2Pause();let result=await MINI223_SUBMIT(...args);if(!H2_RUN?.submitted)miniH2Activate();return result};
+const MINI223_LOAD=h2LoadTabs;
+h2LoadTabs=function(...args){let result=MINI223_LOAD(...args);for(let r of Object.values(H2_LESSON_TABS?.runs||{}))if(r.kind==='mini')r.miniActiveAt=null;return result};
+const MINI223_RESUME=h2Resume;
+h2Resume=function(...args){miniH2Pause();let saved;try{saved=JSON.parse(localStorage.getItem('ck_hsk2_resume')||'null')}catch{}if(saved?.kind==='mini'){saved.miniActiveAt=null;localStorage.setItem('ck_hsk2_resume',JSON.stringify(saved))}return MINI223_RESUME(...args)};
+const MINI223_PAGE=openPage;
+openPage=function(id,...args){if(id!=='hsk2Quiz'&&id!=='hsk2Lesson')miniH2Pause();return MINI223_PAGE(id,...args)};
+const MINI223_LESSON=openLesson;
+openLesson=function(...args){miniH2Pause();return MINI223_LESSON(...args)};
+const MINI223_H2LESSON=h2OpenLesson;
+h2OpenLesson=function(...args){miniH2Pause();return MINI223_H2LESSON(...args)};
+window.addEventListener('pagehide',miniH2Pause);
+// Freeze HSK1 Mini Test duration at successful submission and add result actions.
+let MINI223_H1_FINISHED=null;
+const MINI223_H1_START=startMini;
+startMini=function(...args){MINI223_H1_FINISHED=null;return MINI223_H1_START(...args)};
+const MINI223_ELAPSED=elapsedSeconds;
+elapsedSeconds=function(){return CK_ACTIVITY_TYPE==='mini_test'&&MINI223_H1_FINISHED!==null?MINI223_H1_FINISHED:MINI223_ELAPSED()};
+const MINI223_H1_SUBMIT=submitCurrent;
+submitCurrent=function(...args){let mini=CK_ACTIVITY_TYPE==='mini_test',n=CK_LESSON_NUMBER,ready=mini&&current.every((q,i)=>ans[i]!==undefined);if(ready&&MINI223_H1_FINISHED!==null)return;if(ready)MINI223_H1_FINISHED=MINI223_ELAPSED();let result=MINI223_H1_SUBMIT(...args);if(ready){let el=document.getElementById('res');if(el){el.querySelectorAll('button[onclick*="progress"],button[onclick*="openAchievements"]').forEach(b=>b.remove());let box=document.createElement('div');box.className='miniResultActions';box.style.cssText='display:flex;flex-wrap:wrap;gap:6px;margin-top:16px';box.innerHTML='<button type="button" class="btn" onclick="openAchievements()">Xem Thành tích của bạn →</button><button type="button" class="btn soft" onclick="startMini('+Number(n)+')">Làm lại</button><button type="button" class="btn soft" onclick="openLesson('+Number(n)+')">Về bài học</button>';el.appendChild(box)}}return result};
+const MINI223_HIDE=hideAll;
+hideAll=function(...args){miniH2Pause();return MINI223_HIDE(...args)};
+
+function returnLessonTheory(level,n){if(Number(level)===1){openLesson(Number(n));document.getElementById('lessonTitle')?.scrollIntoView({block:'start'});return}if(Number(level)===2){h2OpenLesson(Number(n));h2SelectTab('vocabPractice');document.getElementById('h2LessonTitle')?.scrollIntoView({block:'start'});window.scrollTo(0,0)}}
+function lessonListFooter(level){return '<div class="lessonListReturn" style="display:flex;justify-content:flex-end;margin-top:24px;padding-top:18px;border-top:1px solid #eee4ea"><button type="button" class="btn" onclick="openHSKCourse('+Number(level)+')">Danh sách bài học →</button></div>'}
+const RETURN224_H1LESSON=openLesson;
+openLesson=function(...args){let result=RETURN224_H1LESSON(...args);let body=document.getElementById('lessonBody');if(currentSitePage()==='lessonDetail'&&body&&!body.querySelector('.lessonListReturn'))body.insertAdjacentHTML('beforeend',lessonListFooter(1));return result};
+const RETURN224_H1RUN=runExam;
+runExam=function(...args){let result=RETURN224_H1RUN(...args);if(CK_ACTIVITY_TYPE==='mini_test'){let area=document.getElementById('testArea');if(area&&!area.querySelector('.lessonListReturn'))area.insertAdjacentHTML('beforeend',lessonListFooter(1))}return result};
+const RETURN224_H1SUBMIT=submitCurrent;
+submitCurrent=function(...args){let result=RETURN224_H1SUBMIT(...args);if(CK_ACTIVITY_TYPE==='mini_test'){let btn=document.querySelector('#res .miniResultActions button:last-child');if(btn)btn.setAttribute('onclick','returnLessonTheory(1,'+Number(CK_LESSON_NUMBER)+')')}return result};
+const RETURN224_H2RESULT=h2RenderResult;
+h2RenderResult=function(...args){let result=RETURN224_H2RESULT(...args);if(H2_RUN?.lesson){let btn=document.querySelector('#h2Result button[onclick^="h2OpenLesson"]');if(btn)btn.setAttribute('onclick','returnLessonTheory(2,'+Number(H2_RUN.lesson)+')');if(!H2_RUN.inlineLesson){let area=document.getElementById('h2QuizBody');if(area&&!area.querySelector('.lessonListReturn'))area.insertAdjacentHTML('beforeend',lessonListFooter(2))}}return result};
+h2NextHTML=function(){let i=H2_TAB_ITEMS.findIndex(x=>x[0]===H2_LESSON_TABS?.active);return i<4?'<div class="h2InlineNext"><button type="button" class="btn" onclick="h2InlineNext()">Tiếp theo: '+H2_TAB_ITEMS[i+1][1].replace(/^\S+\s/,'')+' →</button></div>':lessonListFooter(2)};
 </script>
 
 <div id="resumeBanner" class="resumeBanner">
