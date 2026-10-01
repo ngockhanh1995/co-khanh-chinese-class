@@ -3055,7 +3055,7 @@ const H1_GRAMMAR_SUMMARIES=["你好 / 您好 · Đại từ nhân xưng · 对�
 // R206: shared level catalogue and HSK1 course layout.
 function renderHSKCatalog(){
  const grid=document.getElementById('knowledgeGrid');if(!grid)return;
- grid.className='h2Grid';grid.innerHTML=Array.from({length:6},(_,i)=>{let n=i+1;return '<button type="button" class="h2LessonCard hskLevelCard" onclick="openHSKCourse('+n+')"><span class="tag">HSK'+n+'</span><h3>HSK'+n+'</h3><p>'+['Bắt đầu từ những bước đầu tiên','Tiếp tục xây nền tảng vững chắc','Mở rộng vốn từ và giao tiếp','Tự tin hơn trong mọi tình huống','Nâng cao khả năng sử dụng tiếng Trung','Chinh phục trình độ cao nhất'][i]+'</p><span class="h2ProgressBadge">'+(n<=2?'15 bài học · Xem bài học →':'Nội dung đang cập nhật →')+'</span></button>'}).join('');
+ grid.className='h2Grid';grid.innerHTML=Array.from({length:6},(_,i)=>{let n=i+1;return '<button type="button" class="h2LessonCard hskLevelCard" onclick="openHSKCourse('+n+')"><h3>HSK'+n+'</h3><p>'+['Bắt đầu từ những bước đầu tiên','Tiếp tục xây nền tảng vững chắc','Mở rộng vốn từ và giao tiếp','Tự tin hơn trong mọi tình huống','Nâng cao khả năng sử dụng tiếng Trung','Chinh phục trình độ cao nhất'][i]+'</p><span class="h2ProgressBadge">'+(n<=2?'15 bài học · Xem bài học →':'Nội dung đang cập nhật →')+'</span></button>'}).join('');
 }
 function renderHSK1Course(){
  let done=completedLessonsLocal(),grid=document.getElementById('lessonGrid');grid.className='h2Grid';
@@ -3240,7 +3240,7 @@ document.addEventListener('DOMContentLoaded',renderHSKCatalog);
 // R213: assessment level selection and separate quick-test routes.
 const TEST_CATALOG_OPEN=openPage;
 let TEST_CATALOG_DIRECT=false;
-function renderTestCatalog(quick=false){let page=document.getElementById('testCatalog');page.dataset.quick=quick?'1':'0';page.querySelector('h1').textContent=quick?'⚡ Kiểm tra nhanh HSK':'📝 Trung tâm kiểm tra HSK';document.getElementById('testCatalogGrid').innerHTML=Array.from({length:6},(_,i)=>'<button class="h2LessonCard hskLevelCard" onclick="openHSKTests('+(i+1)+','+quick+')"><span class="tag">HSK'+(i+1)+'</span><h3>HSK'+(i+1)+'</h3><p>'+(i<2?(quick?'Các bài kiểm tra nhanh':'Kiểm tra nhanh · Mini test · Kiểm tra chặng · Kiểm tra cuối khóa'):'Nội dung đang cập nhật')+'</p></button>').join('')}
+function renderTestCatalog(quick=false){let page=document.getElementById('testCatalog');page.dataset.quick=quick?'1':'0';page.querySelector('h1').textContent=quick?'⚡ Kiểm tra nhanh HSK':'📝 Trung tâm kiểm tra HSK';document.getElementById('testCatalogGrid').innerHTML=Array.from({length:6},(_,i)=>'<button class="h2LessonCard hskLevelCard" onclick="openHSKTests('+(i+1)+','+quick+')"><h3>HSK'+(i+1)+'</h3><p>'+(i<2?(quick?'Các bài kiểm tra nhanh':'Kiểm tra nhanh · Mini test · Kiểm tra chặng · Kiểm tra cuối khóa'):'Nội dung đang cập nhật')+'</p></button>').join('')}
 function openTestCatalog(quick=false){renderTestCatalog(quick);TEST_CATALOG_OPEN('testCatalog')}
 function openHSKTests(n,quick=false){if(n>2){document.getElementById('hskPendingTitle').textContent='HSK'+n+' — '+(quick?'Kiểm tra nhanh':'Trung tâm kiểm tra');document.getElementById('hskPendingTag').textContent='HSK'+n;return TEST_CATALOG_OPEN('hskPending')}if(n===2){h2Course('tests');let body=document.getElementById('h2CourseBody');body.querySelectorAll(':scope > .card').forEach(el=>el.hidden=quick);body.closest('section').querySelector('h1').textContent=quick?'⚡ Kiểm tra nhanh HSK2':'📝 Trung tâm kiểm tra HSK2';return}TEST_CATALOG_DIRECT=true;try{TEST_CATALOG_OPEN('tests')}finally{TEST_CATALOG_DIRECT=false}let page=document.getElementById('tests'),hub=document.getElementById('quickTestHub');hub.style.display='block';document.getElementById('quickTestPanel').innerHTML='';page.querySelector('h1').textContent=quick?'⚡ Kiểm tra nhanh HSK1':'📝 Trung tâm kiểm tra HSK1';page.querySelectorAll(':scope > .card').forEach(el=>el.hidden=quick)}
 openPage=function(id){if(id==='tests'&&!TEST_CATALOG_DIRECT)return openTestCatalog(false);return TEST_CATALOG_OPEN(id)};
@@ -3371,6 +3371,17 @@ renderTestCatalog=function(...args){let r=LEVEL_LABEL_TESTS(...args);simplifyLev
 const LEVEL_LABEL_OPEN=openPage;
 openPage=function(...args){let r=LEVEL_LABEL_OPEN(...args);simplifyLevelCardLabels();return r};
 document.addEventListener('DOMContentLoaded',()=>{renderHSK1LevelSummary();simplifyLevelCardLabels()});
+
+// R220: matching HSK1/HSK2 summaries and identical, strictly scoped histories.
+function levelAchievementRows(level){return ACH_HISTORY().filter(r=>achievementResultLevel(r)===level&&r.type!=='practice').sort((a,b)=>Number(b.ts)-Number(a.ts))}
+function renderMatchingLevelAchievements(){renderHSK1LevelSummary();for(let level of [1,2]){let rows=levelAchievementRows(level),root=document.getElementById(level===1?'h1AchievementDetails':'h2Achievements');if(!root)continue;let table=root.querySelector('.historyTable');if(!table)continue;table.querySelector('thead').innerHTML='<tr><th>Thời gian</th><th>Bài</th><th>Kết quả</th><th>Rank</th><th>Đúng / Sai / Bỏ trống</th><th>Nghe</th><th>Đọc</th><th>Thời gian làm bài</th></tr>';let body=table.querySelector('tbody');body.innerHTML=rows.length?rows.map(r=>{let rank=rankForPct(Number(r.pct)||0);return '<tr data-hsk-level="'+level+'"><td>'+esc(fmtResultDate(r.ts))+'</td><td>'+esc(r.activity||'Bài kiểm tra HSK'+level)+'</td><td>'+esc(r.score)+'/'+esc(r.maxScore)+' · '+esc(r.pct)+'%</td><td>'+esc(rank.icon+' '+rank.code)+'</td><td>'+[r.correct,r.wrong,r.unanswered].map(v=>v??'—').join(' / ')+'</td><td>'+levelExamValue(r,'listeningScore',100)+'</td><td>'+levelExamValue(r,'readingScore',100)+'</td><td>'+esc(levelExamDuration(r))+'</td></tr>'}).join(''):'<tr><td colspan="8">Chưa có kết quả HSK'+level+'.</td></tr>';table.closest('.historyCard')?.removeAttribute('hidden');let wrapper=table.parentElement;if(!wrapper.classList.contains('historyCard'))wrapper.style.overflowX='auto';else wrapper.style.overflowX='auto';let heading=wrapper.previousElementSibling;if(heading?.tagName==='H3'){heading.textContent='🗂 Lịch sử kết quả HSK'+level;heading.hidden=false}}}
+const MATCHING_LEVEL_RENDER=renderAchievementLevels;
+renderAchievementLevels=function(){let r=MATCHING_LEVEL_RENDER();renderMatchingLevelAchievements();return r};
+const MATCHING_LEVEL_DASH=renderResultDashboard;
+renderResultDashboard=function(...args){let r=MATCHING_LEVEL_DASH(...args);renderMatchingLevelAchievements();return r};
+const MATCHING_LEVEL_STATS=stats;
+stats=function(...args){let r=MATCHING_LEVEL_STATS(...args);renderMatchingLevelAchievements();return r};
+document.addEventListener('DOMContentLoaded',()=>renderMatchingLevelAchievements());
 </script>
 
 <div id="resumeBanner" class="resumeBanner">
