@@ -1,5 +1,5 @@
 {
-  "version": "V10.9 DEV R210",
+  "version": "V10.9 DEV R212",
   "baseline": "R192 PASS",
   "status": "DEV - H11003 Mock 4 QA stage 1",
   "locked": [
@@ -169,12 +169,14 @@
   "responsive_alignment_fix": "Anchor daily lesson card and achievement metrics to home image width, covering baked-in regions in portrait, landscape, and desktop zoom.",
   "quote_fix": "Use image-width coordinates to cover the old quote after changing quotes.",
   "student_ui_cleanup": "Remove test-flow copy, development version labels, and course QA panel from student-facing screens.",
-  "hsk2_feedback": "R210: unique arrangement sentences, stronger shuffling, move-only pool/answer tokens with drag and click, reset, explicit verdicts, contextual translations and HSK2 Smart Review",
-  "hsk2_revision": "R210: 15 textbook Vietnamese titles, 5 exercises per practice tab, Chinese-only assessment text, no arrangement reset, preserved prior completions",
-  "hsk2_center": "R210: HSK1-style quick/mini/stage/final centre; no lesson vocabulary audio or dialogue; per-unit practice achievements, synced arrangement and next missing daily practice",
-  "hsk2_practice_layout": "R210: per-question check/reset, vertical choices, compact fonts and named next buttons",
-  "hsk_catalog": "R210: HSK1-HSK6 cards, shared HSK1/HSK2 course card layout, quick-check labels, pending HSK3-HSK6",
-  "hsk2_lesson_tabs": "R210: five inline lesson tabs, preserved answers, horizontal mobile scrolling",
+  "accepted_time_positions": "R212: time adjunct before/after the same subject accepted in HSK1/HSK2 exercise, assessment and Smart Review grading; Chinese-only arrangement prompt",
+  "course_library": "R212: homepage Lessons opens HSK1-HSK6; HSK2 textbook vocabulary list with search, lesson filtering and lesson links",
+  "hsk2_feedback": "R212: unique arrangement sentences, stronger shuffling, move-only pool/answer tokens with drag and click, reset, explicit verdicts, contextual translations and HSK2 Smart Review",
+  "hsk2_revision": "R212: 15 textbook Vietnamese titles, 5 exercises per practice tab, Chinese-only assessment text, no arrangement reset, preserved prior completions",
+  "hsk2_center": "R212: HSK1-style quick/mini/stage/final centre; no lesson vocabulary audio or dialogue; per-unit practice achievements, synced arrangement and next missing daily practice",
+  "hsk2_practice_layout": "R212: per-question check/reset, vertical choices, compact fonts and named next buttons",
+  "hsk_catalog": "R212: HSK1-HSK6 cards, shared HSK1/HSK2 course card layout, quick-check labels, pending HSK3-HSK6",
+  "hsk2_lesson_tabs": "R212: five inline lesson tabs, preserved answers, horizontal mobile scrolling",
   "hsk2": {
     "lessons": 15,
     "vocab_entries": 170,
@@ -188,14 +190,14 @@
     "source": "user supplied Standard Course HSK2 2.0 textbook and workbook",
     "account_progress": "separate HSK2 units and hsk_level=2 results"
   },
-  "mini_lesson_1_context": "R210: final question uses teacher/student greeting dialogue",
-  "result_action_label": "R210: Xem Thành tích của bạn on completion results",
-  "main_menu": "R210: removed Fun Corner; five visible native menu actions with aligned spacing",
-  "learning_roadmap": "R210: account-based level progression with complete lesson and assessment requirements",
-  "home_refresh": "R210: home button reloads homepage; home action next to back on content pages",
-  "navigation_back": "R210: previous-page back button with view and scroll restoration",
-  "public_search": "R210: content search with Vietnamese/pinyin/Chinese autocomplete and routed results",
-  "header_account": "R210: header login/name button, password and logout menu, removed corner pill",
-  "student_password_change": "R210: current password confirmation, new password and confirmation, authenticated password update",
-  "account_sync": "R210: authenticated student code/password; lesson progress and result sync"
+  "mini_lesson_1_context": "R212: final question uses teacher/student greeting dialogue",
+  "result_action_label": "R212: Xem Thành tích của bạn on completion results",
+  "main_menu": "R212: removed Fun Corner; five visible native menu actions with aligned spacing",
+  "learning_roadmap": "R212: account-based level progression with complete lesson and assessment requirements",
+  "home_refresh": "R212: home button reloads homepage; home action next to back on content pages",
+  "navigation_back": "R212: previous-page back button with view and scroll restoration",
+  "public_search": "R212: content search with Vietnamese/pinyin/Chinese autocomplete and routed results",
+  "header_account": "R212: header login/name button, password and logout menu, removed corner pill",
+  "student_password_change": "R212: current password confirmation, new password and confirmation, authenticated password update",
+  "account_sync": "R212: authenticated student code/password; lesson progress and result sync"
 }
