@@ -1339,7 +1339,7 @@ function recordAssessmentWrongToSmartReview(wrong,meta){
      q:x.q,
      a:x.a||'',
      e:x.e||'',
-     options:Array.isArray(x.options)?x.options.slice():[]
+     options:Array.isArray(x.options)?x.options.slice():[],sourceIndex:x.sourceIndex
    },m);
  });
  recordSmartReview(wrong,m);
@@ -1347,7 +1347,7 @@ function recordAssessmentWrongToSmartReview(wrong,meta){
 function recordSmartReview(wrong,meta){
  if(!Array.isArray(wrong)||!wrong.length)return;
  let m=meta||{};
- wrong.forEach(x=>r173Record(x,m));
+ wrong.forEach(x=>{r173Record(x,m);if(!['mini_test','quick_test'].includes(m.type))r174StoreWrong(x,m)});
  let d=smartReviewData(),now=Date.now(),log=[];
  try{log=JSON.parse(localStorage.getItem(R164_WRONG_LOG_KEY)||'[]')}catch(e){log=[]}
  if(!Array.isArray(log))log=[];
@@ -1442,7 +1442,7 @@ function renderSmartReview(){
    return
  }
  box.innerHTML='<div class="smartReviewList">'+items.slice(0,20).map((r,i)=>`<div class="smartReviewItem" id="sr_${r.id}">
-  <div class="smartReviewTop"><div><b>${esc(r.q)}</b><div class="muted">${esc(r.category||'Ôn tập')}${r.activity?' · '+esc(r.activity):''}</div></div><div class="smartReviewPriority">Ưu tiên ${i+1} · sai ${r.wrongCount} lần</div></div>
+  <div class="smartReviewTop"><div><b>${esc(r.q)}</b><div class="muted">${r238SourceMarkup(r)}</div></div><div class="smartReviewPriority">Ưu tiên ${i+1} · sai ${r.wrongCount} lần</div></div>
   <div class="smartReviewPractice" id="srp_${r.id}">
     <div><b>Làm lại câu này:</b></div>
     ${smartReviewPracticeMarkup(r)}
@@ -1648,7 +1648,7 @@ function r174StoreWrong(x,m){
  if(m?.type==='lesson_reading'){
    Object.keys(d).forEach(k=>{
      let old=d[k];
-     if(old?.activityType==='lesson_reading'&&Number(old.lessonNumber)===Number(m.lessonNumber)&&normalizeSmartReviewAnswer(old.q||'')===normalizeSmartReviewAnswer(x.q||''))delete d[k];
+     if(k!==r174Key(x,m)&&Number(old?.hskLevel||(/^HSK2/.test(old?.activity||'')?2:1))===Number(m?.hskLevel||1)&&old?.activityType==='lesson_reading'&&Number(old.lessonNumber)===Number(m.lessonNumber)&&normalizeSmartReviewAnswer(old.q||'')===normalizeSmartReviewAnswer(x.q||''))delete d[k];
    });
  }
  let key=r174Key(x,m),r=d[key]||{key:key,q:x.q,a:x.a||'',e:x.e||'',wrongCount:0,correctStreak:0,reviewWrong:0,reviewAttempts:0,status:'active'};
@@ -1657,6 +1657,7 @@ function r174StoreWrong(x,m){
  if(Array.isArray(x.tokens)&&x.tokens.length)r.tokens=x.tokens.slice();
  r.wrongCount=(Number(r.wrongCount)||0)+1;r.correctStreak=0;r.status='active';
  r.activity=m?.activity||r.activity||'';r.activityType=m?.type||r.activityType||'';r.lessonNumber=m?.lessonNumber||r.lessonNumber||null;
+ r.hskLevel=Number(m?.hskLevel)||r.hskLevel||1;let source=r238Source(x,m);if(source){r.sources=r238MergeSources(r.sources,source);r.questionNumber=source.questionNumber;r.sourcePart=source.part;}
  r.category=(r.activityType==='lesson_reading'?'Đọc':(r.activityType==='lesson_vocab'?'Từ vựng':inferReviewType(r.q,r.e,r.activity,r.activityType)));r.lastWrong=Date.now();d[key]=r;r174Write(d);
 }
 function patternFeedback(box,text,type){
@@ -1679,7 +1680,7 @@ function patternFeedback(box,text,type){
      else if(activityType==='lesson_choice')options=Array.from(box.querySelectorAll('.patternOpt,.patternOption')).map(x=>x.dataset?.value||x.textContent.trim()).filter(Boolean);
      else if(activityType==='lesson_reading')options=Array.from(box.querySelectorAll('input[type="radio"]')).map(x=>x.value).filter(Boolean);
      let tokens=activityType==='lesson_arrange'?Array.from(box.querySelectorAll('.arrangeToken')).map(x=>x.textContent.trim()).filter(Boolean):[];
-     r174StoreWrong({q:q,a:box.dataset.answer||'',e:box.dataset.explain||'',options:options,tokens:tokens},{activity:'Bài '+(lesson||'')+' · '+activity,type:activityType,lessonNumber:lesson});
+     r174StoreWrong({q:q,a:box.dataset.answer||'',e:box.dataset.explain||'',options:options,tokens:tokens},{activity:'Bài '+(lesson||'')+' · '+activity,type:activityType,lessonNumber:lesson,questionNumber:[...box.parentElement.querySelectorAll('.'+(activityType==='lesson_vocab'?'vocabReviewBox':activityType==='lesson_arrange'?'arrangeBox':activityType==='lesson_reading'?'readingReviewBox':'patternChoiceBox'))].indexOf(box)+1});
    }
  }
 }
@@ -2264,7 +2265,7 @@ function submitMock(auto){
  let unanswered=current.filter((x,i)=>ans[i]===undefined).length;
  if(unanswered>0&&!auto){alert('Em còn '+unanswered+' câu chưa trả lời. Hãy hoàn thành trước khi nộp bài.');return;}
  clearInterval(mockTimer);if('speechSynthesis' in window)speechSynthesis.cancel();
- let lc=0,rc=0,w=[];current.forEach((x,i)=>{let good=hskAnswerIsCorrect(x,ans[i]);if(good){if(i<20)lc++;else rc++;}else w.push({q:x.q,a:x.a[x.ok],e:x.e});let e=document.getElementById('e'+i);e.style.display='block';e.innerHTML=(good?'✅ Đúng. ':'❌ Đáp án đúng: <b>'+x.a[x.ok]+'</b>. ')+x.e;});
+ let lc=0,rc=0,w=[];current.forEach((x,i)=>{let good=hskAnswerIsCorrect(x,ans[i]);if(good){if(i<20)lc++;else rc++;}else w.push({q:x.q,a:x.a[x.ok],e:x.e,options:x.a.slice(),sourceIndex:i});let e=document.getElementById('e'+i);e.style.display='block';e.innerHTML=(good?'✅ Đúng. ':'❌ Đáp án đúng: <b>'+x.a[x.ok]+'</b>. ')+x.e;});
  let ls=lc*5,rs=rc*5,total=ls+rs,pct=Math.round(total/2);let rankResult=saveResultHistory(CK_ACTIVITY||'Đề thi thử HSK1',total,200,lc+rc,w.length,unanswered,'mock_test',{listeningScore:ls,readingScore:rs,listeningCorrect:lc,readingCorrect:rc,durationSec:elapsedSeconds()});
  let t=Number(localStorage.getItem('ck_tests')||0)+1;localStorage.setItem('ck_tests',t);localStorage.setItem('ck_wrong',JSON.stringify(w));recordSmartReview(w,{activity:CK_ACTIVITY||'Đề thi thử HSK1',type:'mock_test',lessonNumber:null});
  let r=document.getElementById('res');r.style.display='block';r.innerHTML=`<h3>Kết quả HSK1: ${total}/200</h3>
@@ -3172,7 +3173,7 @@ const H2_REVIEW_KEY=r174Key;
 r174Key=function(x,m){return (m?.hskLevel===2?'HSK2|':'')+H2_REVIEW_KEY(x,m)};
 const H2_REVIEW_REPAIR=repairSmartReviewReadingRecord;
 repairSmartReviewReadingRecord=function(r){return r.hskLevel===2||/^HSK2/.test(r.activity||'')?r:H2_REVIEW_REPAIR(r)};
-function h2CaptureWrong(run,q,i){let type=q.tokens?'lesson_arrange':run.type==='practice'?({vocabPractice:'lesson_vocab',readingPractice:'lesson_reading',grammarPractice:'lesson_choice'}[run.kind]||'lesson_choice'):['mini_test','quick_test'].includes(run.type)?run.type:'quick_test',prompt='HSK2 · '+(q.passage?q.passage+'\n':'')+(q.audio?q.audio+'\n':'')+(q.picture?'Tranh: '+H2_SCENES[q.picture].cn+'\n':'')+(q.tokens?'Sắp xếp câu: '+q.translation:q.text);let x={q:prompt,a:q.tokens?q.answer:q.pictures?H2_SCENES[q.pictures[q.ok]].cn:q.a[q.ok],e:run.kind==='vocabPractice'?q.e:(q.e||'').replace(/\s*\([^()]*\)\s*=/g,' ='),options:q.tokens?[]:q.pictures?q.pictures.map(k=>H2_SCENES[k].cn):q.a.slice(),tokens:q.tokens?q.tokens.slice().sort((a,b)=>a.index-b.index).map(t=>t.text):[]},meta={type,lessonNumber:q.lesson||run.lesson,activity:'HSK2 · '+run.title,hskLevel:2};r174StoreWrong(x,meta);let d=r174Read(),key=r174Key(x,meta);if(d[key]){d[key].hskLevel=2;d[key].category=q.skill==='listening'?'Nghe':q.tokens?'Ngữ pháp':run.kind==='vocabPractice'?'Từ vựng':q.skill==='reading'?'Đọc':'Từ vựng';r174Write(d)}renderSmartReview()}
+function h2CaptureWrong(run,q,i){let type=q.tokens?'lesson_arrange':run.type==='practice'?({vocabPractice:'lesson_vocab',readingPractice:'lesson_reading',grammarPractice:'lesson_choice'}[run.kind]||'lesson_choice'):['mini_test','quick_test'].includes(run.type)?run.type:'quick_test',prompt='HSK2 · '+(q.passage?q.passage+'\n':'')+(q.audio?q.audio+'\n':'')+(q.picture?'Tranh: '+H2_SCENES[q.picture].cn+'\n':'')+(q.tokens?'Sắp xếp câu: '+q.translation:q.text);let x={q:prompt,a:q.tokens?q.answer:q.pictures?H2_SCENES[q.pictures[q.ok]].cn:q.a[q.ok],e:run.kind==='vocabPractice'?q.e:(q.e||'').replace(/\s*\([^()]*\)\s*=/g,' ='),options:q.tokens?[]:q.pictures?q.pictures.map(k=>H2_SCENES[k].cn):q.a.slice(),tokens:q.tokens?q.tokens.slice().sort((a,b)=>a.index-b.index).map(t=>t.text):[]},meta={type,activity:'HSK2 · '+run.title,hskLevel:2,questionNumber:i+1,sourcePart:run.type==='practice'?({vocabPractice:'Luyện từ vựng',grammarPractice:'Chọn đáp án',arrangePractice:'Sắp xếp câu',readingPractice:'Đọc hiểu'}[run.kind]):q.skill==='listening'?'Nghe':q.skill==='reading'?'Đọc':q.part,sourceId:String(run.id),lessonNumber:run.type==='practice'||run.type==='mini_test'?run.lesson||q.lesson:null};r174StoreWrong(x,meta);let d=r174Read(),key=r174Key(x,meta);if(d[key]){d[key].hskLevel=2;d[key].category=q.skill==='listening'?'Nghe':q.tokens?'Ngữ pháp':run.kind==='vocabPractice'?'Từ vựng':q.skill==='reading'?'Đọc':'Từ vựng';r174Write(d)}renderSmartReview()}
 const H2_FEEDBACK_CHECK=h2CheckOne;
 h2CheckOne=function(i){let run=H2_RUN,q=run?.questions[i];H2_FEEDBACK_CHECK(i);if(q?.checked&&!hskAnswerIsCorrect(q,run.answers[i]))h2CaptureWrong(run,q,i)};
 const H2_FEEDBACK_SUBMIT=h2Submit;
@@ -3571,8 +3572,8 @@ checkReadingNative=function(btn){let box=btn?.closest('.readingReviewBox'),chose
 const R237_OPEN_LESSON=openLesson;
 openLesson=function(...args){let r=R237_OPEN_LESSON(...args);r237RenderReading();return r};
 async function r237Sync(){if(!CK_AUTH||!STUDENT_ACCESS_READY)return false;let owner=CK_STUDENT_ID;if(R237_JOB?.owner===owner)return R237_JOB.promise;let job={owner};R237_JOB=job;job.promise=(async()=>{try{r237Collect();for(let rounds=0;rounds<20;rounds++){let queue=r237Load('ck_review_sync_pending',[]);if(!queue.length)break;for(let event of queue){await accountFetch('/rest/v1/rpc/sync_review_event',{method:'POST',body:JSON.stringify(event)});if(owner!==CK_STUDENT_ID)return false;localStorage.setItem('ck_review_sync_pending',JSON.stringify(r237Load('ck_review_sync_pending',[]).filter(x=>x.p_event!==event.p_event)))}}if(r237Load('ck_review_sync_pending',[]).length)return false;
- let rows=[];for(let offset=0;;offset+=1000){let page=await accountFetch('/rest/v1/student_review_state?select=*&student_id=eq.'+owner+'&order=hsk_level,key_hash&limit=1000&offset='+offset);if(owner!==CK_STUDENT_ID)return false;rows.push(...page);if(page.length<1000)break}if(r237Load('ck_review_sync_pending',[]).length)return false;let data=Object.fromEntries(Object.values(r237Records()).map(c=>[c.key,c.record])),shadow=r237Load('ck_review_sync_shadow',{});for(let row of rows){let record={...row.record,key:row.item_key,hskLevel:Number(row.hsk_level)};data[row.item_key]=record;shadow[row.item_key]=record}R237_APPLY=true;try{r174Write(data);localStorage.setItem('ck_review_sync_shadow',JSON.stringify(shadow))}finally{R237_APPLY=false}
- let progress=await accountFetch('/rest/v1/student_lesson_progress?select=lesson_number,reading_seen&student_id=eq.'+owner);if(owner!==CK_STUDENT_ID)return false;for(let row of progress){let n=Number(row.lesson_number);localStorage.setItem('ck_hsk1_reading_'+n,JSON.stringify([...new Set([...r237Reading(n),...(row.reading_seen||[])])].sort((a,b)=>a-b)))}for(let n=1;n<=15;n++){let seen=r237Reading(n);if(!seen.length)continue;let row=await accountFetch('/rest/v1/rpc/sync_hsk1_reading',{method:'POST',body:JSON.stringify({p_lesson:n,p_reading:seen})});if(owner!==CK_STUDENT_ID)return false;localStorage.setItem('ck_hsk1_reading_'+n,JSON.stringify(row.reading_seen||seen))}renderSmartReview();r237RenderReading();return true}catch{return false}finally{if(R237_JOB===job)R237_JOB=null}})();return job.promise}
+ let rows=[];for(let offset=0;;offset+=1000){let page=await accountFetch('/rest/v1/student_review_state?select=*&student_id=eq.'+owner+'&order=hsk_level,key_hash&limit=1000&offset='+offset);if(owner!==CK_STUDENT_ID)return false;rows.push(...page);if(page.length<1000)break}if(r237Load('ck_review_sync_pending',[]).length)return false;let data=Object.fromEntries(Object.values(r237Records()).map(c=>[c.key,c.record])),shadow=r237Load('ck_review_sync_shadow',{});for(let row of rows){let incoming={...row.record,key:row.item_key,hskLevel:Number(row.hsk_level)},record={...incoming};let sources=data[row.item_key]?.sources||[];for(let source of incoming.sources||[])sources=r238MergeSources(sources,source);if(sources.length)record.sources=sources;data[row.item_key]=record;shadow[row.item_key]=incoming}R237_APPLY=true;try{r174Write(data);localStorage.setItem('ck_review_sync_shadow',JSON.stringify(shadow))}finally{R237_APPLY=false}
+ let progress=await accountFetch('/rest/v1/student_lesson_progress?select=lesson_number,reading_seen&student_id=eq.'+owner);if(owner!==CK_STUDENT_ID)return false;for(let row of progress){let n=Number(row.lesson_number);localStorage.setItem('ck_hsk1_reading_'+n,JSON.stringify([...new Set([...r237Reading(n),...(row.reading_seen||[])])].sort((a,b)=>a-b)))}for(let n=1;n<=15;n++){let seen=r237Reading(n);if(!seen.length)continue;let row=await accountFetch('/rest/v1/rpc/sync_hsk1_reading',{method:'POST',body:JSON.stringify({p_lesson:n,p_reading:seen})});if(owner!==CK_STUDENT_ID)return false;localStorage.setItem('ck_hsk1_reading_'+n,JSON.stringify(row.reading_seen||seen))}renderSmartReview();r237RenderReading();r237Schedule();return true}catch{return false}finally{if(R237_JOB===job)R237_JOB=null}})();return job.promise}
 const R237_SYNC=syncAchievementFromCloud;
 syncAchievementFromCloud=async function(...args){let owner=CK_STUDENT_ID,result=await R237_SYNC(...args);if(owner!==CK_STUDENT_ID)return false;let extras=await r237Sync();return result&&extras};
 window.addEventListener('online',r237Schedule);
@@ -3583,6 +3584,23 @@ const R237_EXAM_RESULT=h2RenderResult;
 h2RenderResult=function(...args){let out=R237_EXAM_RESULT(...args);let r=H2_RUN,el=document.getElementById('h2Result');if(r?.submitted&&['mock','final'].includes(r.kind)&&Number(r.score?.maxScore)===200&&el&&!el.querySelector('.r237ExamVerdict')){let h=el.querySelector('h2');if(h)h.insertAdjacentHTML('afterend','<p class="r237ExamVerdict">'+passEvaluation(r.title,r.score.score,r.score.maxScore)+'</p>')}return out};
 const R237_EXAM_CATALOG=h2Course;
 h2Course=function(...args){let out=R237_EXAM_CATALOG(...args),el=document.getElementById('h2MockCatalogue');if(el&&!el.querySelector('.r237ExamTime'))el.querySelector('h2')?.insertAdjacentHTML('afterend','<p class="r237ExamTime">Thời gian làm bài: 50 phút. Đạt từ 120/200 điểm.</p>');return out};
+
+// R238: exact question provenance, persisted with the account review record.
+function r238MergeSources(existing,source){let a=Array.isArray(existing)?existing.slice():[];if(!a.some(x=>JSON.stringify(x)===JSON.stringify(source)))a.push(source);return a}
+function r238Source(x,m={}){let n=Number(m.questionNumber)||(Number.isInteger(x.sourceIndex)?x.sourceIndex+1:0);if(!Number.isInteger(n)||n<1)return null;return {hskLevel:Number(m.hskLevel)||1,activity:m.activity||'',lessonNumber:Number(m.lessonNumber)||null,part:m.sourcePart||(m.type==='mock_test'?(n<=20?'Nghe':'Đọc'):'')||({lesson_vocab:'Luyện từ vựng',lesson_choice:'Chọn đáp án',lesson_arrange:'Sắp xếp câu',lesson_reading:'Đọc hiểu'}[m.type])||'',questionNumber:n,sourceId:m.sourceId||''}}
+function r238SourceMarkup(r){let sources=Array.isArray(r.sources)?r.sources:[],fallback=r.questionNumber?r238Source({},{hskLevel:r.hskLevel,activity:r.activity,lessonNumber:r.lessonNumber,questionNumber:r.questionNumber,sourcePart:r.sourcePart}):null;if(!sources.length&&fallback)sources=[fallback];if(!sources.length)return esc('HSK'+(r.hskLevel||1)+' · '+(r.activity||r.category||'Ôn tập')+' · Chưa xác định số câu của dữ liệu cũ');return sources.map(x=>{let a=['HSK'+x.hskLevel,String(x.activity||'').replace(/^HSK[12]\s*·\s*/,'')];if(x.lessonNumber&&!/bài\s*\d+/i.test(x.activity||''))a.push('Bài '+x.lessonNumber);if(x.part)a.push(x.part);a.push('Câu '+x.questionNumber);return esc(a.filter(Boolean).join(' · '))}).join('<br>')}
+function r238H2Prompt(q){return 'HSK2 · '+(q.passage?q.passage+'\n':'')+(q.audio?q.audio+'\n':'')+(q.picture?'Tranh: '+H2_SCENES[q.picture].cn+'\n':'')+(q.tokens?'Sắp xếp câu: '+q.translation:q.text)}
+function r238RecoverSources(r){if(r.sources?.length)return r;let level=Number(r.hskLevel)||(/^HSK2/.test(r.activity||'')?2:1),candidates=[];
+ if(level===2&&/Đề thi thử/.test(r.activity||'')){for(let id of ['H21003','H21004']){let cfg=h2MockExam(id);if(!String(r.activity).includes(cfg.title)&&!(id==='H21003'&&String(r.activity).includes(id)))continue;cfg.questions.forEach((q,i)=>{if(r174Norm(r.q)===r174Norm(r238H2Prompt(q))&&r174Norm(r.a)===r174Norm(q.a[q.ok]))candidates.push(r238Source({sourceIndex:i},{hskLevel:2,activity:cfg.title,sourcePart:q.skill==='listening'?'Nghe':'Đọc',sourceId:id}))})}}
+ if(level===1&&r.activityType==='lesson_reading'){let n=Number(r.lessonNumber);(course[n-1]?.readingQs||[]).forEach((q,i)=>{if(r174Norm(q[0])===r174Norm(r.q))candidates.push(r238Source({sourceIndex:i},{hskLevel:1,activity:r.activity,lessonNumber:n,sourcePart:'Đọc hiểu'}))})}
+ if(candidates.length)return {...r,sources:candidates};return r}
+const R238_REVIEW_ITEMS=smartReviewItems;
+smartReviewItems=function(...args){return R238_REVIEW_ITEMS(...args).map(r238RecoverSources)};
+const R238_CHECK_REVIEW=checkSmartReviewPractice;
+checkSmartReviewPractice=function(id){let result=R238_CHECK_REVIEW(id),r=smartReviewItems().find(x=>x.id===id)||r174Read()[id],el=document.getElementById('srr_'+id);if(r&&el&&!el.querySelector('.reviewQuestionSource'))el.insertAdjacentHTML('afterbegin','<p class="reviewQuestionSource muted">'+r238SourceMarkup(r)+'</p>');return result};
+const R238_RECOVER=r238RecoverSources;
+r238RecoverSources=function(record){let r=R238_RECOVER(record);if(r.sources?.length||Number(r.hskLevel)!==2)return r;let runs=[],candidates=[];try{let saved=JSON.parse(localStorage.getItem('ck_hsk2_resume')||'null');if(saved?.owner===CK_STUDENT_ID)runs.push(saved);let tabs=JSON.parse(localStorage.getItem('ck_hsk2_tabs_'+Number(r.lessonNumber))||'null');if(tabs?.owner===CK_STUDENT_ID)runs.push(...Object.values(tabs.runs||{}))}catch{}let kinds={lesson_vocab:'vocabPractice',lesson_choice:'grammarPractice',lesson_arrange:'arrangePractice',lesson_reading:'readingPractice'},kind=kinds[r.activityType];if(kind&&Number(r.lessonNumber))try{runs.push(h2Build(kind,Number(r.lessonNumber)))}catch{}for(let run of runs){if(!run||r.activity!=='HSK2 · '+run.title)continue;run.questions.forEach((q,i)=>{let answer=q.tokens?q.answer:q.pictures?H2_SCENES[q.pictures[q.ok]].cn:q.a[q.ok];if(r174Norm(r.q)===r174Norm(r238H2Prompt(q))&&r174Norm(r.a)===r174Norm(answer)){let source=r238Source({sourceIndex:i},{hskLevel:2,activity:r.activity,lessonNumber:run.lesson,sourcePart:kind?({vocabPractice:'Luyện từ vựng',grammarPractice:'Chọn đáp án',arrangePractice:'Sắp xếp câu',readingPractice:'Đọc hiểu'}[kind]):q.skill==='listening'?'Nghe':'Đọc',sourceId:String(run.id)});candidates=r238MergeSources(candidates,source)}})}return candidates.length?{...r,sources:candidates}:r};
+const R238_READ_REVIEW=r174Read;r174Read=function(){let data=R238_READ_REVIEW();for(let key of Object.keys(data))data[key]=r238RecoverSources(data[key]);return data};
 </script>
 
 <div id="resumeBanner" class="resumeBanner">

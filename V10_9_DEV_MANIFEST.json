@@ -1,7 +1,7 @@
 {
-  "version": "V10.9 DEV R237",
+  "version": "V10.9 DEV R238",
   "baseline": "R192 PASS",
-  "status": "R237 - HSK2 unified exam timer, pass/fail and account review sync",
+  "status": "R238 - Smart Review question source labels",
   "locked": [
     "Bài học",
     "MiniTest content",
@@ -239,5 +239,30 @@
     "Review event idempotency and HSK-level separation",
     "HSK1 reading progress union and native answer feedback",
     "Database rollback: account isolation, stale imports preserve mastery, duplicate events, reading union"
+  ],
+  "smart_review_provenance": {
+    "levels": [
+      1,
+      2
+    ],
+    "fields": [
+      "activity",
+      "lessonNumber",
+      "part",
+      "questionNumber",
+      "sourceId"
+    ],
+    "display": [
+      "review question card",
+      "check feedback"
+    ],
+    "legacy": "Recover exact static or saved-run matches; otherwise label unknown instead of inventing a position.",
+    "sync": "Sources stored within account review records; merge local and downloaded source lists."
+  },
+  "qa_r238": [
+    "HSK2 reading practice question 4 recorded and displayed in check feedback",
+    "HSK1 mini test source index 7 displays question 8, lesson 3",
+    "HSK1 mock source index 20 displays question 21",
+    "R237 timer, pass/fail, reading merge and review retry regression checks"
   ]
 }
