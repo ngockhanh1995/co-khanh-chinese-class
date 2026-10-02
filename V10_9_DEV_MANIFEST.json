@@ -1,7 +1,7 @@
 {
-  "version": "V10.9 DEV R238",
+  "version": "V10.9 DEV R239",
   "baseline": "R192 PASS",
-  "status": "R238 - Smart Review question source labels",
+  "status": "R239 - deduplicate Smart Review source lines",
   "locked": [
     "Bài học",
     "MiniTest content",
@@ -264,5 +264,10 @@
     "HSK1 mini test source index 7 displays question 8, lesson 3",
     "HSK1 mock source index 20 displays question 21",
     "R237 timer, pass/fail, reading merge and review retry regression checks"
-  ]
+  ],
+  "smart_review_source_display": {
+    "rule": "Unique rendered source labels only; retain distinct question/exam sources.",
+    "check": "Source appears in card header only, no repeated source in verdict.",
+    "data": "Display-only; preserves review records, counts and source provenance."
+  }
 }
