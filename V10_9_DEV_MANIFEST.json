@@ -1,7 +1,7 @@
 {
-  "version": "V10.9 DEV R240",
+  "version": "V10.9 DEV R241",
   "baseline": "R192 PASS",
-  "status": "R240 - lettered Smart Review options",
+  "status": "R241 - HSK2 mock exam 3 H21006",
   "locked": [
     "Bài học",
     "MiniTest content",
@@ -278,5 +278,32 @@
     "display": "A, B, C, D… for all multiple-choice options",
     "grading": "Original radio values retained",
     "existing_labels": "Remove existing leading letter label from visible text before adding current index"
+  },
+  "hsk2_mock_exam_3": {
+    "title": "Đề thi thử HSK2 số 3",
+    "source_pdf": "Đề HSK 2 số 6.pdf",
+    "source_code": "H21006",
+    "questions": 60,
+    "listening": 35,
+    "reading": 25,
+    "duration_seconds": 3000,
+    "pass_score": 120,
+    "listening_max": 100,
+    "reading_max": 100,
+    "total_max": 200,
+    "original_audio": "assets/hsk2/H21006.mp3",
+    "original_audio_sha256": "d9ac4f4ac7ca96de79d0bb72298dcc8f849911383510eec38ca620e2f9879527",
+    "pictures": 27,
+    "result_scope": "HSK2; separate exam title; account-owned synced results",
+    "review": "Question number, exam number, listening audio and picture references; A/B/C labels and deduplicated sources",
+    "qa": [
+      "All 60 answers independently compared against PDF answer sheet",
+      "All 27 extracted native pictures visually checked",
+      "All three mock exams render 60 native questions and correct original audio",
+      "Reading and answer ruby pinyin rendering checked",
+      "0, 120, 200 score cases verified with both skill scores",
+      "Full submit, HSK2 history, teacher scores and verdict, account-owned upload payload",
+      "Wrong listening question 35 preserves exam number and original audio in Smart Review"
+    ]
   }
 }
