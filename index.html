@@ -1477,7 +1477,7 @@ function smartReviewPracticeMarkup(r){
  const type=r.activityType||'';
  if(type==='lesson_vocab'||type==='lesson_choice'||type==='lesson_reading'||type==='mini_test'||type==='quick_test'){
    let opts=Array.isArray(r.options)&&r.options.length?r.options:[r.a];
-   return `<div class="smartReviewOptionList">${opts.map((o,i)=>`<label class="smartReviewNativeChoice"><input type="radio" name="sr_${r.id}" value="${escapeHtmlAttr(o)}"><span>${escapeHtml(o)}</span></label>`).join('')}</div>`;
+   return `<div class="smartReviewOptionList">${opts.map((o,i)=>`<label class="smartReviewNativeChoice"><input type="radio" name="sr_${r.id}" value="${escapeHtmlAttr(o)}"><span>${String.fromCharCode(65+i)}. ${escapeHtml(String(o).replace(/^[A-Z]\s*[.、:：—-]\s*/,''))}</span></label>`).join('')}</div>`;
  }
  if(type==='lesson_arrange'){
    let toks=Array.isArray(r.tokens)&&r.tokens.length?r.tokens:String(r.a||'').split(/\s+/).filter(Boolean);

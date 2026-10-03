@@ -1,7 +1,7 @@
 {
-  "version": "V10.9 DEV R239",
+  "version": "V10.9 DEV R240",
   "baseline": "R192 PASS",
-  "status": "R239 - deduplicate Smart Review source lines",
+  "status": "R240 - lettered Smart Review options",
   "locked": [
     "Bài học",
     "MiniTest content",
@@ -269,5 +269,14 @@
     "rule": "Unique rendered source labels only; retain distinct question/exam sources.",
     "check": "Source appears in card header only, no repeated source in verdict.",
     "data": "Display-only; preserves review records, counts and source provenance."
+  },
+  "smart_review_option_labels": {
+    "levels": [
+      1,
+      2
+    ],
+    "display": "A, B, C, D… for all multiple-choice options",
+    "grading": "Original radio values retained",
+    "existing_labels": "Remove existing leading letter label from visible text before adding current index"
   }
 }
