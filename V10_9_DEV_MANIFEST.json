@@ -1,7 +1,7 @@
 {
-  "version": "V10.9 DEV R241",
+  "version": "V10.9 DEV R242",
   "baseline": "R192 PASS",
-  "status": "R241 - HSK2 mock exam 3 H21006",
+  "status": "R242 - HSK2 mock exam 4 H21330",
   "locked": [
     "Bài học",
     "MiniTest content",
@@ -304,6 +304,36 @@
       "0, 120, 200 score cases verified with both skill scores",
       "Full submit, HSK2 history, teacher scores and verdict, account-owned upload payload",
       "Wrong listening question 35 preserves exam number and original audio in Smart Review"
+    ]
+  },
+  "hsk2_mock_exam_4": {
+    "title": "Đề thi thử HSK2 số 4",
+    "source_code": "H21330",
+    "source_pdf": "Đề HSK 2 số 8.pdf",
+    "source_answers": "H21330-answer-sheet.pdf",
+    "question_count": 60,
+    "listening_count": 35,
+    "reading_count": 25,
+    "max_scores": {
+      "listening": 100,
+      "reading": 100,
+      "total": 200
+    },
+    "pass_score": 120,
+    "duration_seconds": 3000,
+    "audio": "assets/hsk2/H21330.mp3",
+    "audio_sha256": "8111556a2dd4f71b8595ea0d6ab117b12447b0acb5405c4d32e4fbeec18c4ce7",
+    "native_pictures": 27,
+    "result_scope": "HSK2 / exam 4; existing account sync and teacher report",
+    "qa": [
+      "All 60 answers checked against uploaded H21330-answer-sheet.pdf",
+      "27 native picture crops visually checked",
+      "Four mocks render separately with correct raw audio and 50-minute timer",
+      "Reading and choice pinyin verified",
+      "0/120/200 scores and 119 fail threshold checked",
+      "Submission stores 35/25 correct counts and 100/100 skill scores with HSK2 owner",
+      "Student exam history, teacher report and catalogue display exam 4",
+      "Smart Review captures exam 4 / question 35 / original audio"
     ]
   }
 }
