@@ -1,7 +1,7 @@
 {
-  "version": "V10.9 DEV R243",
+  "version": "V10.9 DEV R244",
   "baseline": "R192 PASS",
-  "status": "R243 - HSK2 mock exam 5 H21334",
+  "status": "R244 - Lock manual mock submission until audio finishes",
   "locked": [
     "Bài học",
     "MiniTest content",
@@ -368,5 +368,25 @@
       "Student history and teacher verdict checked",
       "Smart Review exam 5 question 35 and original audio checked"
     ]
+  },
+  "audio_submission_gate": {
+    "hsk1": [
+      2,
+      3,
+      4,
+      5
+    ],
+    "hsk2": [
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "unlock": "Audio ended event",
+    "hsk2_resume": "Persist audioCompleted; retain completed transfer/reading runs",
+    "expiry": "Existing automatic submission at exam timeout retained",
+    "guard": "Disabled button and submission function guard",
+    "qa": "Nine gated exams: before ended blocked, after ended enabled and submitted; HSK1 exam 1 unchanged"
   }
 }
