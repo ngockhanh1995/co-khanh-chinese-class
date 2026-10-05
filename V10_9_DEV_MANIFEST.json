@@ -1,7 +1,7 @@
 {
-  "version": "V10.9 DEV R242",
+  "version": "V10.9 DEV R243",
   "baseline": "R192 PASS",
-  "status": "R242 - HSK2 mock exam 4 H21330",
+  "status": "R243 - HSK2 mock exam 5 H21334",
   "locked": [
     "Bài học",
     "MiniTest content",
@@ -229,7 +229,10 @@
     "max_score": 200,
     "applies_to": [
       "H21003",
-      "H21004"
+      "H21004",
+      "H21006",
+      "H21330",
+      "H21334"
     ],
     "final_exam_countdown": false
   },
@@ -334,6 +337,36 @@
       "Submission stores 35/25 correct counts and 100/100 skill scores with HSK2 owner",
       "Student exam history, teacher report and catalogue display exam 4",
       "Smart Review captures exam 4 / question 35 / original audio"
+    ]
+  },
+  "hsk2_mock_exam_5": {
+    "title": "Đề thi thử HSK2 số 5",
+    "source_code": "H21334",
+    "source_pdf": "H21334-exam-paper.pdf",
+    "source_answers": "H21334-answer-sheet.pdf",
+    "question_count": 60,
+    "listening_count": 35,
+    "reading_count": 25,
+    "max_scores": {
+      "listening": 100,
+      "reading": 100,
+      "total": 200
+    },
+    "pass_score": 120,
+    "duration_seconds": 3000,
+    "audio": "assets/hsk2/H21334.mp3",
+    "audio_sha256": "08070a507f940769a3955dcc09cebfd042af64b4f21d7cfde27c8c584dde63ce",
+    "native_pictures": 27,
+    "result_scope": "HSK2 / exam 5; account-owned results and teacher report",
+    "qa": [
+      "60 answers parsed from supplied answer sheet",
+      "27 original image crops visually checked; reading E/F ordering verified",
+      "All five mocks render 60 questions with correct audio",
+      "Reading and choice pinyin verified",
+      "0/120/200 scores; 119 fails, 120 passes",
+      "Submission stores 35/25 counts and separate listening/reading scores",
+      "Student history and teacher verdict checked",
+      "Smart Review exam 5 question 35 and original audio checked"
     ]
   }
 }
