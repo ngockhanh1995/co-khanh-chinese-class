@@ -1,7 +1,7 @@
 {
-  "version": "V10.9 DEV R244",
+  "version": "V10.9 DEV R246",
   "baseline": "R192 PASS",
-  "status": "R244 - Lock manual mock submission until audio finishes",
+  "status": "R246 - HSK3 alternating vocabulary questions and adjacent practice actions; cloud activation pending",
   "locked": [
     "Bài học",
     "MiniTest content",
@@ -388,5 +388,66 @@
     "expiry": "Existing automatic submission at exam timeout retained",
     "guard": "Disabled button and submission function guard",
     "qa": "Nine gated exams: before ended blocked, after ended enabled and submitted; HSK1 exam 1 unchanged"
+  },
+  "hsk3_course": {
+    "lessons": 20,
+    "vocabulary_entries": 311,
+    "lesson_tabs": [
+      "vocab",
+      "choice",
+      "arrange",
+      "reading",
+      "mini"
+    ],
+    "practice_questions_per_tab": 5,
+    "mini_tests": 20,
+    "mini_question_count": 10,
+    "quick_tests": 5,
+    "stage_ranges": [
+      "1-5",
+      "6-10",
+      "11-15",
+      "16-20"
+    ],
+    "stage_question_count": 30,
+    "final_counts": {
+      "listening": 40,
+      "reading": 30,
+      "writing": 10
+    },
+    "final_max_score": 300,
+    "final_pass_score": 180,
+    "audio": "Device Chinese speech synthesis, same lesson listening mechanism as HSK2",
+    "account_storage": "Level 3 and account-scoped unit/review/result data; isolated pending queue until schema ready",
+    "cloud_activation": "PENDING - automatic review rejected the database expansion; no live schema mutation applied",
+    "schema_script": "HSK3_STORAGE_R245.sql",
+    "source_pdfs": [
+      "HSK 3 Sách giáo khoa.pdf",
+      "HSK 3 Sách bài tập.pdf",
+      "HSK-3-BT.pdf"
+    ],
+    "qa": [
+      "20 lessons and 600 per-lesson prompts: no exact duplicate prompts",
+      "Correct answer checking, single feedback, resets and token transfer checked",
+      "20 Mini Test submissions and complete progression checked",
+      "5 quick tests, 4 stages and 80-question final with 300 score",
+      "Account cache isolation and protected separate HSK3 pending results/review queue",
+      "HSK3 history, review provenance, search and progress accordion",
+      "40/30/10 final skill split and writing-context blanks",
+      "Desktop and 390px mobile rendered with no page overflow or browser errors",
+      "R244 HSK1 2-5 / HSK2 1-5 audio submission locks preserved",
+      "Mini Test active duration excludes practice tabs"
+    ],
+    "r246": {
+      "meaning_distractor_banks": 120,
+      "vocabulary_question_qa": 200,
+      "quick_vocabulary": "5 meaning / 5 pinyin, alternating; includes lesson and Mini Test vocabulary",
+      "practice_actions": "Kiểm tra and Làm lại in one horizontal row",
+      "qa": [
+        "All inline scripts parsed",
+        "200 vocabulary questions: four unique options and correct answer",
+        "100 randomized quick vocabulary test builds: strict alternating modes"
+      ]
+    }
   }
 }

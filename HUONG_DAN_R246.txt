@@ -1,0 +1,21 @@
+THAY ĐỔI R246:
+Luyện từ vựng và phần từ vựng Mini Test xen kẽ câu hỏi nghĩa / pinyin.
+Kiểm tra nhanh từ vựng: 10 câu, 5 nghĩa và 5 pinyin xen kẽ.
+Đáp án nhiễu nghĩa cùng nhóm; pinyin chỉ khác thanh điệu, bốn lựa chọn riêng biệt.
+Các phần luyện tập đặt Kiểm tra và Làm lại cạnh nhau.
+
+R246 — HSK3
+
+20 bài học; mỗi bài 5 tab: từ vựng, chọn đáp án, sắp xếp, đọc hiểu, Mini Test.
+Kiểm tra nhanh: 5 mục. Mini Test: 20 bài. Chặng: 1–5, 6–10, 11–15, 16–20.
+Cuối khóa: 40 Nghe + 30 Đọc + 10 Viết; điểm luyện tập /300, mốc đạt 180.
+Câu nghe dùng giọng tiếng Trung của thiết bị; không phải audio gốc giáo trình.
+
+Chép index.html, V10_9_DEV_MANIFEST.json và assets vào nhánh phát triển.
+Commit Summary: R246: Improve HSK3 vocabulary distractors and practice actions
+
+ĐỒNG BỘ CHƯA KÍCH HOẠT:
+HSK3_STORAGE_R245.sql là phần mở rộng lưu trữ cần được duyệt và áp dụng trước khi kiểm tra đồng bộ HSK3 trên các thiết bị. Hiện chưa áp dụng SQL lên dữ liệu thật.
+Khi chưa kích hoạt, HSK3 lưu riêng trên thiết bị; không cản đồng bộ HSK1–HSK2. Không xóa dữ liệu trình duyệt trước khi đã đồng bộ.
+Sau khi SQL được áp dụng, đăng nhập lại hoặc mở Thành tích để đồng bộ phần đã lưu.
+Kiểm tra tài khoản học sinh trên hai thiết bị và bảng giáo viên trước khi merge main.
