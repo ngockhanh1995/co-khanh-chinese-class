@@ -1,0 +1,41 @@
+THAY ĐỔI R249:
+Hệ thống kiến thức có mục Từ vựng HSK3 riêng, chia 311 mục từ theo 20 bài.
+Bố cục giống HSK1–HSK2: STT, Chữ Hán, Pinyin, Nghĩa tiếng Việt, Bài học.
+Có tìm kiếm, lọc bài, số mục từ tìm thấy và nút mở bài tương ứng.
+Dữ liệu bài học và cơ chế chấm/Smart Review giữ nguyên từ R248.
+
+THAY ĐỔI R248:
+Câu sai HSK3 từ luyện tập và Mini Test hiện trong Smart Review HSK3, tách riêng theo cấp độ.
+Bổ sung hiển thị các câu Mini Test HSK1–HSK2 còn trong kho ôn tập cũ, không cộng trùng lượt sai hoặc đưa câu đã vững về đang ôn.
+Lời giải câu sai HSK3 dùng nội dung đã sửa của R247.
+Card HSK3 trong Bài học và Hệ thống kiến thức: Mở rộng vốn từ giao tiếp.
+Trung tâm kiểm tra HSK3 dùng bố cục và biểu tượng giống HSK1–HSK2: Kiểm tra nhanh, Mini Test, kiểm tra chặng, đề cuối khóa.
+
+THAY ĐỔI R247:
+Tên 20 bài trong mục Thành tích > HSK3 > Xem tiến độ dùng tiêu đề tiếng Trung.
+Viết lại lời giải 100 câu sắp xếp để khớp từng đề; làm rõ thêm 5 lời giải.
+Bài 1 câu 5 sắp xếp: giải thích đúng 请把地图带上, cấu trúc 把 và nghĩa 带上.
+Đã đối chiếu 400 câu chọn đáp án, sắp xếp, đọc hiểu và nghe; kiểm tra hiển thị 600 câu luyện/Mini Test.
+Sửa pinyin 长 (dài) thành cháng, 只 (lượng từ động vật) thành zhī.
+
+THAY ĐỔI R246:
+Luyện từ vựng và phần từ vựng Mini Test xen kẽ câu hỏi nghĩa / pinyin.
+Kiểm tra nhanh từ vựng: 10 câu, 5 nghĩa và 5 pinyin xen kẽ.
+Đáp án nhiễu nghĩa cùng nhóm; pinyin chỉ khác thanh điệu, bốn lựa chọn riêng biệt.
+Các phần luyện tập đặt Kiểm tra và Làm lại cạnh nhau.
+
+R249 — HSK3
+
+20 bài học; mỗi bài 5 tab: từ vựng, chọn đáp án, sắp xếp, đọc hiểu, Mini Test.
+Kiểm tra nhanh: 5 mục. Mini Test: 20 bài. Chặng: 1–5, 6–10, 11–15, 16–20.
+Cuối khóa: 40 Nghe + 30 Đọc + 10 Viết; điểm luyện tập /300, mốc đạt 180.
+Câu nghe dùng giọng tiếng Trung của thiết bị; không phải audio gốc giáo trình.
+
+Chép index.html, V10_9_DEV_MANIFEST.json và assets vào nhánh phát triển.
+Commit Summary: R249: Align HSK3 knowledge vocabulary with HSK1-HSK2
+
+ĐỒNG BỘ CHƯA KÍCH HOẠT:
+HSK3_STORAGE_R245.sql là phần mở rộng lưu trữ cần được duyệt và áp dụng trước khi kiểm tra đồng bộ HSK3 trên các thiết bị. Hiện chưa áp dụng SQL lên dữ liệu thật.
+Khi chưa kích hoạt, HSK3 lưu riêng trên thiết bị; không cản đồng bộ HSK1–HSK2. Không xóa dữ liệu trình duyệt trước khi đã đồng bộ.
+Sau khi SQL được áp dụng, đăng nhập lại hoặc mở Thành tích để đồng bộ phần đã lưu.
+Kiểm tra tài khoản học sinh trên hai thiết bị và bảng giáo viên trước khi merge main.

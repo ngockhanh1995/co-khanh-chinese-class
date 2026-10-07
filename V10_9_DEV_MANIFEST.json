@@ -1,7 +1,7 @@
 {
-  "version": "V10.9 DEV R247",
+  "version": "V10.9 DEV R249",
   "baseline": "R192 PASS",
-  "status": "R247 - HSK3 Chinese progress titles and per-question explanations; cloud activation pending",
+  "status": "R249 - HSK3 knowledge vocabulary directory matches HSK1-HSK2; cloud activation pending",
   "locked": [
     "Bài học",
     "MiniTest content",
@@ -464,6 +464,36 @@
         "Question IDs, prompts and answer banks preserved",
         "Inline dataset equals assets/hsk3/course.json; all scripts parse",
         "R246 alternating vocabulary questions and horizontal practice actions retained"
+      ]
+    },
+    "r248": {
+      "review": "Missing legacy Mini Test records consolidated into the existing level-keyed direct review store; existing mastered state and counters retained; new assessment capture counted once",
+      "subtitles": "Mở rộng vốn từ giao tiếp in lesson and knowledge HSK3 cards",
+      "test_centre": "Shared quickTestHub/quickTestTypes/qtIcon, Mini Test lesson grid, examCards/examCard for stages and final",
+      "qa": [
+        "Actual HSK3 check path: 80 wrong exercises across 20 lessons and four tabs, plus Mini Test submission",
+        "Actual HSK2 wrong vocabulary check and Mini Test submission",
+        "Actual HSK1 Mini Test submission and single-count assessment capture",
+        "Legacy HSK1/2 Mini Test records restored; consolidation idempotent",
+        "HSK1/2/3 reviews visible and isolated by selected level",
+        "5 quick-test actions, 20 Mini Test cards, 4 stage cards and final; quick-only mode excludes other tests",
+        "Catalog subtitles verified; full-page startup has no script errors"
+      ]
+    },
+    "r249": {
+      "vocabulary_directory": "311 entries grouped by 20 lessons; same five-column table and grouped headings as HSK1-HSK2",
+      "controls": [
+        "Chinese/pinyin/Vietnamese search, including unaccented input",
+        "All lessons or a specific lesson",
+        "Visible/total word count",
+        "Open corresponding lesson from each row"
+      ],
+      "qa": [
+        "All 20 lesson filters match source vocabulary lengths",
+        "Chinese, unaccented pinyin and Vietnamese search",
+        "Combined filters, empty state, correct lesson navigation and back-page rendering",
+        "No duplicate catalog card or lesson selector options",
+        "Header search index entry and full-page scripts validated"
       ]
     }
   }
