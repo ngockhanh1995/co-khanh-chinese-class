@@ -192,7 +192,7 @@
           "她已经买好电影票了"
         ],
         "ok": 0,
-        "e": "Cô ấy đã mua xong vé xem phim. 好 đứng sau động từ, chỉ hành động đã hoàn thành và đạt trạng thái sẵn sàng.",
+        "e": "Cô ấy đã mua xong vé xem phim. 已经…了 cho biết việc đã hoàn thành; 买好 gồm 买 (mua) và bổ ngữ kết quả 好 (xong, sẵn sàng). 电影票 là vé xem phim.",
         "id": "h3-1-arrange-0",
         "lesson": 1,
         "part": "Sắp xếp câu",
@@ -212,7 +212,7 @@
           "我一点儿也不着急"
         ],
         "ok": 0,
-        "e": "Tôi không sốt ruột chút nào. 好 đứng sau động từ, chỉ hành động đã hoàn thành và đạt trạng thái sẵn sàng.",
+        "e": "Tôi không sốt ruột chút nào. 一点儿也不 + tính từ diễn tả phủ định hoàn toàn. 一点儿也不着急 nghĩa là không sốt ruột chút nào.",
         "id": "h3-1-arrange-1",
         "lesson": 1,
         "part": "Sắp xếp câu",
@@ -233,7 +233,7 @@
           "弟弟一个面包都没吃"
         ],
         "ok": 0,
-        "e": "Em trai không ăn một cái bánh mì nào. 一 + lượng từ + danh từ hoặc 一点儿 đi với 也/都 và 不/没 để phủ định hoàn toàn.",
+        "e": "Em trai không ăn một cái bánh mì nào. 一个面包都没吃 dùng 一 + lượng từ + danh từ + 都没 + động từ để nhấn mạnh không ăn dù chỉ một chiếc bánh mì.",
         "id": "h3-1-arrange-2",
         "lesson": 1,
         "part": "Sắp xếp câu",
@@ -252,7 +252,7 @@
           "我们周末打算搬家"
         ],
         "ok": 0,
-        "e": "Cuối tuần chúng tôi dự định chuyển nhà. 一 + lượng từ + danh từ hoặc 一点儿 đi với 也/都 và 不/没 để phủ định hoàn toàn.",
+        "e": "Cuối tuần chúng tôi dự định chuyển nhà. 周末 là thời gian; 打算 + động từ diễn tả dự định, 搬家 là chuyển nhà. Có thể đặt 周末 trước hoặc sau chủ ngữ 我们.",
         "id": "h3-1-arrange-3",
         "lesson": 1,
         "part": "Sắp xếp câu",
@@ -271,7 +271,7 @@
           "请把地图带上"
         ],
         "ok": 0,
-        "e": "Hãy mang theo bản đồ. 那 nối với câu trước để đưa ra kết luận hoặc quyết định: vậy thì.",
+        "e": "Hãy mang theo bản đồ. 请 là lời đề nghị lịch sự. 把地图 đặt đối tượng bản đồ trước động từ; 带上 ở đây nghĩa là mang theo. Cấu trúc: 请 + 把 + đồ vật + động từ kèm bổ ngữ.",
         "id": "h3-1-arrange-4",
         "lesson": 1,
         "part": "Sắp xếp câu",
@@ -646,7 +646,7 @@
           "秘书从楼上下来了"
         ],
         "ok": 0,
-        "e": "Thư ký từ tầng trên đi xuống. 来 chỉ hướng về phía người nói; 去 chỉ hướng ra xa người nói. Tân ngữ nơi chốn đứng trước 来/去.",
+        "e": "Thư ký từ tầng trên đi xuống. 从楼上 chỉ nơi xuất phát; 下来 là đi xuống về phía người nói. 了 cho biết việc đã xảy ra.",
         "id": "h3-2-arrange-0",
         "lesson": 2,
         "part": "Sắp xếp câu",
@@ -667,7 +667,7 @@
           "他吃了早饭就去办公室"
         ],
         "ok": 0,
-        "e": "Ăn sáng xong anh ấy đi văn phòng ngay. 来 chỉ hướng về phía người nói; 去 chỉ hướng ra xa người nói. Tân ngữ nơi chốn đứng trước 来/去.",
+        "e": "Ăn sáng xong anh ấy đi văn phòng ngay. 吃了早饭就去办公室 dùng V + 了 + tân ngữ + 就 + hành động tiếp theo: ăn sáng xong thì đi văn phòng ngay.",
         "id": "h3-2-arrange-1",
         "lesson": 2,
         "part": "Sắp xếp câu",
@@ -687,7 +687,7 @@
           "经理已经回公司来了"
         ],
         "ok": 0,
-        "e": "Giám đốc đã quay lại công ty. Diễn tả hai hành động xảy ra nối tiếp: làm xong việc thứ nhất thì làm ngay việc thứ hai.",
+        "e": "Giám đốc đã quay lại công ty. 已经…了 cho biết giám đốc đã quay lại. 回公司来 gồm 回 + nơi chốn 公司 + 来, nhấn mạnh quay về phía người nói ở công ty.",
         "id": "h3-2-arrange-2",
         "lesson": 2,
         "part": "Sắp xếp câu",
@@ -708,7 +708,7 @@
           "请把那本词典拿过来"
         ],
         "ok": 0,
-        "e": "Hãy mang cuốn từ điển kia qua đây. Diễn tả hai hành động xảy ra nối tiếp: làm xong việc thứ nhất thì làm ngay việc thứ hai.",
+        "e": "Hãy mang cuốn từ điển kia qua đây. 请把那本词典 đặt cuốn từ điển làm đối tượng cần di chuyển; 拿过来 nghĩa là mang qua đây, về phía người nói.",
         "id": "h3-2-arrange-3",
         "lesson": 2,
         "part": "Sắp xếp câu",
@@ -728,7 +728,7 @@
           "妹妹下了课就回家"
         ],
         "ok": 0,
-        "e": "Em gái tan học là về nhà ngay. Câu hỏi phản vấn với 能…吗 có thể nhấn mạnh rằng một việc không thể hoặc không nên xảy ra.",
+        "e": "Em gái tan học là về nhà ngay. 下了课就回家 dùng V + 了 + tân ngữ + 就 + hành động tiếp theo: vừa tan học là về nhà.",
         "id": "h3-2-arrange-4",
         "lesson": 2,
         "part": "Sắp xếp câu",
@@ -1104,7 +1104,7 @@
           "你想买裤子还是衬衫"
         ],
         "ok": 0,
-        "e": "Bạn muốn mua quần hay áo sơ mi? 还是 dùng khi hỏi lựa chọn; 或者 nối các khả năng trong câu trần thuật.",
+        "e": "Bạn muốn mua quần hay áo sơ mi? 还是 dùng khi hỏi lựa chọn; 或者 nối các khả năng trong câu trần thuật.. 还是 nối 裤子 và 衬衫 trong câu hỏi lựa chọn: muốn mua quần hay áo sơ mi.",
         "id": "h3-3-arrange-0",
         "lesson": 3,
         "part": "Sắp xếp câu",
@@ -1124,7 +1124,7 @@
           "星期天我看书或者听音乐"
         ],
         "ok": 0,
-        "e": "Chủ nhật tôi đọc sách hoặc nghe nhạc. 还是 dùng khi hỏi lựa chọn; 或者 nối các khả năng trong câu trần thuật.",
+        "e": "Chủ nhật tôi đọc sách hoặc nghe nhạc. 或者 nối hai lựa chọn 看书 và 听音乐 trong câu trần thuật. 星期天 là thời gian, có thể đứng trước hoặc sau chủ ngữ 我.",
         "id": "h3-3-arrange-1",
         "lesson": 3,
         "part": "Sắp xếp câu",
@@ -1144,7 +1144,7 @@
           "墙上挂着一件绿色的衬衫"
         ],
         "ok": 0,
-        "e": "Trên tường treo một chiếc áo sơ mi xanh lá. 在 đặt trước cụm thời gian hoặc địa điểm để chỉ lúc hoặc nơi hành động diễn ra.",
+        "e": "Trên tường treo một chiếc áo sơ mi xanh lá. 墙上 là địa điểm; 挂着 diễn tả trạng thái đang treo. 一件绿色的衬衫 là một chiếc áo sơ mi màu xanh lá.",
         "id": "h3-3-arrange-2",
         "lesson": 3,
         "part": "Sắp xếp câu",
@@ -1164,7 +1164,7 @@
           "这条裤子穿着很舒服"
         ],
         "ok": 0,
-        "e": "Mặc chiếc quần này rất thoải mái. 在 đặt trước cụm thời gian hoặc địa điểm để chỉ lúc hoặc nơi hành động diễn ra.",
+        "e": "Mặc chiếc quần này rất thoải mái. 穿着 ở đây diễn tả cảm giác khi mặc; 很舒服 là rất thoải mái. 这条裤子 là chiếc quần được đưa ra làm chủ đề.",
         "id": "h3-3-arrange-3",
         "lesson": 3,
         "part": "Sắp xếp câu",
@@ -1184,7 +1184,7 @@
           "桌子上有三杯甜的饮料"
         ],
         "ok": 0,
-        "e": "Trên bàn có ba cốc đồ uống ngọt. Diễn tả sự tồn tại hoặc trạng thái: ở đâu đang đặt/treo/có một vật. 会 chỉ khả năng hoặc điều có thể xảy ra.",
+        "e": "Trên bàn có ba cốc đồ uống ngọt. 桌子上 + 有 + số lượng + danh từ diễn tả sự tồn tại: trên bàn có ba cốc đồ uống. 甜的 bổ nghĩa cho 饮料, nghĩa là đồ uống ngọt.",
         "id": "h3-3-arrange-4",
         "lesson": 3,
         "part": "Sắp xếp câu",
@@ -1550,7 +1550,7 @@
           "这个孩子又聪明又认真"
         ],
         "ok": 0,
-        "e": "Đứa trẻ này vừa thông minh vừa nghiêm túc. Nối hai đặc điểm hoặc hai hành động cùng tồn tại, thường dùng tính từ cùng chiều ý nghĩa.",
+        "e": "Đứa trẻ này vừa thông minh vừa nghiêm túc. 又聪明又认真 dùng 又 + tính từ + 又 + tính từ để nêu đồng thời hai đặc điểm: thông minh và nghiêm túc.",
         "id": "h3-4-arrange-0",
         "lesson": 4,
         "part": "Sắp xếp câu",
@@ -1570,7 +1570,7 @@
           "他站着跟同事说话"
         ],
         "ok": 0,
-        "e": "Anh ấy đứng nói chuyện với đồng nghiệp. Nối hai đặc điểm hoặc hai hành động cùng tồn tại, thường dùng tính từ cùng chiều ý nghĩa.",
+        "e": "Anh ấy đứng nói chuyện với đồng nghiệp. 站着 diễn tả tư thế đứng trong lúc 说话; 跟同事 chỉ người cùng trò chuyện. Cấu trúc: V1 + 着 + V2.",
         "id": "h3-4-arrange-1",
         "lesson": 4,
         "part": "Sắp xếp câu",
@@ -1590,7 +1590,7 @@
           "我们每天努力学习汉语"
         ],
         "ok": 0,
-        "e": "Mỗi ngày chúng tôi chăm chỉ học tiếng Trung. Hành động hoặc trạng thái thứ nhất làm cách thức hay bối cảnh cho hành động thứ hai.",
+        "e": "Mỗi ngày chúng tôi chăm chỉ học tiếng Trung. 每天 là thời gian; 努力 bổ nghĩa cho 学习, chỉ việc bỏ công sức học tập. 汉语 là đối tượng được học.",
         "id": "h3-4-arrange-2",
         "lesson": 4,
         "part": "Sắp xếp câu",
@@ -1610,7 +1610,7 @@
           "她总是认真地回答问题"
         ],
         "ok": 0,
-        "e": "Cô ấy luôn trả lời câu hỏi một cách nghiêm túc. Hành động hoặc trạng thái thứ nhất làm cách thức hay bối cảnh cho hành động thứ hai.",
+        "e": "Cô ấy luôn trả lời câu hỏi một cách nghiêm túc. 总是 chỉ việc thường xuyên lặp lại. 认真地 đặt trước 回答问题 để miêu tả cách trả lời: một cách nghiêm túc.",
         "id": "h3-4-arrange-3",
         "lesson": 4,
         "part": "Sắp xếp câu",
@@ -1629,7 +1629,7 @@
           "客人坐着喝咖啡"
         ],
         "ok": 0,
-        "e": "Khách ngồi uống cà phê. 认真 nhấn mạnh thái độ cẩn thận; 努力 nhấn mạnh bỏ công sức. 总是 chỉ việc thường xuyên lặp lại.",
+        "e": "Khách ngồi uống cà phê. 坐着 diễn tả tư thế ngồi trong lúc 喝咖啡. Cấu trúc V1 + 着 + V2 cho biết trạng thái của hành động thứ nhất khi thực hiện hành động thứ hai.",
         "id": "h3-4-arrange-4",
         "lesson": 4,
         "part": "Sắp xếp câu",
@@ -1902,7 +1902,7 @@
           "最热"
         ],
         "ok": 0,
-        "e": "越来越 + tính từ trực tiếp; không thêm 很/太/最 trong mẫu này.",
+        "e": "Điền 热: 最近天气越来越热了 nghĩa là gần đây thời tiết ngày càng nóng. 越来越 đứng trực tiếp trước tính từ 热 để chỉ mức độ tăng dần.",
         "id": "h3-5-choice-0",
         "lesson": 5,
         "part": "Chọn đáp án",
@@ -1984,7 +1984,7 @@
           "她最近越来越健康了"
         ],
         "ok": 0,
-        "e": "Gần đây cô ấy ngày càng khỏe. 了 ở cuối câu biểu thị tình hình mới hoặc sự thay đổi so với trước.",
+        "e": "Gần đây cô ấy ngày càng khỏe. 越来越 + tính từ diễn tả mức độ tăng dần: 越来越健康 là ngày càng khỏe. 最近 chỉ gần đây; 了 cuối câu đánh dấu sự thay đổi.",
         "id": "h3-5-arrange-0",
         "lesson": 5,
         "part": "Sắp xếp câu",
@@ -2004,7 +2004,7 @@
           "春天来了草绿了"
         ],
         "ok": 0,
-        "e": "Mùa xuân đến, cỏ xanh rồi. 了 ở cuối câu biểu thị tình hình mới hoặc sự thay đổi so với trước.",
+        "e": "Mùa xuân đến, cỏ xanh rồi. 春天来了 và 草绿了 là hai vế chỉ tình hình mới: mùa xuân đã đến, cỏ đã xanh. 了 cuối mỗi vế biểu thị sự thay đổi.",
         "id": "h3-5-arrange-1",
         "lesson": 5,
         "part": "Sắp xếp câu",
@@ -2024,7 +2024,7 @@
           "爸爸为我们做晚饭"
         ],
         "ok": 0,
-        "e": "Bố làm bữa tối cho chúng tôi. Diễn tả mức độ tăng dần theo thời gian; không thêm 很 trước tính từ.",
+        "e": "Bố làm bữa tối cho chúng tôi. 为我们 đặt trước 做晚饭 để chỉ người được phục vụ: bố nấu bữa tối cho chúng tôi.",
         "id": "h3-5-arrange-2",
         "lesson": 5,
         "part": "Sắp xếp câu",
@@ -2043,7 +2043,7 @@
           "天气越来越冷了"
         ],
         "ok": 0,
-        "e": "Thời tiết ngày càng lạnh. Diễn tả mức độ tăng dần theo thời gian; không thêm 很 trước tính từ.",
+        "e": "Thời tiết ngày càng lạnh. 越来越冷 diễn tả thời tiết lạnh dần. 了 cuối câu đánh dấu tình hình đã thay đổi; không thêm 很 vào giữa 越来越 và 冷.",
         "id": "h3-5-arrange-3",
         "lesson": 5,
         "part": "Sắp xếp câu",
@@ -2063,7 +2063,7 @@
           "弟弟感冒了要休息"
         ],
         "ok": 0,
-        "e": "Em trai bị cảm, cần nghỉ ngơi. 为 giới thiệu đối tượng được phục vụ hoặc người mà hành động hướng tới.",
+        "e": "Em trai bị cảm, cần nghỉ ngơi. 感冒了 cho biết em trai đã bị cảm; 要休息 nêu việc cần làm là nghỉ ngơi.",
         "id": "h3-5-arrange-4",
         "lesson": 5,
         "part": "Sắp xếp câu",
@@ -2428,7 +2428,7 @@
           "我戴着眼镜看得清楚黑板上的字"
         ],
         "ok": 0,
-        "e": "Tôi đeo kính nên nhìn rõ chữ trên bảng. 得 hoặc 不 đặt giữa động từ và bổ ngữ để chỉ có thể hoặc không thể đạt kết quả: 看得清楚, 找不到.",
+        "e": "Tôi đeo kính nên nhìn rõ chữ trên bảng. 戴着眼镜 diễn tả đang đeo kính. 看得清楚 là bổ ngữ khả năng: có thể nhìn rõ; 黑板上的字 là chữ trên bảng.",
         "id": "h3-6-arrange-0",
         "lesson": 6,
         "part": "Sắp xếp câu",
@@ -2449,7 +2449,7 @@
           "他哪里也不想去"
         ],
         "ok": 0,
-        "e": "Anh ấy không muốn đi đâu cả. 得 hoặc 不 đặt giữa động từ và bổ ngữ để chỉ có thể hoặc không thể đạt kết quả: 看得清楚, 找不到.",
+        "e": "Anh ấy không muốn đi đâu cả. 哪里也不想去 dùng đại từ nghi vấn 哪里 + 也 + phủ định để chỉ không muốn đến bất kỳ nơi nào.",
         "id": "h3-6-arrange-1",
         "lesson": 6,
         "part": "Sắp xếp câu",
@@ -2469,7 +2469,7 @@
           "刚才妈妈打了一个电话"
         ],
         "ok": 0,
-        "e": "Vừa nãy mẹ đã gọi một cuộc điện thoại. Đại từ nghi vấn cũng có thể chỉ bất kỳ nơi nào trong câu phủ định: 哪里也找不到.",
+        "e": "Vừa nãy mẹ đã gọi một cuộc điện thoại. 刚才 là thời gian vừa nãy; 打了一个电话 nghĩa là đã gọi một cuộc điện thoại. 刚才 có thể đặt trước hoặc sau chủ ngữ 妈妈.",
         "id": "h3-6-arrange-2",
         "lesson": 6,
         "part": "Sắp xếp câu",
@@ -2490,7 +2490,7 @@
           "我找不到昨天买的眼镜"
         ],
         "ok": 0,
-        "e": "Tôi không tìm được kính mua hôm qua. Đại từ nghi vấn cũng có thể chỉ bất kỳ nơi nào trong câu phủ định: 哪里也找不到.",
+        "e": "Tôi không tìm được kính mua hôm qua. 找不到 dùng 找 + 不 + bổ ngữ kết quả 到, nghĩa là không tìm được. 昨天买的 bổ nghĩa cho 眼镜: chiếc kính đã mua hôm qua.",
         "id": "h3-6-arrange-3",
         "lesson": 6,
         "part": "Sắp xếp câu",
@@ -2510,7 +2510,7 @@
           "爷爷每天在公园锻炼"
         ],
         "ok": 0,
-        "e": "Ông nội luyện tập ở công viên mỗi ngày. 刚 là phó từ đứng trước động từ; 刚才 là cụm thời gian, có thể đứng trước hoặc sau chủ ngữ.",
+        "e": "Ông nội luyện tập ở công viên mỗi ngày. 每天 chỉ tần suất hằng ngày; 在公园 là địa điểm đặt trước động từ 锻炼 (luyện tập).",
         "id": "h3-6-arrange-4",
         "lesson": 6,
         "part": "Sắp xếp câu",
@@ -2860,7 +2860,7 @@
           "她对音乐很感兴趣"
         ],
         "ok": 0,
-        "e": "Cô ấy rất hứng thú với âm nhạc. V + thời lượng diễn tả hành động kéo dài bao lâu. Khi có tân ngữ, có thể lặp động từ trước thời lượng.",
+        "e": "Cô ấy rất hứng thú với âm nhạc. 对 + đối tượng + 感兴趣 diễn tả có hứng thú với một điều gì: 对音乐很感兴趣 là rất hứng thú với âm nhạc.",
         "id": "h3-7-arrange-0",
         "lesson": 7,
         "part": "Sắp xếp câu",
@@ -2882,7 +2882,7 @@
           "我在这家银行工作三年了"
         ],
         "ok": 0,
-        "e": "Tôi làm ở ngân hàng này được ba năm rồi. V + thời lượng diễn tả hành động kéo dài bao lâu. Khi có tân ngữ, có thể lặp động từ trước thời lượng.",
+        "e": "Tôi làm ở ngân hàng này được ba năm rồi. 在这家银行 chỉ nơi làm việc. 工作三年了 diễn tả đã làm việc ba năm và tình trạng này kéo dài đến hiện tại.",
         "id": "h3-7-arrange-1",
         "lesson": 7,
         "part": "Sắp xếp câu",
@@ -2902,7 +2902,7 @@
           "他每天学习两个小时汉语"
         ],
         "ok": 0,
-        "e": "Anh ấy học tiếng Trung hai giờ mỗi ngày. 对 giới thiệu đối tượng khiến người nói có hứng thú.",
+        "e": "Anh ấy học tiếng Trung hai giờ mỗi ngày. 学习两个小时汉语 có thứ tự động từ + thời lượng + tân ngữ: học tiếng Trung trong hai giờ. 每天 cho biết việc này diễn ra hằng ngày.",
         "id": "h3-7-arrange-2",
         "lesson": 7,
         "part": "Sắp xếp câu",
@@ -2922,7 +2922,7 @@
           "同事八点半来接我"
         ],
         "ok": 0,
-        "e": "Đồng nghiệp đến đón tôi lúc 8:30. 对 giới thiệu đối tượng khiến người nói có hứng thú.",
+        "e": "Đồng nghiệp đến đón tôi lúc 8:30. 八点半 là 8 giờ 30 phút; 来接我 nghĩa là đến đón tôi. Cụm thời gian có thể đặt trước hoặc sau chủ ngữ 同事.",
         "id": "h3-7-arrange-3",
         "lesson": 7,
         "part": "Sắp xếp câu",
@@ -2941,7 +2941,7 @@
           "我们结婚十年了"
         ],
         "ok": 0,
-        "e": "Chúng tôi kết hôn được mười năm rồi. 了 cuối câu nhấn mạnh tình trạng kéo dài đến hiện tại; dùng 都/已经 để nhấn mạnh khoảng thời gian.",
+        "e": "Chúng tôi kết hôn được mười năm rồi. 结婚十年了 diễn tả thời gian từ khi kết hôn đến hiện tại là mười năm; 了 cuối câu nhấn mạnh tình trạng kéo dài đến nay.",
         "id": "h3-7-arrange-4",
         "lesson": 7,
         "part": "Sắp xếp câu",
@@ -3317,7 +3317,7 @@
           "弟弟昨天又买了一瓶可乐"
         ],
         "ok": 0,
-        "e": "Hôm qua em trai lại mua một chai coca. 又 thường chỉ việc đã lặp lại; 再 chỉ sự lặp lại chưa xảy ra hoặc lời đề nghị.",
+        "e": "Hôm qua em trai lại mua một chai coca. 又买了一瓶可乐 diễn tả việc mua coca đã lặp lại. 昨天 xác định hành động xảy ra hôm qua; 又 đứng trước động từ 买.",
         "id": "h3-8-arrange-0",
         "lesson": 8,
         "part": "Sắp xếp câu",
@@ -3336,7 +3336,7 @@
           "请再说一遍"
         ],
         "ok": 0,
-        "e": "Hãy nói lại một lần. 又 thường chỉ việc đã lặp lại; 再 chỉ sự lặp lại chưa xảy ra hoặc lời đề nghị.",
+        "e": "Hãy nói lại một lần. 再 đặt trước 说 để đề nghị nói lại, hành động chưa xảy ra. 一遍 là một lần thực hiện trọn vẹn.",
         "id": "h3-8-arrange-1",
         "lesson": 8,
         "part": "Sắp xếp câu",
@@ -3358,7 +3358,7 @@
           "你去哪儿我就去哪儿"
         ],
         "ok": 0,
-        "e": "Bạn đi đâu tôi đi đó. 什么/哪儿/谁 có thể lặp lại ở hai vế để chỉ sự tương ứng: bạn chọn gì, tôi chọn đó.",
+        "e": "Bạn đi đâu tôi đi đó. 哪儿 được lặp ở hai vế với 就: bạn đi nơi nào thì tôi đi nơi đó. Hai vế nêu hành động tương ứng.",
         "id": "h3-8-arrange-2",
         "lesson": 8,
         "part": "Sắp xếp câu",
@@ -3379,7 +3379,7 @@
           "我对这次旅行很满意"
         ],
         "ok": 0,
-        "e": "Tôi rất hài lòng với chuyến đi này. 什么/哪儿/谁 có thể lặp lại ở hai vế để chỉ sự tương ứng: bạn chọn gì, tôi chọn đó.",
+        "e": "Tôi rất hài lòng với chuyến đi này. 对这次旅行 chỉ đối tượng được đánh giá; 很满意 nghĩa là rất hài lòng. Cấu trúc: 对 + đối tượng + 满意.",
         "id": "h3-8-arrange-3",
         "lesson": 8,
         "part": "Sắp xếp câu",
@@ -3398,7 +3398,7 @@
           "洗手间在电梯旁边"
         ],
         "ok": 0,
-        "e": "Nhà vệ sinh ở cạnh thang máy. 就 có thể nối hai hành động hoặc nhấn mạnh việc xảy ra ngay, theo điều kiện của vế trước.",
+        "e": "Nhà vệ sinh ở cạnh thang máy. 在电梯旁边 chỉ vị trí của 洗手间: ở bên cạnh thang máy. Cấu trúc: vật/nơi chốn + 在 + vị trí.",
         "id": "h3-8-arrange-4",
         "lesson": 8,
         "part": "Sắp xếp câu",
@@ -3711,7 +3711,7 @@
           "一样"
         ],
         "ok": 0,
-        "e": "最后 chỉ bước sau cùng trong chuỗi hoạt động.",
+        "e": "Điền 最后 (cuối cùng): 最后去吃饭 là bước sau cùng trong chuỗi hoạt động, sau khi kỳ thi kết thúc.",
         "id": "h3-9-choice-3",
         "lesson": 9,
         "part": "Chọn đáp án",
@@ -3749,7 +3749,7 @@
           "我的自行车跟你的一样新"
         ],
         "ok": 0,
-        "e": "Xe đạp tôi mới như xe bạn. So sánh hai người hoặc vật có điểm giống nhau; thêm tính từ sau 一样 để chỉ thuộc tính.",
+        "e": "Xe đạp tôi mới như xe bạn. 跟你的一样新 so sánh độ mới bằng nhau. 你的 ở đây thay cho 你的自行车; 一样 đứng trước tính từ 新.",
         "id": "h3-9-arrange-0",
         "lesson": 9,
         "part": "Sắp xếp câu",
@@ -3769,7 +3769,7 @@
           "这本词典没有那本厚"
         ],
         "ok": 0,
-        "e": "Cuốn từ điển này không dày bằng cuốn kia. So sánh hai người hoặc vật có điểm giống nhau; thêm tính từ sau 一样 để chỉ thuộc tính.",
+        "e": "Cuốn từ điển này không dày bằng cuốn kia. A + 没有 + B + tính từ diễn tả A không bằng B. 这本词典没有那本厚 nghĩa là cuốn này không dày bằng cuốn kia.",
         "id": "h3-9-arrange-1",
         "lesson": 9,
         "part": "Sắp xếp câu",
@@ -3790,7 +3790,7 @@
           "哥哥跑得跟我一样快"
         ],
         "ok": 0,
-        "e": "Anh trai chạy nhanh như tôi. Diễn tả A không bằng B về một mặt; không dùng 不比 để thay cho 没有 trong nghĩa này.",
+        "e": "Anh trai chạy nhanh như tôi. 跑得 nối động từ chạy với phần miêu tả cách chạy. 跟我一样快 so sánh tốc độ: nhanh bằng tôi.",
         "id": "h3-9-arrange-2",
         "lesson": 9,
         "part": "Sắp xếp câu",
@@ -3811,7 +3811,7 @@
           "我对这个城市比较了解"
         ],
         "ok": 0,
-        "e": "Tôi tương đối hiểu thành phố này. Diễn tả A không bằng B về một mặt; không dùng 不比 để thay cho 没有 trong nghĩa này.",
+        "e": "Tôi tương đối hiểu thành phố này. 对这个城市 chỉ đối tượng được tìm hiểu; 比较了解 nghĩa là tương đối hiểu, 比较 bổ nghĩa cho 了解.",
         "id": "h3-9-arrange-3",
         "lesson": 9,
         "part": "Sắp xếp câu",
@@ -3832,7 +3832,7 @@
           "请放心我会认真复习"
         ],
         "ok": 0,
-        "e": "Hãy yên tâm, tôi sẽ ôn tập nghiêm túc. 得 nối động từ với phần miêu tả hành động được làm như thế nào; khi có tân ngữ có thể lặp động từ.",
+        "e": "Hãy yên tâm, tôi sẽ ôn tập nghiêm túc. 请放心 là lời trấn an. 会 diễn tả việc sẽ làm; 认真 bổ nghĩa cho 复习: ôn tập nghiêm túc.",
         "id": "h3-9-arrange-4",
         "lesson": 9,
         "part": "Sắp xếp câu",
@@ -4198,7 +4198,7 @@
           "我的个子比妹妹高十厘米"
         ],
         "ok": 0,
-        "e": "Tôi cao hơn em gái mười xăng ti mét. A 比 B + tính từ + 一点儿/一些/多了/得多 diễn tả mức chênh lệch; không đặt 很 ngay sau 比.",
+        "e": "Tôi cao hơn em gái mười xăng ti mét. 比妹妹高十厘米 so sánh chiều cao với mức chênh lệch cụ thể: cao hơn em gái 10 xăng ti mét. Số đo đặt sau tính từ 高.",
         "id": "h3-10-arrange-0",
         "lesson": 10,
         "part": "Sắp xếp câu",
@@ -4218,7 +4218,7 @@
           "今天比昨天暖和一点儿"
         ],
         "ok": 0,
-        "e": "Hôm nay ấm hơn hôm qua một chút. A 比 B + tính từ + 一点儿/一些/多了/得多 diễn tả mức chênh lệch; không đặt 很 ngay sau 比.",
+        "e": "Hôm nay ấm hơn hôm qua một chút. 比昨天暖和一点儿 diễn tả ấm hơn hôm qua một chút. 一点儿 đứng sau tính từ để chỉ mức chênh lệch nhỏ.",
         "id": "h3-10-arrange-1",
         "lesson": 10,
         "part": "Sắp xếp câu",
@@ -4240,7 +4240,7 @@
           "坐地铁比骑自行车方便一些"
         ],
         "ok": 0,
-        "e": "Đi tàu điện tiện hơn đi xe đạp một chút. Dùng 几, 多 hoặc các số liền nhau như 三四 để ước lượng; vị trí 多 phụ thuộc đơn vị số.",
+        "e": "Đi tàu điện tiện hơn đi xe đạp một chút. 坐地铁 và 骑自行车 là hai cách di chuyển được so sánh. 方便一些 nghĩa là thuận tiện hơn một chút; 一些 đứng sau tính từ.",
         "id": "h3-10-arrange-2",
         "lesson": 10,
         "part": "Sắp xếp câu",
@@ -4261,7 +4261,7 @@
           "这件衬衫比那件便宜二十元"
         ],
         "ok": 0,
-        "e": "Áo sơ mi này rẻ hơn áo kia 20 đồng. Dùng 几, 多 hoặc các số liền nhau như 三四 để ước lượng; vị trí 多 phụ thuộc đơn vị số.",
+        "e": "Áo sơ mi này rẻ hơn áo kia 20 đồng. 比那件便宜二十元 diễn tả rẻ hơn áo kia 20 đồng. Mức chênh lệch 二十元 đứng sau tính từ 便宜.",
         "id": "h3-10-arrange-3",
         "lesson": 10,
         "part": "Sắp xếp câu",
@@ -4281,7 +4281,7 @@
           "学校附近有一家超市"
         ],
         "ok": 0,
-        "e": "Gần trường có một siêu thị. 附近 chỉ vùng gần một địa điểm; 主要 nhấn mạnh nội dung hoặc nguyên nhân quan trọng nhất.",
+        "e": "Gần trường có một siêu thị. 学校附近 là địa điểm; 有一家超市 diễn tả có một siêu thị ở đó. 家 là lượng từ dùng cho cửa hàng, doanh nghiệp.",
         "id": "h3-10-arrange-4",
         "lesson": 10,
         "part": "Sắp xếp câu",
@@ -4363,7 +4363,7 @@
           "买旧书"
         ],
         "ok": 0,
-        "e": "决定换一辆新的 là quyết định mua xe mới.",
+        "e": "决定换一辆新的 nghĩa là quyết định đổi sang một chiếc xe mới. Vì xe cũ đã sửa nhiều lần, bố quyết định 换新车; câu không nói riêng việc mua hay mượn.",
         "id": "h3-10-reading-4",
         "lesson": 10,
         "part": "Đọc hiểu",
@@ -4668,7 +4668,7 @@
           "我把那本书还给老师了"
         ],
         "ok": 0,
-        "e": "Tôi đã trả cuốn sách kia cho giáo viên. A 把 B + V + thành phần khác nhấn mạnh tác động lên đối tượng đã biết; không kết thúc ở động từ đơn.",
+        "e": "Tôi đã trả cuốn sách kia cho giáo viên. 把那本书 đưa cuốn sách làm đối tượng xử lý; 还给老师 nghĩa là trả cho giáo viên. 了 cho biết hành động đã hoàn thành.",
         "id": "h3-11-arrange-0",
         "lesson": 11,
         "part": "Sắp xếp câu",
@@ -4689,7 +4689,7 @@
           "他把电子邮件发给经理了"
         ],
         "ok": 0,
-        "e": "Anh ấy đã gửi email cho giám đốc. A 把 B + V + thành phần khác nhấn mạnh tác động lên đối tượng đã biết; không kết thúc ở động từ đơn.",
+        "e": "Anh ấy đã gửi email cho giám đốc. 把电子邮件 đặt email trước động từ; 发给经理 nghĩa là gửi cho giám đốc. 给 giới thiệu người nhận.",
         "id": "h3-11-arrange-1",
         "lesson": 11,
         "part": "Sắp xếp câu",
@@ -4708,7 +4708,7 @@
           "我们等了十分钟左右"
         ],
         "ok": 0,
-        "e": "Chúng tôi chờ khoảng mười phút. Đứng sau con số và lượng từ để chỉ khoảng chừng.",
+        "e": "Chúng tôi chờ khoảng mười phút. 等了十分钟 cho biết thời gian đã chờ; 左右 đứng sau số lượng 十分钟 để chỉ khoảng chừng mười phút.",
         "id": "h3-11-arrange-2",
         "lesson": 11,
         "part": "Sắp xếp câu",
@@ -4728,7 +4728,7 @@
           "别忘了把门关上"
         ],
         "ok": 0,
-        "e": "Đừng quên đóng cửa lại. Đứng sau con số và lượng từ để chỉ khoảng chừng.",
+        "e": "Đừng quên đóng cửa lại. 别忘了 là lời nhắc đừng quên. 把门关上 dùng 把 để nêu đối tượng cửa; 上 trong 关上 chỉ kết quả đóng lại.",
         "id": "h3-11-arrange-3",
         "lesson": 11,
         "part": "Sắp xếp câu",
@@ -4748,7 +4748,7 @@
           "妈妈把筷子放好了"
         ],
         "ok": 0,
-        "e": "Mẹ đã xếp đũa xong. 别 dùng để ngăn hoặc nhắc không làm một việc; 忘 nhớ việc với nghĩa quên.",
+        "e": "Mẹ đã xếp đũa xong. 把筷子 đặt đũa làm đối tượng xử lý. 放好 gồm 放 và bổ ngữ kết quả 好: đã đặt, xếp đũa xong; 了 chỉ việc đã hoàn thành.",
         "id": "h3-11-arrange-4",
         "lesson": 11,
         "part": "Sắp xếp câu",
@@ -5109,7 +5109,7 @@
           "他七点就到机场了"
         ],
         "ok": 0,
-        "e": "Anh ấy đã đến sân bay từ bảy giờ. 才 nhấn mạnh muộn hoặc ít hơn mong đợi; 就 nhấn mạnh sớm hoặc dễ hơn mong đợi, tùy ngữ cảnh.",
+        "e": "Anh ấy đã đến sân bay từ bảy giờ. 七点就到机场了 nhấn mạnh đã đến sân bay sớm, từ 7 giờ. 就 đứng trước 到; 了 đánh dấu việc đã xảy ra.",
         "id": "h3-12-arrange-0",
         "lesson": 12,
         "part": "Sắp xếp câu",
@@ -5130,7 +5130,7 @@
           "她把行李箱放到车上了"
         ],
         "ok": 0,
-        "e": "Cô ấy đã đặt va li lên xe. 才 nhấn mạnh muộn hoặc ít hơn mong đợi; 就 nhấn mạnh sớm hoặc dễ hơn mong đợi, tùy ngữ cảnh.",
+        "e": "Cô ấy đã đặt va li lên xe. 把行李箱放到车上 dùng 把 + đồ vật + 放到 + nơi đến để chỉ chuyển va li lên xe; 了 chỉ việc đã hoàn thành.",
         "id": "h3-12-arrange-1",
         "lesson": 12,
         "part": "Sắp xếp câu",
@@ -5150,7 +5150,7 @@
           "我把笔记本放在桌子上"
         ],
         "ok": 0,
-        "e": "Tôi đặt sổ ghi chép trên bàn. 把 + đối tượng + động từ + 在/到 chỉ vị trí hoặc nơi đến sau khi xử lý đồ vật.",
+        "e": "Tôi đặt sổ ghi chép trên bàn. 把笔记本放在桌子上 dùng 把 + đồ vật + 放在 + vị trí để nêu nơi đặt sổ ghi chép.",
         "id": "h3-12-arrange-2",
         "lesson": 12,
         "part": "Sắp xếp câu",
@@ -5170,7 +5170,7 @@
           "老师把句子写在黑板上"
         ],
         "ok": 0,
-        "e": "Giáo viên viết câu lên bảng. 把 + đối tượng + động từ + 在/到 chỉ vị trí hoặc nơi đến sau khi xử lý đồ vật.",
+        "e": "Giáo viên viết câu lên bảng. 把句子写在黑板上 dùng 把 + nội dung + 写在 + vị trí: viết câu lên bảng.",
         "id": "h3-12-arrange-3",
         "lesson": 12,
         "part": "Sắp xếp câu",
@@ -5191,7 +5191,7 @@
           "请把这个包拿到门口"
         ],
         "ok": 0,
-        "e": "Hãy mang chiếc túi này ra cửa. 自己 chỉ bản thân chủ thể trong ngữ cảnh; 我的 và 我自己 không hoàn toàn giống nhau.",
+        "e": "Hãy mang chiếc túi này ra cửa. 请 là lời đề nghị. 把这个包拿到门口 chỉ hành động mang chiếc túi đến cửa; 到 giới thiệu đích đến 门口.",
         "id": "h3-12-arrange-4",
         "lesson": 12,
         "part": "Sắp xếp câu",
@@ -5257,7 +5257,7 @@
           "擦黑板"
         ],
         "ok": 0,
-        "e": "先写后教 đọc theo thứ tự.",
+        "e": "先把字写在黑板上 nghĩa là trước tiên viết chữ lên bảng; 再教大家怎么读 là sau đó mới dạy cách đọc. Vì hỏi việc làm trước nên chọn 写字.",
         "id": "h3-12-reading-3",
         "lesson": 12,
         "part": "Đọc hiểu",
@@ -5557,7 +5557,7 @@
           "妹妹一边唱歌一边打扫房间"
         ],
         "ok": 0,
-        "e": "Em gái vừa hát vừa dọn phòng. 上/下/进/出/回/过/起 kết hợp 来/去 để diễn tả hướng; tân ngữ nơi chốn đứng trước 来/去.",
+        "e": "Em gái vừa hát vừa dọn phòng. 一边唱歌一边打扫房间 diễn tả hai hành động của em gái xảy ra đồng thời: vừa hát vừa dọn phòng.",
         "id": "h3-13-arrange-0",
         "lesson": 13,
         "part": "Sắp xếp câu",
@@ -5578,7 +5578,7 @@
           "我们是昨天到北京的"
         ],
         "ok": 0,
-        "e": "Chúng tôi đến Bắc Kinh hôm qua. 上/下/进/出/回/过/起 kết hợp 来/去 để diễn tả hướng; tân ngữ nơi chốn đứng trước 来/去.",
+        "e": "Chúng tôi đến Bắc Kinh hôm qua. 是昨天到北京的 dùng 是…的 để nhấn mạnh thời gian 昨天 của việc đến Bắc Kinh đã xảy ra.",
         "id": "h3-13-arrange-1",
         "lesson": 13,
         "part": "Sắp xếp câu",
@@ -5598,7 +5598,7 @@
           "请从教室走出来"
         ],
         "ok": 0,
-        "e": "Hãy đi từ lớp học ra đây. Hai hành động diễn ra đồng thời và thường do cùng một chủ thể thực hiện.",
+        "e": "Hãy đi từ lớp học ra đây. 从教室 chỉ nơi xuất phát; 走出来 nghĩa là đi ra ngoài về phía người nói. 出来 là bổ ngữ xu hướng.",
         "id": "h3-13-arrange-2",
         "lesson": 13,
         "part": "Sắp xếp câu",
@@ -5619,7 +5619,7 @@
           "爷爷从椅子上站起来了"
         ],
         "ok": 0,
-        "e": "Ông nội đứng lên khỏi ghế. Hai hành động diễn ra đồng thời và thường do cùng một chủ thể thực hiện.",
+        "e": "Ông nội đứng lên khỏi ghế. 从椅子上 chỉ vị trí ban đầu; 站起来 nghĩa là đứng lên từ tư thế ngồi. 了 cho biết hành động đã xảy ra.",
         "id": "h3-13-arrange-3",
         "lesson": 13,
         "part": "Sắp xếp câu",
@@ -5640,7 +5640,7 @@
           "奶奶经常给我们讲故事"
         ],
         "ok": 0,
-        "e": "Bà nội thường kể chuyện cho chúng tôi. Nhấn mạnh cách thức, thời gian hoặc địa điểm của một việc đã xảy ra; không phải dự định tương lai.",
+        "e": "Bà nội thường kể chuyện cho chúng tôi. 经常 chỉ tần suất thường xuyên; 给我们 chỉ người nghe. 讲故事 là kể chuyện, không phải cấu trúc 是…的.",
         "id": "h3-13-arrange-4",
         "lesson": 13,
         "part": "Sắp xếp câu",
@@ -6015,7 +6015,7 @@
           "请把盘子拿出去"
         ],
         "ok": 0,
-        "e": "Hãy mang đĩa ra ngoài. 把 + đối tượng + V + kết quả hoặc hướng di chuyển diễn tả việc tác động làm thay đổi đối tượng.",
+        "e": "Hãy mang đĩa ra ngoài. 把盘子 đặt đĩa làm đối tượng cần di chuyển; 拿出去 nghĩa là mang ra ngoài, ra xa người nói.",
         "id": "h3-14-arrange-0",
         "lesson": 14,
         "part": "Sắp xếp câu",
@@ -6036,7 +6036,7 @@
           "我先洗澡然后看节目"
         ],
         "ok": 0,
-        "e": "Tôi tắm trước rồi xem chương trình. 把 + đối tượng + V + kết quả hoặc hướng di chuyển diễn tả việc tác động làm thay đổi đối tượng.",
+        "e": "Tôi tắm trước rồi xem chương trình. 先…然后… diễn tả thứ tự hai việc: tắm trước, sau đó xem chương trình.",
         "id": "h3-14-arrange-1",
         "lesson": 14,
         "part": "Sắp xếp câu",
@@ -6057,7 +6057,7 @@
           "妈妈把苹果放进冰箱了"
         ],
         "ok": 0,
-        "e": "Mẹ đã cho táo vào tủ lạnh. Diễn tả trình tự hành động: trước hết làm A, sau đó làm B.",
+        "e": "Mẹ đã cho táo vào tủ lạnh. 把苹果放进冰箱 dùng 把 + đồ vật + 放进 + nơi đến: cho táo vào tủ lạnh. 进 chỉ hướng vào; 了 chỉ việc đã hoàn thành.",
         "id": "h3-14-arrange-2",
         "lesson": 14,
         "part": "Sắp xếp câu",
@@ -6078,7 +6078,7 @@
           "阿姨把菜单拿过来了"
         ],
         "ok": 0,
-        "e": "Cô đã mang thực đơn qua đây. Diễn tả trình tự hành động: trước hết làm A, sau đó làm B.",
+        "e": "Cô đã mang thực đơn qua đây. 把菜单拿过来 nghĩa là mang thực đơn qua đây, về phía người nói. 了 cho biết đã mang đến.",
         "id": "h3-14-arrange-3",
         "lesson": 14,
         "part": "Sắp xếp câu",
@@ -6098,7 +6098,7 @@
           "他把故事讲完了"
         ],
         "ok": 0,
-        "e": "Anh ấy đã kể xong câu chuyện. 像 + danh từ chỉ sự giống nhau về hình dáng hoặc đặc điểm.",
+        "e": "Anh ấy đã kể xong câu chuyện. 把故事讲完 dùng 把 đưa câu chuyện làm đối tượng; 完 là bổ ngữ kết quả chỉ kể xong. 了 đánh dấu việc hoàn thành.",
         "id": "h3-14-arrange-4",
         "lesson": 14,
         "part": "Sắp xếp câu",
@@ -6490,7 +6490,7 @@
           "除了小李以外我们都参加了"
         ],
         "ok": 0,
-        "e": "Ngoại trừ Tiểu Lý, chúng tôi đều tham gia. Loại một đối tượng khỏi tập hợp, các đối tượng còn lại đều có cùng đặc điểm.",
+        "e": "Ngoại trừ Tiểu Lý, chúng tôi đều tham gia. 除了小李以外…都… là cách nói loại trừ: mọi người đều tham gia, chỉ Tiểu Lý không tham gia.",
         "id": "h3-15-arrange-0",
         "lesson": 15,
         "part": "Sắp xếp câu",
@@ -6512,7 +6512,7 @@
           "除了看书以外我还喜欢画画"
         ],
         "ok": 0,
-        "e": "Ngoài đọc sách tôi còn thích vẽ. Loại một đối tượng khỏi tập hợp, các đối tượng còn lại đều có cùng đặc điểm.",
+        "e": "Ngoài đọc sách tôi còn thích vẽ. 除了看书以外…还… là cách nói bổ sung: ngoài đọc sách còn thích vẽ. 还 đứng trước 喜欢画画.",
         "id": "h3-15-arrange-1",
         "lesson": 15,
         "part": "Sắp xếp câu",
@@ -6531,7 +6531,7 @@
           "今天的天气好极了"
         ],
         "ok": 0,
-        "e": "Thời tiết hôm nay đẹp vô cùng. Ngoài A còn thêm B; nghĩa bổ sung, không phải loại trừ.",
+        "e": "Thời tiết hôm nay đẹp vô cùng. 好极了 dùng tính từ + 极了 để nhấn mạnh mức độ rất cao: thời tiết đẹp vô cùng.",
         "id": "h3-15-arrange-2",
         "lesson": 15,
         "part": "Sắp xếp câu",
@@ -6552,7 +6552,7 @@
           "我已经完成今天的作业了"
         ],
         "ok": 0,
-        "e": "Tôi đã hoàn thành bài tập hôm nay. Ngoài A còn thêm B; nghĩa bổ sung, không phải loại trừ.",
+        "e": "Tôi đã hoàn thành bài tập hôm nay. 已经…了 diễn tả việc đã hoàn thành. 完成今天的作业 nghĩa là hoàn thành bài tập của hôm nay.",
         "id": "h3-15-arrange-3",
         "lesson": 15,
         "part": "Sắp xếp câu",
@@ -6572,7 +6572,7 @@
           "这次旅行我花了五百元"
         ],
         "ok": 0,
-        "e": "Chuyến đi này tôi tiêu 500 đồng. Tính từ + 极了 nhấn mạnh mức độ rất cao; không thêm 很 trước tính từ trong mẫu này.",
+        "e": "Chuyến đi này tôi tiêu 500 đồng. 花了五百元 nghĩa là đã chi 500 đồng. 花 + số tiền diễn tả chi phí; 这次旅行 là chuyến đi được nói tới.",
         "id": "h3-15-arrange-4",
         "lesson": 15,
         "part": "Sắp xếp câu",
@@ -6776,7 +6776,7 @@
       ],
       [
         "长",
-        "zhǎng",
+        "cháng",
         "dài"
       ],
       [
@@ -6944,7 +6944,7 @@
           "如果天气好我们就出去玩儿"
         ],
         "ok": 0,
-        "e": "Nếu thời tiết đẹp chúng tôi sẽ đi chơi. Nêu điều kiện giả định và kết quả; 如果 có thể đứng trước hoặc sau chủ ngữ.",
+        "e": "Nếu thời tiết đẹp chúng tôi sẽ đi chơi. 如果天气好 nêu điều kiện giả định; 我们就出去玩儿 nêu kết quả. Cấu trúc: 如果…就….",
         "id": "h3-16-arrange-0",
         "lesson": 16,
         "part": "Sắp xếp câu",
@@ -6963,7 +6963,7 @@
           "她高兴得笑了起来"
         ],
         "ok": 0,
-        "e": "Cô ấy vui đến mức bật cười. Nêu điều kiện giả định và kết quả; 如果 có thể đứng trước hoặc sau chủ ngữ.",
+        "e": "Cô ấy vui đến mức bật cười. 高兴得笑了起来 dùng tính từ + 得 + hệ quả: vui đến mức bật cười. 笑起来 diễn tả bắt đầu cười.",
         "id": "h3-16-arrange-1",
         "lesson": 16,
         "part": "Sắp xếp câu",
@@ -6983,7 +6983,7 @@
           "那个孩子有长长的头发"
         ],
         "ok": 0,
-        "e": "Đứa trẻ kia có mái tóc dài. 得 nối động từ hoặc tính từ với phần miêu tả mức độ hay hệ quả: 累得不想说话.",
+        "e": "Đứa trẻ kia có mái tóc dài. 长长的 là tính từ lặp AA + 的, miêu tả mái tóc dài. 有长长的头发 nghĩa là có mái tóc dài.",
         "id": "h3-16-arrange-2",
         "lesson": 16,
         "part": "Sắp xếp câu",
@@ -7002,7 +7002,7 @@
           "这只小猫非常可爱"
         ],
         "ok": 0,
-        "e": "Chú mèo nhỏ này rất đáng yêu. 得 nối động từ hoặc tính từ với phần miêu tả mức độ hay hệ quả: 累得不想说话.",
+        "e": "Chú mèo nhỏ này rất đáng yêu. 这只小猫 là chủ ngữ, 只 là lượng từ cho mèo. 非常 bổ nghĩa cho 可爱, nghĩa là rất đáng yêu.",
         "id": "h3-16-arrange-3",
         "lesson": 16,
         "part": "Sắp xếp câu",
@@ -7023,7 +7023,7 @@
           "这顶帽子是我买的"
         ],
         "ok": 0,
-        "e": "Chiếc mũ này là tôi mua. AA 的 mô tả đặc điểm với sắc thái nhẹ hoặc thân mật: 高高的, 长长的; không ghép thêm 很 trong mẫu này.",
+        "e": "Chiếc mũ này là tôi mua. 是我买的 dùng 是…的 để nhấn mạnh người mua chiếc mũ là 我 (tôi), trong một việc đã xảy ra.",
         "id": "h3-16-arrange-4",
         "lesson": 16,
         "part": "Sắp xếp câu",
@@ -7394,7 +7394,7 @@
           "我们休息休息再走吧"
         ],
         "ok": 0,
-        "e": "Chúng ta nghỉ một lát rồi đi tiếp nhé. ABAB diễn tả làm thử hoặc làm trong thời gian ngắn: 讨论讨论, 练习练习.",
+        "e": "Chúng ta nghỉ một lát rồi đi tiếp nhé. 休息休息 lặp động từ hai âm tiết theo kiểu ABAB để đề nghị nghỉ một lát. 再走 nghĩa là sau đó mới đi tiếp; 吧 làm lời đề nghị nhẹ hơn.",
         "id": "h3-17-arrange-0",
         "lesson": 17,
         "part": "Sắp xếp câu",
@@ -7414,7 +7414,7 @@
           "他什么都想学"
         ],
         "ok": 0,
-        "e": "Anh ấy muốn học mọi thứ. ABAB diễn tả làm thử hoặc làm trong thời gian ngắn: 讨论讨论, 练习练习.",
+        "e": "Anh ấy muốn học mọi thứ. 什么都想学 dùng 什么 + 都 để chỉ phạm vi toàn bộ: muốn học mọi thứ. 什么 không mang nghĩa câu hỏi ở đây.",
         "id": "h3-17-arrange-1",
         "lesson": 17,
         "part": "Sắp xếp câu",
@@ -7434,7 +7434,7 @@
           "为了健康我每天跑步"
         ],
         "ok": 0,
-        "e": "Vì sức khỏe tôi chạy bộ mỗi ngày. 谁都, 什么都, 哪儿都 có nghĩa bất kỳ ai/cái gì/nơi nào cũng; đi với phủ định để chỉ hoàn toàn không.",
+        "e": "Vì sức khỏe tôi chạy bộ mỗi ngày. 为了健康 chỉ mục đích vì sức khỏe; 我每天跑步 nêu việc thực hiện hằng ngày để đạt mục đích đó.",
         "id": "h3-17-arrange-2",
         "lesson": 17,
         "part": "Sắp xếp câu",
@@ -7455,7 +7455,7 @@
           "请根据这个情况选择办法"
         ],
         "ok": 0,
-        "e": "Hãy dựa vào tình hình này để chọn cách giải quyết. 谁都, 什么都, 哪儿都 có nghĩa bất kỳ ai/cái gì/nơi nào cũng; đi với phủ định để chỉ hoàn toàn không.",
+        "e": "Hãy dựa vào tình hình này để chọn cách giải quyết. 根据这个情况 chỉ căn cứ là tình hình này; 选择办法 nghĩa là chọn cách giải quyết. 根据 đặt trước hành động lựa chọn.",
         "id": "h3-17-arrange-3",
         "lesson": 17,
         "part": "Sắp xếp câu",
@@ -7476,7 +7476,7 @@
           "我决定明天去看邻居"
         ],
         "ok": 0,
-        "e": "Tôi quyết định ngày mai thăm hàng xóm. 为了 chỉ mục đích; 根据 chỉ căn cứ đưa ra quyết định.",
+        "e": "Tôi quyết định ngày mai thăm hàng xóm. 决定 + cụm động từ diễn tả quyết định làm gì. 明天去看邻居 là ngày mai đi thăm hàng xóm.",
         "id": "h3-17-arrange-4",
         "lesson": 17,
         "part": "Sắp xếp câu",
@@ -7665,7 +7665,7 @@
       ],
       [
         "只",
-        "zhǐ",
+        "zhī",
         "lượng từ cho động vật"
       ],
       [
@@ -7858,7 +7858,7 @@
           "只要有时间我就去锻炼"
         ],
         "ok": 0,
-        "e": "Chỉ cần có thời gian tôi sẽ đi tập. Chỉ cần điều kiện A được đáp ứng thì có kết quả B; khác 只有…才… là điều kiện cần.",
+        "e": "Chỉ cần có thời gian tôi sẽ đi tập. 只要有时间 nêu điều kiện đủ; 我就去锻炼 nêu kết quả. Cấu trúc: 只要…就… (chỉ cần…thì…).",
         "id": "h3-18-arrange-0",
         "lesson": 18,
         "part": "Sắp xếp câu",
@@ -7879,7 +7879,7 @@
           "老师讲了一个关于动物的故事"
         ],
         "ok": 0,
-        "e": "Giáo viên kể một câu chuyện về động vật. Chỉ cần điều kiện A được đáp ứng thì có kết quả B; khác 只有…才… là điều kiện cần.",
+        "e": "Giáo viên kể một câu chuyện về động vật. 关于动物的 bổ nghĩa cho 故事, chỉ chủ đề câu chuyện là động vật. 讲了一个…故事 nghĩa là đã kể một câu chuyện.",
         "id": "h3-18-arrange-1",
         "lesson": 18,
         "part": "Sắp xếp câu",
@@ -7900,7 +7900,7 @@
           "我相信你能学好汉语"
         ],
         "ok": 0,
-        "e": "Tôi tin bạn có thể học tốt tiếng Trung. Giới thiệu chủ đề của nội dung hoặc sự việc; không thay 对 trong mọi trường hợp.",
+        "e": "Tôi tin bạn có thể học tốt tiếng Trung. 相信 + mệnh đề diễn tả tin vào một nhận định. 学好 dùng 好 làm bổ ngữ kết quả: học tốt tiếng Trung.",
         "id": "h3-18-arrange-2",
         "lesson": 18,
         "part": "Sắp xếp câu",
@@ -7920,7 +7920,7 @@
           "我们同意周末去公园"
         ],
         "ok": 0,
-        "e": "Chúng tôi đồng ý cuối tuần đi công viên. Giới thiệu chủ đề của nội dung hoặc sự việc; không thay 对 trong mọi trường hợp.",
+        "e": "Chúng tôi đồng ý cuối tuần đi công viên. 同意 + cụm động từ diễn tả chấp thuận một phương án. 周末去公园 là phương án đi công viên cuối tuần.",
         "id": "h3-18-arrange-3",
         "lesson": 18,
         "part": "Sắp xếp câu",
@@ -7941,7 +7941,7 @@
           "请向老师介绍你的国家"
         ],
         "ok": 0,
-        "e": "Hãy giới thiệu đất nước của bạn với giáo viên. 相信 diễn tả niềm tin vào người hoặc nhận định; 同意 diễn tả chấp nhận ý kiến hay phương án.",
+        "e": "Hãy giới thiệu đất nước của bạn với giáo viên. 向老师 đặt trước 介绍 để chỉ người nhận lời giới thiệu. 介绍你的国家 nghĩa là giới thiệu đất nước của bạn.",
         "id": "h3-18-arrange-4",
         "lesson": 18,
         "part": "Sắp xếp câu",
@@ -8105,7 +8105,7 @@
           "已经去了"
         ],
         "ok": 0,
-        "e": "只要有空就去 nêu điều kiện tham dự.",
+        "e": "Người nam nói 只要明天有空，我就去: chỉ cần ngày mai rảnh thì sẽ đi. Vì vậy chọn 有空的时候 (khi có thời gian rảnh), không phải chắc chắn sẽ đi trong mọi trường hợp.",
         "id": "h3-18-listening-4",
         "lesson": 18,
         "part": "Nghe",
@@ -8303,7 +8303,7 @@
           "我终于听出来你的声音了"
         ],
         "ok": 0,
-        "e": "Cuối cùng tôi nhận ra giọng của bạn. 出来 có thể chỉ nhận ra hoặc phát hiện qua quan sát; 起来 chỉ bắt đầu hoặc gợi nhớ.",
+        "e": "Cuối cùng tôi nhận ra giọng của bạn. 终于 chỉ cuối cùng cũng đạt kết quả. 听出来 là nghe và nhận ra; 你的声音 là giọng của bạn được nhận ra.",
         "id": "h3-19-arrange-0",
         "lesson": 19,
         "part": "Sắp xếp câu",
@@ -8323,7 +8323,7 @@
           "妈妈让我早点儿回家"
         ],
         "ok": 0,
-        "e": "Mẹ bảo tôi về nhà sớm. 出来 có thể chỉ nhận ra hoặc phát hiện qua quan sát; 起来 chỉ bắt đầu hoặc gợi nhớ.",
+        "e": "Mẹ bảo tôi về nhà sớm. 让 + người + hành động diễn tả yêu cầu ai làm gì: 妈妈让我… là mẹ bảo tôi…. 早点儿回家 nghĩa là về nhà sớm hơn.",
         "id": "h3-19-arrange-1",
         "lesson": 19,
         "part": "Sắp xếp câu",
@@ -8343,7 +8343,7 @@
           "她没去过上海"
         ],
         "ok": 0,
-        "e": "Cô ấy chưa từng đến Thượng Hải. Diễn tả khiến hoặc để ai làm gì: chủ ngữ + 让/叫/使 + người + hành động/trạng thái.",
+        "e": "Cô ấy chưa từng đến Thượng Hải. 没 + động từ + 过 phủ định một trải nghiệm: 没去过上海 là chưa từng đến Thượng Hải.",
         "id": "h3-19-arrange-2",
         "lesson": 19,
         "part": "Sắp xếp câu",
@@ -8363,7 +8363,7 @@
           "桌子上有两张蓝色的纸"
         ],
         "ok": 0,
-        "e": "Trên bàn có hai tờ giấy xanh lam. Diễn tả khiến hoặc để ai làm gì: chủ ngữ + 让/叫/使 + người + hành động/trạng thái.",
+        "e": "Trên bàn có hai tờ giấy xanh lam. 桌子上 là địa điểm; 有两张蓝色的纸 diễn tả có hai tờ giấy màu xanh lam. 张 là lượng từ cho giấy.",
         "id": "h3-19-arrange-3",
         "lesson": 19,
         "part": "Sắp xếp câu",
@@ -8385,7 +8385,7 @@
           "秋天我们坐船去看风景"
         ],
         "ok": 0,
-        "e": "Mùa thu chúng tôi đi thuyền ngắm cảnh. Diễn tả kinh nghiệm đã từng có; phủ định dùng 没…过, không dùng 不…过.",
+        "e": "Mùa thu chúng tôi đi thuyền ngắm cảnh. 秋天 là thời gian; 坐船 chỉ phương tiện đi thuyền; 去看风景 là mục đích đi ngắm cảnh.",
         "id": "h3-19-arrange-4",
         "lesson": 19,
         "part": "Sắp xếp câu",
@@ -8746,7 +8746,7 @@
           "这只碗被小猫碰坏了"
         ],
         "ok": 0,
-        "e": "Cái bát này bị mèo làm vỡ. Câu bị động: đối tượng chịu tác động + 被 + người gây ra + V + thành phần khác. Phủ định đứng trước 被.",
+        "e": "Cái bát này bị mèo va vào làm hỏng. 这只碗 là vật chịu tác động; 被小猫 nêu tác nhân. 碰坏 gồm 碰 và bổ ngữ kết quả 坏: bị mèo va vào làm hỏng.",
         "id": "h3-20-arrange-0",
         "lesson": 20,
         "part": "Sắp xếp câu",
@@ -8768,7 +8768,7 @@
           "只有多练习才能提高水平"
         ],
         "ok": 0,
-        "e": "Chỉ có luyện tập nhiều mới nâng trình độ. Câu bị động: đối tượng chịu tác động + 被 + người gây ra + V + thành phần khác. Phủ định đứng trước 被.",
+        "e": "Chỉ có luyện tập nhiều mới nâng trình độ. 只有多练习 nêu điều kiện cần; 才能提高水平 nêu kết quả có thể đạt. Cấu trúc: 只有…才… (chỉ có…mới…).",
         "id": "h3-20-arrange-1",
         "lesson": 20,
         "part": "Sắp xếp câu",
@@ -8788,7 +8788,7 @@
           "今天的天气多么好啊"
         ],
         "ok": 0,
-        "e": "Thời tiết hôm nay đẹp biết bao! A là điều kiện cần để đạt B; phân biệt với 只要…就… là điều kiện đủ.",
+        "e": "Thời tiết hôm nay đẹp biết bao! A là điều kiện cần để đạt B; phân biệt với 只要…就… là điều kiện đủ.. 多么好啊 dùng 多么 + tính từ + 啊 trong câu cảm thán để khen thời tiết đẹp.",
         "id": "h3-20-arrange-2",
         "lesson": 20,
         "part": "Sắp xếp câu",
@@ -8808,7 +8808,7 @@
           "这个问题已经解决了"
         ],
         "ok": 0,
-        "e": "Vấn đề này đã giải quyết xong. A là điều kiện cần để đạt B; phân biệt với 只要…就… là điều kiện đủ.",
+        "e": "Vấn đề này đã giải quyết xong. 已经…了 chỉ việc đã hoàn tất. 解决了 nghĩa là đã giải quyết xong; 这个问题 là vấn đề được nói tới.",
         "id": "h3-20-arrange-3",
         "lesson": 20,
         "part": "Sắp xếp câu",
@@ -8828,7 +8828,7 @@
           "我没有被这件事影响"
         ],
         "ok": 0,
-        "e": "Tôi không bị ảnh hưởng bởi chuyện này. Dùng trong câu cảm thán để nhấn mạnh mức độ: 多么 + tính từ + 啊.",
+        "e": "Tôi không bị ảnh hưởng bởi chuyện này. 没有 đặt trước 被 để phủ định câu bị động. 被这件事影响 nghĩa là bị chuyện này ảnh hưởng; 我没有被… phủ định tác động đó.",
         "id": "h3-20-arrange-4",
         "lesson": 20,
         "part": "Sắp xếp câu",

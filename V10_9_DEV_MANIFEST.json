@@ -1,7 +1,7 @@
 {
-  "version": "V10.9 DEV R246",
+  "version": "V10.9 DEV R247",
   "baseline": "R192 PASS",
-  "status": "R246 - HSK3 alternating vocabulary questions and adjacent practice actions; cloud activation pending",
+  "status": "R247 - HSK3 Chinese progress titles and per-question explanations; cloud activation pending",
   "locked": [
     "Bài học",
     "MiniTest content",
@@ -447,6 +447,23 @@
         "All inline scripts parsed",
         "200 vocabulary questions: four unique options and correct answer",
         "100 randomized quick vocabulary test builds: strict alternating modes"
+      ]
+    },
+    "r247": {
+      "progress_lesson_titles": "Chinese titles for all 20 lessons",
+      "arrangement_explanations_rewritten": 100,
+      "other_explanations_clarified": 5,
+      "vocabulary_readings_corrected": [
+        "长 = cháng (dài)",
+        "只 = zhī (lượng từ cho động vật)"
+      ],
+      "qa": [
+        "400 authored exercise/listening questions reviewed against prompt and answer",
+        "600 lesson and Mini Test prompts: correct/wrong rendering, single current explanation",
+        "Chinese progress titles and expand/collapse verified for all 20 lessons",
+        "Question IDs, prompts and answer banks preserved",
+        "Inline dataset equals assets/hsk3/course.json; all scripts parse",
+        "R246 alternating vocabulary questions and horizontal practice actions retained"
       ]
     }
   }
