@@ -49,7 +49,7 @@ document.addEventListener('visibilitychange',()=>{if(!document.hidden){ckExamChe
 window.addEventListener('pagehide',ckExamClear);
 // Preserve the R250 knowledge/vocabulary routes after recovery.
 const CK_R250_CATALOG=h3UpdateCatalogs;h3UpdateCatalogs=function(){const out=CK_R250_CATALOG(...arguments);document.querySelector('#knowledgeGrid .hskLevelCard:nth-child(3)')?.setAttribute('onclick','h3Course()');return out;};
-for(const id of ['hsk3Course','hsk3Lesson','hsk3Quiz','hsk3Knowledge']){const head=document.querySelector('#'+id+' .head');if(head){let group=head.lastElementChild;if(group.tagName==='BUTTON'){group.className='back';group.textContent='← Quay lại';group.setAttribute('onclick','goBack()');}else group.innerHTML='<button class="back" onclick="goBack()">← Quay lại</button>';}}installPageHomeButtons();
+installPageHomeButtons();
 
 const CK_LOCK_RESUME=resumeSavedProgress;resumeSavedProgress=function(){let saved=getResumeProgress();if(saved?.kind==='mock'||saved?.kind==='exam'&&saved.id==='final')return ckExamOpen(saved.kind==='mock'?'hsk1-mock-'+saved.id:'hsk1-final');return CK_LOCK_RESUME(...arguments);};
 const CK_LOCK_H2_RESUME=h2Resume;h2Resume=function(){let saved;try{saved=JSON.parse(localStorage.getItem('ck_hsk2_resume')||'null')}catch{}if(saved&&['mock','final'].includes(saved.kind))return ckExamOpen(saved.kind==='mock'?'hsk2-mock-'+saved.id:'hsk2-final');return CK_LOCK_H2_RESUME(...arguments);};
