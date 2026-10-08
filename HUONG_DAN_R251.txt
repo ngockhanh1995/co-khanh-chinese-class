@@ -1,0 +1,39 @@
+R251 — GIAO DIỆN GIÁO VIÊN MỞ / KHÓA ĐỀ HSK1–HSK2
+
+Máy chủ exam-access đã được cập nhật. Chưa cập nhật giao diện trên main.
+
+CÀI LÊN NHÁNH KIỂM THỬ
+1. Chép index.html, exam-lock.js, exam-lock.css và assets/hsk3/course.json vào đúng đường dẫn của nhánh kiểm thử.
+2. Không chép thư mục backend hoặc các ngân hàng đề vào GitHub Pages.
+3. Đăng nhập giáo viên > Quản lý quyền thi HSK1–HSK2.
+4. Chọn đề và học sinh (hoặc Tất cả học sinh), đặt thời gian mở/đóng, số lượt (mặc định 1), rồi ấn Mở đề.
+5. Khóa đề thu hồi quyền thi và quyền xem lời giải. Mở lời giải chỉ cho tài khoản đã nộp bài xem phần chữa.
+6. Khi cấp lại quyền bằng Mở đề, bộ lượt mới bắt đầu; điểm/lịch sử cũ giữ nguyên.
+
+HỌC SINH
+Khi chưa được cấp quyền: chỉ có tên đề, số câu và thông báo đang khóa; không tải câu hỏi, hình hay audio.
+Khi được cấp quyền: bấm Bắt đầu thi mới tải đề qua máy chủ.
+Thu hồi quyền: nội dung được dọn khi lần kiểm tra quyền kế tiếp chạy (mỗi 10 giây; kiểm tra lại khi quay về tab). Không thể thu hồi nội dung đã nhìn thấy hoặc đã tải hợp lệ trước đó.
+Không thể xác minh quyền / mất mạng: giữ khóa hoặc thu lại nội dung; không cho mở bằng bản lưu cũ.
+Audio được tải sau kiểm tra quyền, chạy liên tục; nộp thủ công bị khóa đến khi audio hết. Máy chủ cũng kiểm tra thời gian audio.
+HSK1 thi thử 40 phút. HSK2: thời lượng audio tương ứng + 3 phút điền đáp án + 22 phút đọc. Đề cuối khóa không có đồng hồ.
+Điểm được chấm và lưu trên máy chủ vào đúng tài khoản/cấp độ; nộp lại cùng lượt không tạo điểm trùng.
+
+KIỂM THỬ ĐÃ CHẠY
+- Giao diện DOM: chưa cấp quyền, cấp quyền, thu hồi, mất kết nối, thay đổi quyền trước khi mở, giáo viên mở/khóa/đăng xuất, điều hướng HSK1–HSK3.
+- Mã xử lý máy chủ với Auth/nguồn tệp giả lập: 12 thao tác khi chưa đăng nhập; học sinh tự cấp quyền; truy cập lượt của người khác; đọc ảnh/audio khi khóa; tên ảnh trùng tiền tố; không lộ đáp án trước khi nộp; lời giải chưa được mở.
+- Cơ sở dữ liệu thật, dữ liệu kiểm tra trong giao dịch đã rollback: quyền bảng/RPC, chưa mở/ngoài giờ/đã khóa/hết lượt, đúng chủ tài khoản, audio chưa đủ thời gian, điểm kỹ năng, nộp trùng.
+- Kiểm tra cấu trúc ZIP và CRC của toàn bộ tệp trước khi lưu.
+
+TRƯỚC KHI MERGE MAIN
+Đăng nhập hai tài khoản học sinh thật trên điện thoại/máy tính: mở chỉ cho tài khoản A, xác nhận B vẫn khóa; khóa lại A; mở một lượt mới; làm và nộp; xem đúng điểm ở học sinh và giáo viên. Kiểm thử này chưa được thực hiện trong phiên vì không sử dụng mật khẩu tài khoản của bạn.
+Commit Summary: R251: Add teacher exam grants and enforce protected exam loading
+
+GIỚI HẠN CẦN BIẾT
+Bản mới không nhúng ngân hàng đề/ảnh/audio đề trong HTML. API kiểm tra đăng nhập, chủ lượt thi và quyền giáo viên.
+Các bản đề đã công khai trong lịch sử GitHub vẫn tồn tại và có thể tải trực tiếp nếu biết URL cũ. Máy chủ hiện lấy tệp từ bản lưu đó sau kiểm tra quyền. Bản này bảo vệ luồng thi và API của phiên bản mới; không thể coi là thu hồi hay bảo mật tuyệt đối những tài liệu đã công khai trước đây.
+Gói không chứa các tệp đề cũ. Có thể xem OLD_EXAM_ASSETS.txt để dọn các tệp được phát trực tiếp trên nhánh mới. Không tự viết lại lịch sử Git hoặc thay đổi quyền repository.
+
+HSK3
+Giữ nội dung R249 và các sửa điều hướng R250: card HSK3 mở bài học; nút Từ vựng HSK3 mở danh sách riêng; sửa nút Trang chủ lặp.
+Chưa kích hoạt thay đổi cơ sở dữ liệu HSK3. Các sửa này không thay đổi dữ liệu học tập HSK1–HSK2 đã có.
