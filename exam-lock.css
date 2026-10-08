@@ -9,3 +9,9 @@
 #ckSecureExamPage .ckExamPictures .ckProtectedImage{max-width:100%;height:170px;max-height:none;min-height:170px;margin:8px auto;object-fit:contain}
 #ckExamMessage{font-size:17px;line-height:1.65}
 @media(max-width:640px){#ckSecureExamPage .q{padding:14px 10px}#ckExamMessage{font-size:16px}}
+
+.ckExamAudioHeading{font-size:18px;line-height:1.6}.ckExamAudioCard p{margin:16px 0;line-height:1.65}
+
+/* R258: one audio introduction layout for HSK1 mocks 2–5 and HSK2 mocks 1–5. */
+.ckExamAudioCard #ckExamAudioStatus{font-size:17px;line-height:1.65}
+@media(max-width:640px){.ckExamAudioHeading,.ckExamAudioCard #ckExamAudioStatus{font-size:16px}}
