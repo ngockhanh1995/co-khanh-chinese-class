@@ -3394,7 +3394,7 @@ renderAchievementLevels=function(){H1_SUMMARY_LEVELS();renderHSK1LevelSummary();
 const LEVEL_LABEL_KNOWLEDGE=renderHSKCatalog;
 renderHSKCatalog=function(){LEVEL_LABEL_KNOWLEDGE();simplifyLevelCardLabels()};
 const LEVEL_LABEL_TESTS=renderTestCatalog;
-renderTestCatalog=function(...args){let r=LEVEL_LABEL_TESTS(...args);simplifyLevelCardLabels();return r};
+renderTestCatalog=function(...args){let r=LEVEL_LABEL_TESTS(...args);simplifyLevelCardLabels();h3UpdateCatalogs();return r};
 const LEVEL_LABEL_OPEN=openPage;
 openPage=function(...args){let r=LEVEL_LABEL_OPEN(...args);simplifyLevelCardLabels();return r};
 document.addEventListener('DOMContentLoaded',()=>{renderHSK1LevelSummary();simplifyLevelCardLabels()});
