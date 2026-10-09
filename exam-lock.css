@@ -17,3 +17,5 @@
 @media(max-width:640px){.ckExamAudioHeading,.ckExamAudioCard #ckExamAudioStatus{font-size:16px}}
 
 .ckReviewPictures{display:flex;gap:12px;overflow-x:auto;margin:12px 0}.ckReviewPictures figure{flex:1 0 140px;margin:0;text-align:center}.ckReviewPictures img{display:block;max-width:100%;height:170px;object-fit:contain;margin:8px auto}.ckReviewPictures figure:only-child{flex:1;min-width:0}.ckReviewPictures figure:only-child img{height:auto;max-width:min(100%,620px)}
+
+.r267ExamTokens{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0}.r267ExamBuilt{min-height:54px;padding:12px;border:1px dashed #d4b8c8;border-radius:12px;display:flex;flex-wrap:wrap;gap:8px}.r267ExamTokens [hidden]{display:none!important}#ckSecureExamPage input[data-r267-input]{max-width:220px;font-size:20px}
