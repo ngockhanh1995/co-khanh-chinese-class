@@ -79,3 +79,11 @@ CK_EXAM_CODE_OBSERVER.observe(document.body,{childList:true,subtree:true,charact
 
 // The audio heading uses the current catalog title, including resumed older snapshots.
 function ckExamAudioHeader(run){const bank=run.bank,meta=CK_EXAMS.find(exam=>exam.key===run.key),title=meta?.title||ckExamNoCode(bank.title);return '<div class="card ckExamAudioCard" style="position:sticky;top:0;z-index:5"><div class="ckExamAudioHeading"><b>'+esc(title)+'</b>'+(bank.kind==='mock'?' · ⏱ <span id="ckExamClock">Bắt đầu khi phát audio</span>':'')+'</div><p id="ckExamMessage" role="status">Đề được mở riêng cho tài khoản của em.</p>'+(bank.kind==='mock'?'<p id="ckExamAudioStatus" role="status">'+ckExamAudioIntro(bank)+'</p><button type="button" class="btn" id="ckExamPlay" onclick="ckExamPlay()">▶ Bắt đầu audio</button><audio id="ckExamAudio" preload="none"></audio>':'')+'</div>';}
+
+// R273: HSK2 mocks use a fixed 55-minute deadline shared with the server.
+const R273_HEADER=ckExamAudioHeader;
+ckExamAudioHeader=function(run){const html=R273_HEADER(...arguments);return run.bank.level===2&&run.bank.kind==='mock'?html.replace('Bắt đầu khi phát audio','55:00'):html;};
+const R273_TICK=ckExamTick;
+ckExamTick=function(){const out=R273_TICK(...arguments),run=CK_EXAM_RUN;if(run?.bank.level===2&&run.bank.kind==='mock'&&!run.deadline&&!run.submitted){const clock=document.getElementById('ckExamClock');if(clock)clock.textContent='55:00';}return out;};
+const R273_OPEN=ckExamOpen;
+ckExamOpen=async function(key){const out=await R273_OPEN(...arguments);if(key.startsWith('hsk2-mock-')&&!CK_EXAM_RUN){const intro=document.querySelector('#ckExamBody .ckExamEntryCard > p');if(intro)intro.textContent='60 câu · Nghe 35 + Đọc 25 · 55 phút · có audio tiếng Trung.';}return out;};

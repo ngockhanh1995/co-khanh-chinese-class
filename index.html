@@ -3529,7 +3529,7 @@ const H21003_GROUPS=[[1,5,0],[6,10,1],[11,15,2],[16,20,3],[21,30,4],[31,35,5],[3
 const MOCK227_BUILD=h2Build;
 h2Build=function(kind,id){if(kind!=='mock')return MOCK227_BUILD(kind,id);let cfg=h2MockExam(id);if(!cfg)return null;let r={kind,id,title:cfg.title,type:'mock_test',lesson:null,questions:structuredClone(cfg.questions),answers:{},played:{},submitted:false,started:Date.now(),deadline:null,owner:CK_STUDENT_ID,phase:'ready',audioPos:0};h2AssertQuestionBank(r);return r};
 const MOCK227_COURSE=h2Course;
-h2Course=function(mode='lessons'){let r=MOCK227_COURSE(mode);if(mode==='tests'&&STUDENT_ACCESS_READY){let body=document.getElementById('h2CourseBody');if(!document.getElementById('h2MockCatalogue'))body.insertAdjacentHTML('beforeend','<div class="card" id="h2MockCatalogue"><h2>Đề thi thử HSK2</h2><div class="examCards">'+['H21003','H21004','H21006','H21330','H21334'].map(id=>{let c=h2MockExam(id);return '<article class="examCard"><span class="tag">MOCK '+c.number+'</span><h3>'+c.title+'</h3><p>60 câu · Nghe 35 + Đọc 25 · '+50+' phút · có audio tiếng Trung.</p><button type="button" class="btn" onclick="h2Start(\'mock\',\''+id+'\')">Thi thử →</button></article>'}).join('')+'</div></div>')}return r};
+h2Course=function(mode='lessons'){let r=MOCK227_COURSE(mode);if(mode==='tests'&&STUDENT_ACCESS_READY){let body=document.getElementById('h2CourseBody');if(!document.getElementById('h2MockCatalogue'))body.insertAdjacentHTML('beforeend','<div class="card" id="h2MockCatalogue"><h2>Đề thi thử HSK2</h2><div class="examCards">'+['H21003','H21004','H21006','H21330','H21334'].map(id=>{let c=h2MockExam(id);return '<article class="examCard"><span class="tag">MOCK '+c.number+'</span><h3>'+c.title+'</h3><p>60 câu · Nghe 35 + Đọc 25 · '+55+' phút · có audio tiếng Trung.</p><button type="button" class="btn" onclick="h2Start(\'mock\',\''+id+'\')">Thi thử →</button></article>'}).join('')+'</div></div>')}return r};
 const MOCK227_TESTS=openHSKTests;
 openHSKTests=function(n,quick=false){let r=MOCK227_TESTS(n,quick);if(n===2&&quick){let el=document.getElementById('h2MockCatalogue');if(el)el.hidden=true}return r};
 function h21003Zoom(button){let img=button.closest('.h21003Sheet').querySelector('img'),zoom=img.style.minWidth==='1100px';img.style.minWidth=zoom?'':'1100px';button.textContent=zoom?'Phóng to đề':'Thu nhỏ đề'}
@@ -3602,7 +3602,7 @@ window.addEventListener('online',r237Schedule);
 const R237_EXAM_RESULT=h2RenderResult;
 h2RenderResult=function(...args){let out=R237_EXAM_RESULT(...args);let r=H2_RUN,el=document.getElementById('h2Result');if(r?.submitted&&['mock','final'].includes(r.kind)&&Number(r.score?.maxScore)===200&&el&&!el.querySelector('.r237ExamVerdict')){let h=el.querySelector('h2');if(h)h.insertAdjacentHTML('afterend','<p class="r237ExamVerdict">'+passEvaluation(r.title,r.score.score,r.score.maxScore)+'</p>')}return out};
 const R237_EXAM_CATALOG=h2Course;
-h2Course=function(...args){let out=R237_EXAM_CATALOG(...args),el=document.getElementById('h2MockCatalogue');if(el&&!el.querySelector('.r237ExamTime'))el.querySelector('h2')?.insertAdjacentHTML('afterend','<p class="r237ExamTime">Thời gian làm bài: 50 phút. Đạt từ 120/200 điểm.</p>');return out};
+h2Course=function(...args){let out=R237_EXAM_CATALOG(...args),el=document.getElementById('h2MockCatalogue');if(el&&!el.querySelector('.r237ExamTime'))el.querySelector('h2')?.insertAdjacentHTML('afterend','<p class="r237ExamTime">Thời gian làm bài: 55 phút. Đạt từ 120/200 điểm.</p>');return out};
 
 // R238: exact question provenance, persisted with the account review record.
 function r238MergeSources(existing,source){let a=Array.isArray(existing)?existing.slice():[];if(!a.some(x=>JSON.stringify(x)===JSON.stringify(source)))a.push(source);return a}
@@ -3818,7 +3818,7 @@ const R249_KNOWLEDGE=renderHSKCatalog;renderHSKCatalog=function(...args){let out
 const R249_PAGE=openPage;openPage=function(id){if(id==='hsk3Knowledge'){if(h3NeedLogin(h3Knowledge))return;renderHSK3Vocabulary()}return R249_PAGE(...arguments)};
 const R249_SEARCH=buildSearchIndex;buildSearchIndex=function(){return [...R249_SEARCH(...arguments),{id:'hsk3-vocabulary-list',title:'Danh sách từ vựng HSK3',description:'Từ vựng chia theo 20 bài; chữ Hán, pinyin và nghĩa tiếng Việt.',type:'HSK3',route:{page:'hsk3Knowledge'},search:normalizeSearch('Danh sách từ vựng HSK3 20 bài chữ Hán pinyin nghĩa tiếng Việt'),titleSearch:normalizeSearch('Danh sách từ vựng HSK3')}]};
 document.addEventListener('DOMContentLoaded',()=>renderHSKCatalog());
-</script><script src="exam-lock.js?v=R267"></script>
+</script><script src="exam-lock.js?v=R273"></script>
 <script src="review-integration.js?v=R267"></script>
-<script src="hsk3-exam.js?v=R272"></script>
+<script src="hsk3-exam.js?v=R273"></script>
 </body></html>
