@@ -3818,7 +3818,7 @@ const R249_KNOWLEDGE=renderHSKCatalog;renderHSKCatalog=function(...args){let out
 const R249_PAGE=openPage;openPage=function(id){if(id==='hsk3Knowledge'){if(h3NeedLogin(h3Knowledge))return;renderHSK3Vocabulary()}return R249_PAGE(...arguments)};
 const R249_SEARCH=buildSearchIndex;buildSearchIndex=function(){return [...R249_SEARCH(...arguments),{id:'hsk3-vocabulary-list',title:'Danh sách từ vựng HSK3',description:'Từ vựng chia theo 20 bài; chữ Hán, pinyin và nghĩa tiếng Việt.',type:'HSK3',route:{page:'hsk3Knowledge'},search:normalizeSearch('Danh sách từ vựng HSK3 20 bài chữ Hán pinyin nghĩa tiếng Việt'),titleSearch:normalizeSearch('Danh sách từ vựng HSK3')}]};
 document.addEventListener('DOMContentLoaded',()=>renderHSKCatalog());
-</script><script src="exam-lock.js?v=R273"></script>
+</script><script src="exam-lock.js?v=R274"></script>
 <script src="review-integration.js?v=R267"></script>
-<script src="hsk3-exam.js?v=R273"></script>
+<script src="hsk3-exam.js?v=R274"></script>
 </body></html>

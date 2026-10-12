@@ -30,7 +30,7 @@ ckExamStoreReview=function(bank,answers,attempt){R267_STORE(...arguments);if(ban
 const R267_ADMIN_SKILL=adminSkillScore;
 adminSkillScore=function(row,skill){if(Number(row.hsk_level)===3&&row.activity_type==='mock_test'){const value=row[skill+'_score'],correct=row[skill+'_correct'],total={listening:40,reading:30,writing:10}[skill];return value==null?'—':'<b>'+Number(value)+'/100</b>'+(correct==null?'':' <small>('+correct+'/'+total+' câu)</small>');}return R267_ADMIN_SKILL(...arguments);};
 const R267_SUBMIT=ckExamSubmit;
-ckExamSubmit=function(timeout=false){const run=CK_EXAM_RUN;if(!timeout&&run?.bank.level===3&&run.audioEnded&&run.bank.questions.some((q,i)=>q.format&&!r174Norm(run.answers[i]||''))){ckExamMessage('Em còn câu Viết chưa trả lời. Hãy hoàn thành trước khi nộp.');return;}return R267_SUBMIT(...arguments);};
+ckExamSubmit=function(timeout=false){const run=CK_EXAM_RUN;ckExamFinishAudio(run);if(!timeout&&run?.bank.level===3&&run.audioEnded&&run.bank.questions.some((q,i)=>q.format&&!r174Norm(run.answers[i]||''))){ckExamSubmitNotice('Em còn câu Viết chưa trả lời. Hãy hoàn thành trước khi nộp.');return;}return R267_SUBMIT(...arguments);};
 
 // R269: display the exact duration used by the server (full audio + 5/30/15 minutes).
 function r269Duration(run){return 5100;}
