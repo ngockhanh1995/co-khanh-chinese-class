@@ -93,3 +93,25 @@ function ckExamFinishAudio(run=CK_EXAM_RUN,endedEvent=false){if(!run||run!==CK_E
 function ckExamSubmitNotice(message){ckExamMessage(message);const result=document.getElementById('ckExamResult');if(result){result.textContent=message;result.className='ckExamStatus';result.scrollIntoView({block:'nearest'});}}
 const R274_TICK=ckExamTick;
 ckExamTick=function(){ckExamFinishAudio();return R274_TICK(...arguments);};
+
+// R280: HSK1 quick tests own a fresh clock and persist the submitted duration.
+let R280_QUICK_FINISHED=null;
+const R280_RUN_EXAM=runExam;
+runExam=function(...args){
+ if(CK_ACTIVITY_TYPE==='quick_test'){R280_QUICK_FINISHED=null;startTestClock();}
+ return R280_RUN_EXAM(...args);
+};
+const R280_ELAPSED=elapsedSeconds;
+elapsedSeconds=function(){return CK_ACTIVITY_TYPE==='quick_test'&&R280_QUICK_FINISHED!==null?R280_QUICK_FINISHED:R280_ELAPSED();};
+const R280_SAVE_HISTORY=saveResultHistory;
+saveResultHistory=function(...args){
+ if((args[6]||CK_ACTIVITY_TYPE)==='quick_test'&&args[7]?.durationSec==null)args[7]={...(args[7]||{}),durationSec:elapsedSeconds()};
+ return R280_SAVE_HISTORY(...args);
+};
+const R280_SUBMIT_CURRENT=submitCurrent;
+submitCurrent=function(...args){
+ const ready=CK_ACTIVITY_TYPE==='quick_test'&&current.length>0&&current.every((q,i)=>ans[i]!==undefined);
+ if(ready&&R280_QUICK_FINISHED!==null)return;
+ if(ready)R280_QUICK_FINISHED=R280_ELAPSED();
+ return R280_SUBMIT_CURRENT(...args);
+};
