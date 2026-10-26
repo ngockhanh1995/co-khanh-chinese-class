@@ -50,3 +50,17 @@ const R276_PICK=ckExamPick;
 ckExamPick=function(i,j){const run=CK_EXAM_RUN,q=run?.bank.questions[i];if(!q||!Number.isInteger(j)||j<0||j>=q.a.length)return;const out=R276_PICK(...arguments);r276ShowPictureSelection(i);return out;};
 const R276_RENDER=ckExamRender;
 ckExamRender=function(){const out=R276_RENDER(...arguments),run=CK_EXAM_RUN;if(run?.bank.level!==3)return out;run.bank.questions.forEach((q,i)=>{if(!q.imageRefs)return;document.querySelectorAll('#ckExamQ'+i+' .ckExamPictures figure').forEach((figure,j)=>{figure.setAttribute('role','button');figure.setAttribute('tabindex','0');figure.setAttribute('aria-label','Câu '+(i+1)+' · Chọn hình '+String.fromCharCode(65+j));figure.onclick=()=>ckExamPick(i,j);figure.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();ckExamPick(i,j);}};});r276ShowPictureSelection(i);});return out;};
+
+ 
+// R281: final HSK3 is closed until the teacher requests reopening.
+const R281_FINAL_LOCK_MESSAGE='Đề cuối khóa HSK3 đang khóa. Em hãy chờ giáo viên mở đề.';
+const R281_H3_START=h3Start;
+h3Start=function(kind,...args){if(kind==='final'){alert(R281_FINAL_LOCK_MESSAGE);return;}return R281_H3_START(kind,...args);};
+const R281_H3_BUILD=h3Build;
+h3Build=function(kind,...args){if(kind==='final')throw Error(R281_FINAL_LOCK_MESSAGE);return R281_H3_BUILD(kind,...args);};
+const R281_H3_SUBMIT=h3Submit;
+h3Submit=function(...args){if(H3_RUN?.kind==='final'&&!H3_RUN.submitted){alert(R281_FINAL_LOCK_MESSAGE);return;}return R281_H3_SUBMIT(...args);};
+const R281_H3_RENDER=h3RenderRun;
+h3RenderRun=function(...args){if(H3_RUN?.kind==='final'&&!H3_RUN.submitted){h3Pause();const root=document.getElementById(H3_RUN.inline?'h3PracticeBody':'h3QuizBody');if(root)root.textContent=R281_FINAL_LOCK_MESSAGE;return;}return R281_H3_RENDER(...args);};
+const R281_H3_COURSE=h3Course;
+h3Course=function(...args){const out=R281_H3_COURSE(...args);for(const button of document.querySelectorAll('#h3CourseBody button[onclick]')){if(/h3Start\(\s*['"]final['"]/.test(button.getAttribute('onclick')||'')){button.disabled=true;button.textContent='🔒 Đang khóa';}}return out;};
