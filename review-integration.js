@@ -36,14 +36,118 @@ h2RenderQuiz=function(){if(H2_RUN&&['mock','final'].includes(H2_RUN.kind))return
 
 function r259MediaMarkup(r){let html='';if(r.secureAttempt&&(r.reviewImageRefs||[]).length)html+='<div class="ckReviewPictures">'+r.reviewImageRefs.map((ref,i)=>'<figure><b>'+((r.reviewImageRefs.length>1)?String.fromCharCode(65+i):'')+'</b><img data-review-ref="'+escapeHtmlAttr(ref)+'" data-review-attempt="'+escapeHtmlAttr(r.secureAttempt)+'" alt="Đang tải hình câu sai…"></figure>').join('')+'</div>';if(r.reviewScenes?.length)html+='<div class="h2PictureSet">'+r.reviewScenes.map((scene,i)=>'<figure><b>'+String.fromCharCode(65+i)+'</b>'+h2Scene(scene,'Hình '+String.fromCharCode(65+i))+'</figure>').join('')+'</div>';if(r.secureAttempt&&r.reviewAudioRef&&r.skill==='listening')html+='<button type="button" class="btn soft" onclick="r259ReviewAudio(this)" data-review-attempt="'+escapeHtmlAttr(r.secureAttempt)+'" data-review-ref="'+escapeHtmlAttr(r.reviewAudioRef)+'">🎧 Nghe audio của đề</button>';return html;}
 let R259_MEDIA_GENERATION=0;
-async function r259LoadReviewImages(){const generation=++R259_MEDIA_GENERATION,owner=CK_STUDENT_ID,groups=new Map();for(const img of document.querySelectorAll('#wrong img[data-review-ref]:not([src])')){const key=img.dataset.reviewAttempt+'|'+img.dataset.reviewRef;if(!groups.has(key))groups.set(key,[]);groups.get(key).push(img);}const queue=[...groups.values()];await Promise.all(Array.from({length:Math.min(4,queue.length)},async()=>{while(queue.length&&owner===CK_STUDENT_ID&&generation===R259_MEDIA_GENERATION){const images=queue.shift(),img=images[0];try{const d=await ckExamAPI({action:'review_media',attempt:img.dataset.reviewAttempt,ref:img.dataset.reviewRef});if(owner!==CK_STUDENT_ID||generation!==R259_MEDIA_GENERATION)return;for(const image of images){image.src=d.data;image.alt='Hình câu sai';}}catch{if(owner===CK_STUDENT_ID&&generation===R259_MEDIA_GENERATION)for(const image of images)image.alt='Chưa tải được hình câu sai. Hãy tải lại trang để thử lại.';}}}));}
-async function r259ReviewAudio(button){const owner=CK_STUDENT_ID;button.disabled=true;try{const response=await ckExamAPI({action:'review_media',attempt:button.dataset.reviewAttempt,ref:button.dataset.reviewRef},false,true),blob=await response.blob();if(owner!==CK_STUDENT_ID||!button.isConnected)return;const url=URL.createObjectURL(blob),audio=document.createElement('audio');audio.className='ckReviewAudio';R259_AUDIO_URLS.add(url);audio.controls=true;audio.src=url;audio.style.width='100%';button.after(audio);audio.addEventListener('ended',()=>{URL.revokeObjectURL(url);R259_AUDIO_URLS.delete(url);audio.remove();button.disabled=false;},{once:true});audio.play().catch(()=>{});}catch{button.textContent='Chưa tải được audio. Bấm để thử lại.';button.disabled=false;}}
+async function r259LoadReviewImages(){const generation=++R259_MEDIA_GENERATION,owner=CK_STUDENT_ID,groups=new Map();for(const img of document.querySelectorAll('#wrong img[data-review-ref]:not([src])')){if(img.dataset.reviewLoadFailed)continue;const key=img.dataset.reviewAttempt+'|'+img.dataset.reviewRef;if(!groups.has(key))groups.set(key,[]);groups.get(key).push(img);}const queue=[...groups.values()];await Promise.all(Array.from({length:Math.min(4,queue.length)},async()=>{while(queue.length&&owner===CK_STUDENT_ID&&generation===R259_MEDIA_GENERATION){const images=queue.shift(),img=images[0];try{const d=await r283ReviewImage(img.dataset.reviewAttempt,img.dataset.reviewRef);if(owner!==CK_STUDENT_ID||generation!==R259_MEDIA_GENERATION)return;for(const image of images){image.src=d.data;image.alt='Hình câu sai';}}catch{if(owner===CK_STUDENT_ID&&generation===R259_MEDIA_GENERATION)for(const image of images){image.dataset.reviewLoadFailed='true';image.alt='Chưa tải được hình câu sai. Bấm cập nhật danh sách để thử lại.';}}}}));}
+async function r259ReviewAudio(button){const owner=CK_STUDENT_ID;button.disabled=true;try{const response=await ckExamAPI({action:'review_media',attempt:button.dataset.reviewAttempt,ref:button.dataset.reviewRef},false,true),blob=await response.blob();if(owner!==CK_STUDENT_ID||!button.isConnected)return;const url=URL.createObjectURL(blob),audio=document.createElement('audio');audio.className='ckReviewAudio';R259_AUDIO_URLS.add(url);audio.controls=true;audio.src=url;audio.style.width='100%';button.after(audio);button.textContent='🎧 Audio đã tải';audio.play().catch(()=>{});}catch{button.textContent='Chưa tải được audio. Bấm để thử lại.';button.disabled=false;}}
 
 const R259_SELECT_LEVEL=selectAchievementLevel;selectAchievementLevel=function(){window.R259_REVIEW_LIMIT=20;return R259_SELECT_LEVEL(...arguments);};
 const R259_AUDIO_URLS=new Set();
-function r259ClearReviewAudio(){for(const audio of document.querySelectorAll('audio.ckReviewAudio')){audio.pause();audio.removeAttribute('src');audio.load();audio.remove();}for(const url of R259_AUDIO_URLS)URL.revokeObjectURL(url);R259_AUDIO_URLS.clear();R259_MEDIA_GENERATION++;}
+function r259ClearReviewAudio(){for(const audio of document.querySelectorAll('audio.ckReviewAudio')){const button=audio.previousElementSibling;if(button?.matches('button[data-review-ref]')){button.disabled=false;button.textContent='🎧 Nghe audio của đề';}audio.pause();audio.removeAttribute('src');audio.load();audio.remove();}for(const url of R259_AUDIO_URLS)URL.revokeObjectURL(url);R259_AUDIO_URLS.clear();R259_MEDIA_GENERATION++;}
 const R259_SWITCH_CACHE=switchStudentCache;
 switchStudentCache=function(){r259ClearReviewAudio();R259_LOCKED_KEYS=[];window.R259_REVIEW_LIMIT=20;return R259_SWITCH_CACHE(...arguments);};
 const R259_OPEN_PAGE=openPage;
 openPage=function(id){if(id!=='progress')r259ClearReviewAudio();return R259_OPEN_PAGE(...arguments);};
 window.addEventListener('pagehide',r259ClearReviewAudio);
+
+// R283: background sync must never replace a student's in-progress review card.
+let R283_VIEW=null;
+const R283_EXPLANATIONS=new Map(),R283_SOURCES=new Map(),R283_IMAGE_CACHE=new Map();
+let R283_SOURCE_RUN=null,R283_SOURCE_TABS=null,R283_IMAGE_JOB=null;
+const R283_RECOVER_SOURCE=r238RecoverSources;
+r238RecoverSources=function(record){
+ if(record.sources?.length)return record;
+ if(R283_SOURCE_RUN!==H2_RUN||R283_SOURCE_TABS!==H2_LESSON_TABS){R283_SOURCES.clear();R283_SOURCE_RUN=H2_RUN;R283_SOURCE_TABS=H2_LESSON_TABS;}
+ const key=JSON.stringify([record.hskLevel,record.activityType,record.lessonNumber,record.activity,record.q,record.a,record.questionNumber,record.sourcePart]);
+ if(!R283_SOURCES.has(key)){const recovered=R283_RECOVER_SOURCE(record);if(R283_SOURCES.size>=2000)R283_SOURCES.clear();R283_SOURCES.set(key,recovered.sources||null);}
+ const sources=R283_SOURCES.get(key);return sources?{...record,sources}:record;
+};
+const R283_REFRESH_EXPLANATION=r248RefreshH3Explanation;
+r248RefreshH3Explanation=function(record){
+ if(achievementReviewLevel(record)!==3)return record;
+ const key=JSON.stringify([record.lessonNumber,record.activityType,record.q,record.a,record.tokens]);
+ if(!R283_EXPLANATIONS.has(key)){const fresh=R283_REFRESH_EXPLANATION(record);if(R283_EXPLANATIONS.size>=2000)R283_EXPLANATIONS.clear();R283_EXPLANATIONS.set(key,fresh===record?null:fresh.e);}
+ const explanation=R283_EXPLANATIONS.get(key);return explanation===null?record:{...record,e:explanation};
+};
+const R283_WRITE_REVIEW=r174Write;
+r174Write=function(data){try{if(localStorage.getItem(R174_REVIEW_KEY)===JSON.stringify(data))return true;}catch{}return R283_WRITE_REVIEW(data);};
+
+async function r283ReviewImage(attempt,ref){
+ const key=CK_STUDENT_ID+'|'+attempt+'|'+ref;
+ if(!R283_IMAGE_CACHE.has(key)){
+  if(R283_IMAGE_CACHE.size>=48)R283_IMAGE_CACHE.delete(R283_IMAGE_CACHE.keys().next().value);
+  const job=ckExamAPI({action:'review_media',attempt,ref}).catch(error=>{R283_IMAGE_CACHE.delete(key);throw error;});
+  R283_IMAGE_CACHE.set(key,job);
+ }
+ return R283_IMAGE_CACHE.get(key);
+}
+const R283_LOAD_IMAGES=r259LoadReviewImages;
+r259LoadReviewImages=function(){
+ const owner=CK_STUDENT_ID,root=document.getElementById('wrong');if(!root)return Promise.resolve();r283ReserveReviewMedia(root);
+ if(R283_IMAGE_JOB?.owner===owner&&R283_IMAGE_JOB.root===root){R283_IMAGE_JOB.again=true;return R283_IMAGE_JOB.promise;}
+ const job={owner,root,again:false};R283_IMAGE_JOB=job;
+ job.promise=Promise.resolve(R283_LOAD_IMAGES()).finally(()=>{if(R283_IMAGE_JOB!==job)return;R283_IMAGE_JOB=null;if(job.again&&owner===CK_STUDENT_ID&&root.isConnected)queueMicrotask(()=>r259LoadReviewImages());});
+ return job.promise;
+};
+function r283ReviewVisible(root){const page=root.closest('.page');return (!page||page.classList.contains('on'))&&!root.closest('[hidden]');}
+function r283ReserveReviewMedia(root){for(const img of root.querySelectorAll('.ckReviewPictures figure:only-child img')){img.style.height='260px';img.style.width='100%';img.style.objectFit='contain';}}
+function r283DisposeReviewMedia(root){for(const audio of root.querySelectorAll('audio.ckReviewAudio')){audio.pause();URL.revokeObjectURL(audio.src);R259_AUDIO_URLS.delete(audio.src);audio.removeAttribute('src');audio.load();}}
+function r283ReviewCard(record,index){
+ const card=document.createElement('div');card.className='smartReviewItem';card.id='sr_'+record.id;
+ card.innerHTML='<div class="smartReviewTop"><div><b>'+esc(record.q)+'</b><div class="muted">'+r238SourceMarkup(record)+'</div></div><div class="smartReviewPriority"></div></div>'+
+  '<div class="smartReviewPractice"><div><b>Làm lại câu này:</b></div>'+smartReviewPracticeMarkup(record)+'<div class="smartReviewActions"><button type="button" class="btn">Kiểm tra</button><button type="button" class="btn soft">Làm lại</button></div><div class="smartReviewResult"></div><div class="smartReviewMeta"></div></div>'+
+  '<div class="smartReviewAnswer"><b>Đáp án: '+esc(record.a)+'</b><div style="margin-top:5px">'+esc(record.e||'')+'</div></div>';
+ card.querySelector('.smartReviewPractice').id='srp_'+record.id;
+ card.querySelector('.smartReviewResult').id='srr_'+record.id;
+ card.querySelector('.smartReviewAnswer').id='sra_'+record.id;
+ const buttons=card.querySelectorAll('.smartReviewActions button');buttons[0].onclick=()=>checkSmartReviewPractice(record.id);buttons[1].onclick=()=>resetSmartReviewPractice(record.id);
+ r283ReviewMeta(card,record,index);r283ReserveReviewMedia(card);return card;
+}
+function r283ReviewMeta(card,record,index){
+ const mastered=record.status==='mastered';card.dataset.reviewMastered=String(mastered);
+ const priority=card.querySelector('.smartReviewPriority');if(priority){priority.style.cssText='flex:0 0 140px;max-width:40%;min-height:36px';priority.previousElementSibling.style.minWidth='0';priority.textContent=mastered?'✓ Đã vững':'Câu ôn '+(index+1)+' · sai '+(Number(record.wrongCount)||0)+' lần';}
+ const meta=card.querySelector('.smartReviewMeta');if(meta)meta.textContent='Đúng liên tiếp: '+(Number(record.correctStreak)||0)+'/2 · Sai khi ôn: '+(Number(record.reviewWrong)||0);
+}
+function r283RefreshReview(){
+ const view=R283_VIEW;if(!view||view.owner!==CK_STUDENT_ID||view.level!==CK_ACH_LEVEL)return;
+ const focus=document.activeElement,anchor=focus?.closest?.('.smartReviewItem'),top=anchor?.getBoundingClientRect().top;
+ const items=smartReviewItems(),existing=new Map([...view.list.children].map(card=>[card.id,card]));
+ const next=items.slice(0,window.R259_REVIEW_LIMIT||20).map((record,index)=>existing.get('sr_'+record.id)||r283ReviewCard(record,index));
+ for(const card of view.list.children)if(!next.includes(card))r283DisposeReviewMedia(card);
+ view.list.replaceChildren(...next);
+ view.root.querySelectorAll('img[data-review-load-failed]').forEach(img=>delete img.dataset.reviewLoadFailed);
+ if(focus?.isConnected){focus.focus({preventScroll:true});if(anchor&&Number.isFinite(top))window.scrollBy(0,anchor.getBoundingClientRect().top-top);}
+ r283UpdateReview(view,items);
+ r259LoadReviewImages();
+}
+function r283UpdateReview(view,items){
+ const data=r174Read(),all=Object.values(data).filter(record=>achievementReviewLevel(record)===CK_ACH_LEVEL);
+ [...view.list.children].forEach((card,index)=>{const record=data[card.id.slice(3)];if(record)r283ReviewMeta(card,record,index);});
+ const stats=document.getElementById('smartReviewStats');if(stats){const counts={};for(const record of items)counts[record.category]=(counts[record.category]||0)+1;stats.innerHTML='<span class="smartReviewPill">Đang ôn: '+items.length+'</span><span class="smartReviewPill">Đã vững: '+all.filter(record=>record.status==='mastered').length+'</span>'+(view.categories||(view.categories=Object.keys(counts).slice(0,3))).map(category=>'<span class="smartReviewPill">'+esc(category)+': '+(counts[category]||0)+'</span>').join('');}
+ const active=new Set(items.map(record=>'sr_'+record.id)),shown=new Set([...view.list.children].map(card=>card.id));
+ const completed=[...view.list.children].filter(card=>card.dataset.reviewMastered==='true').length,unseen=items.filter(record=>!shown.has('sr_'+record.id)).length;
+ view.refresh.hidden=!completed&&!unseen&&![...shown].some(id=>!active.has(id));
+ view.refresh.textContent='Cập nhật danh sách'+(completed?' · bỏ '+completed+' câu đã vững':'');
+ view.more.hidden=!unseen;view.more.textContent='Xem thêm câu ôn ('+unseen+' câu chưa hiển thị)';
+ if(!items.length&&!view.list.children.length){view.empty.hidden=false;view.empty.textContent='Chưa có câu sai cần ôn.';}else view.empty.hidden=true;
+}
+const R283_RENDER_REVIEW=renderSmartReview;
+renderSmartReview=function(...args){
+ const root=document.getElementById('wrong');if(!root||!r283ReviewVisible(root))return;
+ let view=R283_VIEW;
+ if(!view||view.owner!==CK_STUDENT_ID||view.level!==CK_ACH_LEVEL||view.root!==root||!view.list.isConnected){
+  if(view)r259ClearReviewAudio();
+  const out=R283_RENDER_REVIEW(...args);
+  root.querySelectorAll(':scope > button').forEach(button=>button.remove());
+  let list=root.querySelector('.smartReviewList');if(!list){list=document.createElement('div');list.className='smartReviewList';root.append(list);}
+  const empty=root.querySelector('.smartReviewEmpty')||document.createElement('p');if(!empty.isConnected){empty.className='smartReviewEmpty';root.append(empty);}
+  const controls=document.createElement('div');controls.className='smartReviewStableActions';controls.style.cssText='display:flex;flex-wrap:wrap;gap:8px;margin-top:16px';
+  const refresh=document.createElement('button'),more=document.createElement('button');for(const button of [refresh,more]){button.type='button';button.className='btn soft';controls.append(button);}root.append(controls);
+  view={owner:CK_STUDENT_ID,level:CK_ACH_LEVEL,root,list,empty,refresh,more};R283_VIEW=view;
+  refresh.onclick=r283RefreshReview;more.onclick=()=>{window.R259_REVIEW_LIMIT=(window.R259_REVIEW_LIMIT||20)+20;renderSmartReview();};
+  r283UpdateReview(view,smartReviewItems());return out;
+ }
+ const items=smartReviewItems(),shown=new Set([...view.list.children].map(card=>card.id));let added=false;
+ for(const record of items){if(view.list.children.length>=(window.R259_REVIEW_LIMIT||20))break;if(shown.has('sr_'+record.id))continue;view.list.append(r283ReviewCard(record,view.list.children.length));shown.add('sr_'+record.id);added=true;}
+ r283UpdateReview(view,items);if(added||root.querySelector('img[data-review-ref]:not([src]):not([data-review-load-failed])'))r259LoadReviewImages();
+};
+const R283_SWITCH_CACHE=switchStudentCache;
+switchStudentCache=function(...args){R283_VIEW=null;R283_EXPLANATIONS.clear();R283_SOURCES.clear();R283_IMAGE_CACHE.clear();R283_IMAGE_JOB=null;return R283_SWITCH_CACHE(...args);};
