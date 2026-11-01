@@ -159,3 +159,54 @@ window.__lessonAuditR286={count:changes.length,changes};
  const replacements={'给':{'tặng, đưa':'nhận'},'外面':{'ngoài':'bên trong'},'教室':{'lớp':'phòng ngủ'},'课':{'lớp':'sân trường'}};
  h2Build=function(){const result=oldBuild.apply(this,arguments);for(const q of result&&result.questions||[]){const stem=String(q.q||q.text||'');if(!stem.includes('có nghĩa'))continue;for(const word of Object.keys(replacements))if(stem.includes('“'+word+'”'))q.a=q.a.map((a,i)=>i===q.ok?a:(replacements[word][a]||a));}return result;};
 })();
+
+/* R287: reviewed Vietnamese meaning choices, never random synonym distractors. */
+(function(){
+ const wrongByWord={"好": ["xấu; kém", "mới", "cũ"], "您好": ["tạm biệt", "xin lỗi", "cảm ơn"], "对不起": ["cảm ơn", "tạm biệt", "xin chào"], "没关系": ["xin lỗi", "không biết", "không đồng ý"], "你": ["tôi", "anh ấy", "chúng tôi"], "不": ["đã", "đều", "rất"], "再见": ["xin chào", "cảm ơn", "xin lỗi"], "老师": ["học sinh", "bác sĩ", "bạn học"], "什么": ["ai", "ở đâu", "khi nào"], "名字": ["tuổi", "quốc tịch", "nghề nghiệp"], "是": ["có", "ở", "đi"], "学生": ["giáo viên", "bác sĩ", "nhân viên bán hàng"], "人": ["đồ vật", "động vật", "cây cối"], "谁": ["cái gì", "ở đâu", "khi nào"], "的": ["đã", "đang", "rất"], "他": ["cô ấy", "tôi", "chúng tôi"], "朋友": ["giáo viên", "bố", "anh trai"], "哪": ["bao nhiêu", "khi nào", "vì sao"], "有": ["không có", "đi", "ăn"], "口": ["lượng từ cho sách", "lượng từ cho quần áo", "lượng từ cho cốc nước"], "今年": ["năm ngoái", "năm sau", "tháng này"], "岁": ["tháng", "ngày", "giờ"], "多大": ["ở đâu", "lúc mấy giờ", "ai"], "了": ["đừng; chớ", "đều; tất cả", "rất"], "说": ["nghe", "đọc", "viết"], "汉语": ["tiếng Anh", "tiếng Việt", "tiếng Nhật"], "菜": ["đồ uống", "quần áo", "đồ dùng học tập"], "很好吃": ["rất đẹp", "rất đắt", "rất lạnh"], "写": ["đọc", "nghe", "nói"], "汉字": ["pinyin", "chữ số Ả Rập", "chữ cái Latinh"], "问": ["trả lời", "nghe", "viết"], "今天": ["hôm qua", "ngày mai", "năm nay"], "月": ["ngày", "năm", "tuần"], "星期": ["tháng", "năm", "giờ"], "明天": ["hôm nay", "hôm qua", "ngày kia"], "去": ["đến", "trở về", "ở lại"], "喝": ["ăn", "mua", "ngủ"], "茶": ["cà phê", "sữa", "nước lọc"], "米饭": ["mì", "bánh mì", "cháo"], "下午": ["buổi sáng", "buổi trưa", "buổi tối"], "买": ["bán", "mượn", "trả lại"], "个": ["quyển (lượng từ cho sách)", "chiếc (lượng từ cho xe)", "bộ (lượng từ cho quần áo)"], "猫": ["chó", "chim", "cá"], "在": ["đi", "đến", "trở về"], "狗": ["mèo", "ngựa", "chim"], "椅子": ["bàn", "giường", "tủ"], "哪儿": ["khi nào", "ai", "bao nhiêu"], "工作": ["nghỉ ngơi", "du lịch", "mua sắm"], "上": ["dưới", "trong", "ngoài"], "电脑": ["điện thoại", "ti vi", "máy ảnh"], "本": ["chiếc (lượng từ cho xe)", "bộ (lượng từ cho quần áo)", "cốc (lượng từ cho đồ uống)"], "里": ["ngoài", "trên", "dưới"], "后面": ["phía trước", "bên trái", "bên phải"], "这儿": ["ở đó", "ở đâu", "bên ngoài"], "点": ["phút", "giây", "ngày"], "分": ["giờ", "ngày", "năm"], "吃饭": ["uống nước", "ngủ", "đi học"], "时候": ["địa điểm", "người", "đồ vật"], "家": ["trường học", "bệnh viện", "cửa hàng"], "前": ["sau", "trong", "ngoài"], "怎么样": ["khi nào", "ở đâu", "vì sao"], "太": ["rất ít", "chưa", "cũng"], "冷": ["nóng", "ấm", "mát"], "下雨": ["tuyết rơi", "gió thổi", "trời nắng"], "身体": ["tuổi tác", "nghề nghiệp", "tên"], "爱": ["ghét", "quên", "đợi"], "学习": ["nghỉ ngơi", "làm việc", "ngủ"], "中国菜": ["món Việt Nam", "món Nhật Bản", "món Hàn Quốc"], "呢": ["trợ từ biểu thị việc đã hoàn tất", "trợ từ đề nghị làm việc gì", "trợ từ kết cấu chỉ sở hữu"], "吧": ["trợ từ biểu thị sở hữu", "trợ từ biểu thị việc đã trải qua", "trợ từ chỉ số nhiều"], "睡觉": ["thức dậy", "ăn cơm", "đọc sách"], "一点儿": ["rất nhiều", "tất cả", "không có chút nào"], "苹果": ["lê", "chuối", "cam"], "先生": ["bà; quý bà", "cô; tiểu thư", "trẻ em"], "开": ["đóng; tắt", "mua", "bán"], "回来": ["đi ra", "đi vào", "rời đi"], "分钟": ["giờ", "giây", "ngày"], "年": ["tháng", "ngày", "tuần"], "大学": ["trường tiểu học", "trường trung học cơ sở", "trường trung học phổ thông"], "出租车": ["xe buýt", "xe đạp", "tàu hỏa"], "一起": ["một mình", "lần lượt từng người", "riêng biệt"], "听": ["nói", "đọc", "viết"], "飞机": ["tàu hỏa", "ô tô", "tàu thủy"]};
+ const contexts={
+ '怎么样':'Trong câu “今天天气怎么样？”, “怎么样” có nghĩa là gì?',
+ '谁':'Trong câu “他是谁？”, “谁” có nghĩa là gì?',
+ '哪':'Trong câu “你是哪国人？”, “哪” có nghĩa là gì?',
+ '的':'Trong cụm “我的书”, “的” có nghĩa là gì?',
+ '了':'Trong câu “天气冷了。”, “了” biểu thị điều gì?',
+ '多大':'Trong câu “你今年多大？”, “多大” dùng để hỏi điều gì?',
+ '在':'Trong câu “我在学校。”, “在” có nghĩa là gì?',
+ '呢':'Trong câu “她在看电视呢。”, “呢” nhấn mạnh điều gì?',
+ '吧':'Trong câu “我们走吧！”, “吧” biểu thị điều gì?',
+ '开':'Trong cụm “开门”, “开” có nghĩa là gì?',
+ '点':'Trong câu “现在三点。”, “点” là đơn vị nào?',
+ '分':'Trong cụm “三点十分”, “分” là đơn vị nào?',
+ '前':'Trong cụm “三天前”, “前” có nghĩa là gì?'
+ };
+ const precise={'怎么样':'thế nào; ra sao','多大':'bao nhiêu tuổi','在':'ở; tại','的':'của (biểu thị sở hữu)','了':'sự thay đổi trạng thái: trở nên lạnh','呢':'nhấn mạnh hành động đang diễn ra','吧':'đề nghị; rủ cùng làm việc gì','开':'mở','点':'giờ','分':'phút'};
+ const originalMini=makeMini;
+ makeMini=function(n){const questions=originalMini.apply(this,arguments);for(const q of questions){
+ const stem=String(q.q||'');if(!stem.includes('nghĩa'))continue;
+ const word=stem.match(/“([^”]+)”/);if(!word||!wrongByWord[word[1]])throw Error('Thiếu phương án mini test đã duyệt: '+stem);
+ const key=word[1],answer=precise[key]||q.a[q.ok],opts=[answer,...wrongByWord[key]];
+ q.q=contexts[key]||'“'+key+'” có nghĩa là gì?';q.a=h2Shuffle(opts);q.ok=q.a.indexOf(answer);q.e='“'+key+'” trong câu này có nghĩa là “'+answer+'”.';
+ }return questions;};
+ const h3Contexts={
+ '帮忙':['Trong câu “请你帮忙搬一下桌子。”, “帮忙” có nghĩa là gì?','giúp đỡ',['từ chối','chờ đợi','chào hỏi']],
+ '秘书':['“秘书” chỉ nghề nghiệp nào?','thư ký',['giáo viên','bác sĩ','giám đốc']],
+ '比较':['Trong câu “这件衣服比较贵。”, “比较” có nghĩa là gì?','tương đối',['hoàn toàn','nhất','cực kỳ']],
+ '一边':['Trong câu “他一边吃饭一边看电视。”, “一边…一边…” biểu thị điều gì?','vừa làm việc này vừa làm việc kia',['làm xong việc này rồi mới làm việc kia','chỉ làm một trong hai việc','không làm việc nào']],
+ '一般':['Trong câu “他的成绩很一般。”, “一般” có nghĩa là gì?','bình thường',['xuất sắc','đặc biệt','kém nhất']],
+ '起来':['Trong câu “请站起来。”, “起来” biểu thị hướng nào?','lên',['xuống','vào trong','ra ngoài']],
+ '长':['Trong câu “这条路很长。”, “长” có nghĩa là gì?','dài',['ngắn','rộng','hẹp']],
+ '米':['Trong câu “这条路长一百米。”, “米” là đơn vị nào?','mét',['ki lô gam','lít','centimét']],
+ '关心':['Trong câu “老师很关心学生的生活。”, “关心” có nghĩa là gì?','quan tâm',['phê bình','từ chối','phớt lờ']]
+ };
+ const originalVocab=h3Vocab;
+ h3Vocab=function(){const questions=originalVocab.apply(this,arguments);for(const q of questions){if(q.vocabMode!=='meaning')continue;const word=q.text.match(/“([^”]+)”/),fix=word&&h3Contexts[word[1]];if(fix){q.text=fix[0];q.a=[fix[1],...fix[2]];q.ok=0;q.e='Đáp án: '+fix[1]+'. Dựa vào câu ngữ cảnh đã cho.';}}return questions;};
+ window.__miniMeaningAuditR287={wrongByWord,contexts,h3Contexts};
+})();
+/* Keep already-saved copies of the reported ambiguous mini question fair. */
+(function(){
+ const oldStem=s=>/^Trong (?:các nghĩa sau, nghĩa chính xác nhất của “怎么样” là gì\?|ngữ cảnh học của bài này, “怎么样” gần nghĩa chính xác nhất với phương án nào\?)$/.test(String(s||''));
+ const alternate=s=>['thế nào','như thế nào; bằng cách nào','như thế nào','thế nào; ra sao'].includes(String(s||'').trim());
+ const score=hskAnswerIsCorrect;
+ hskAnswerIsCorrect=function(q,i){if(q&&oldStem(q.q||q.text)&&Number.isInteger(i)&&i>=0&&i<(q.a||[]).length&&alternate(q.a[i]))return true;return score.apply(this,arguments);};
+ const repair=repairSmartReviewReadingRecord;
+ repairSmartReviewReadingRecord=function(r){r=repair.apply(this,arguments);if(r&&oldStem(r.q||r.text))r.acceptedAnswers=Array.from(new Set([...(r.acceptedAnswers||[]),'thế nào','như thế nào; bằng cách nào','như thế nào','thế nào; ra sao']));return r;};
+})();
