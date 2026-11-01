@@ -153,3 +153,9 @@ const oldRepair=repairSmartReviewReadingRecord;
 repairSmartReviewReadingRecord=function(r){r=oldRepair.apply(this,arguments);if(!r)return r;const stem=norm(r.q||r.question||r.text||'');for(const x of legacy){if(stem===norm(x.text)&&(!x.audio||String(r.audio||r.audioText||r.passage||'').includes(x.audio))){r.acceptedAnswers=Array.from(new Set([...(r.acceptedAnswers||[]),...x.answers]));}}return r;};
 window.__lessonAuditR286={count:changes.length,changes};
 })();
+/* R286 vocabulary distractors: remove overlapping translations. */
+(function(){
+ const oldBuild=h2Build;
+ const replacements={'给':{'tặng, đưa':'nhận'},'外面':{'ngoài':'bên trong'},'教室':{'lớp':'phòng ngủ'},'课':{'lớp':'sân trường'}};
+ h2Build=function(){const result=oldBuild.apply(this,arguments);for(const q of result&&result.questions||[]){const stem=String(q.q||q.text||'');if(!stem.includes('có nghĩa'))continue;for(const word of Object.keys(replacements))if(stem.includes('“'+word+'”'))q.a=q.a.map((a,i)=>i===q.ok?a:(replacements[word][a]||a));}return result;};
+})();
