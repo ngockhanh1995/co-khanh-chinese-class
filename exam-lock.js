@@ -210,3 +210,48 @@ window.__lessonAuditR286={count:changes.length,changes};
  const repair=repairSmartReviewReadingRecord;
  repairSmartReviewReadingRecord=function(r){r=repair.apply(this,arguments);if(r&&oldStem(r.q||r.text))r.acceptedAnswers=Array.from(new Set([...(r.acceptedAnswers||[]),'thế nào','như thế nào; bằng cách nào','như thế nào','thế nào; ra sao']));return r;};
 })();
+
+/* R288: show HSK2/3 progress percentages in teacher and student results. */
+(function(){
+ 'use strict';
+ function progressText(done,total){return done+'/'+total+' bài · '+Math.round(done/total*100)+'%';}
+ const originalAdminProgress=adminProgressFor;
+ adminProgressFor=function(row){
+  const level=achievementResultLevel(row);
+  if(level!==2&&level!==3)return originalAdminProgress.apply(this,arguments);
+  const total=level===2?15:20;
+  const lessons=new Set(ADMIN_RESULTS.filter(x=>sameStudent(x,row)&&achievementResultLevel(x)===level&&x.activity_type==='mini_test').map(x=>Number(x.lesson_number)).filter(n=>Number.isInteger(n)&&n>=1&&n<=total));
+  return 'HSK'+level+' · '+lessons.size+'/'+total+' Mini Test · '+Math.round(lessons.size/total*100)+'%';
+ };
+ function studentProgress(level){
+  const total=level===2?15:20;
+  const done=CK_AUTH?(level===2?HSK2_COURSE.filter(l=>h2ReadUnit(l.n).completed).length:h3Done()):0;
+  return progressText(done,total);
+ }
+ function addProgressColumn(table,text){
+  if(!table)return;
+  const head=table.querySelector('thead tr');if(!head)return;
+  let th=head.querySelector('[data-course-progress]');
+  if(!th){th=document.createElement('th');th.dataset.courseProgress='';th.textContent='Tiến độ khóa học';head.appendChild(th);}
+  for(const tr of table.querySelectorAll('tbody tr')){
+   const first=tr.querySelector('td');if(!first)continue;
+   if(tr.children.length===1&&first.colSpan>1){first.colSpan=head.children.length;continue;}
+   let td=tr.querySelector('[data-course-progress]');
+   if(!td){td=document.createElement('td');td.dataset.courseProgress='';tr.appendChild(td);}
+   td.textContent=text;
+  }
+ }
+ const originalMatching=renderMatchingLevelAchievements;
+ renderMatchingLevelAchievements=function(){const out=originalMatching.apply(this,arguments);addProgressColumn(document.querySelector('#h2Achievements .historyTable'),studentProgress(2));return out;};
+ const originalH3Achievement=h3AchievementHTML;
+ h3AchievementHTML=function(){
+  const template=document.createElement('template');template.innerHTML=originalH3Achievement.apply(this,arguments);
+  const root=template.content;
+  for(const heading of root.querySelectorAll('h3'))if(heading.textContent==='Tiến độ HSK3'){
+   const track=heading.nextElementSibling,caption=track?.nextElementSibling;
+   if(caption?.tagName==='P')caption.textContent=studentProgress(3);
+  }
+  addProgressColumn(root.querySelector('.historyTable'),studentProgress(3));
+  return template.innerHTML;
+ };
+})();
